@@ -8,16 +8,21 @@
         Pet
         <small>Create</small>
 	</h1>
-	<br>
-	    <button type="submit" class="btn btn-info pull-left">Create</button>
-	<br>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
-	</section>	
-	<br>
+    </section>	
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <!-- Main content -->
     <section class="content">
         <!-- general form elements -->
@@ -27,39 +32,47 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post">
+                {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="text" name="name" class="form-control">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <input type="number" name="age"class="form-control">
                             </div>
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Gender</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label>Gender</label>
+                            <select class="form-control" name="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Breed</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label >Breed</label>
+                            <input type="text" name="breed" class="form-control">
                             </div>
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Color</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label >Color</label>
+                            <input type="text" name="color" class="form-control">
                             </div>
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Type</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label>Type</label>
+                            <select class="form-control" name="type_id">
+                                @foreach($types as $type)
+                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                @endforeach
+                            </select>
                             </div>
                             <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
+                            <label for="exampleInputFile">Pet Image</label>
+                            <input type="file" name="image">
                             </div>
                         </div>
                     </div>

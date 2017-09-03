@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pet;
+use App\PetType;
 use Auth;
+use Validator;
 
 class PetController extends Controller
 {
@@ -26,7 +28,8 @@ class PetController extends Controller
      */
     public function create()
     {
-        return view('dashboard.pets.create');
+        $types = PetType::all();
+        return view('dashboard.pets.create', compact('types'));
     }
 
     /**
@@ -37,7 +40,36 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->all();
+
+        $validator = Validator::make($params, [
+            'name' => 'required',
+            'age' => 'required|numeric',
+            'gender' => 'required',
+            'breed' => 'required',
+            'color' => 'required',
+            'image' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/dashboard/pets/create')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $imageName = $request->file('image')->getClientOriginalExtension();
+    
+            $request->file('image')->move(
+                base_path() . '/public/images/', $imageName
+            );
+
+            $params['image'] = imageName;
+            $pet = Pet::create($params);
+            if($pet) {
+                return redirect('/dashboard/pets');
+            } else {
+                return redirect('/dashboard/pets/create');
+            }
+        }
     }
 
     /**
