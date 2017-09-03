@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts.master')
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Cebu Pound Animal | Registration Page</title>
@@ -27,14 +25,12 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+@section('content')
 <body class="hold-transition register-page">
 <div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>Cebu Pound Animal</b></a>
-  </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg"><center><h4>Register and Get Started!</h4></center></p><br>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -80,7 +76,7 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-        <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ url('/login') }}" class="text-center">I already have an account!</a>
           <!-- <div class="checkbox icheck">
             <label>
               <input type="checkbox"> I agree to the <a href="#">terms</a>
@@ -123,4 +119,4 @@
   });
 </script>
 </body>
-</html>
+@endsection

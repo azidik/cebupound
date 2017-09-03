@@ -292,7 +292,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -347,7 +347,7 @@
           <a href="{{ url('/logout')}}">
             <i class="fa fa-sign-out"></i> <span>Logout</span>
           </a>
-        </li>
+        </li>F
         <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
