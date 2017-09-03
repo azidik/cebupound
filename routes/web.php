@@ -12,7 +12,6 @@
 */
 
 //------------GUEST-------------//
-Route::get('/user', 'HomeController@index');
 Route::get('/', 'HomeController@guest');
 Route::get('/about', 'HomeController@about');
 Route::get('/contact', 'HomeController@contact');

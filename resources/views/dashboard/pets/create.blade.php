@@ -23,6 +23,11 @@
             </ul>
         </div>
     @endif
+    @if(session()->has('message'))
+    <div class="alert alert-danger">
+        {{ session()->get('message') }}
+    </div>
+    @endif
     <!-- Main content -->
     <section class="content">
         <!-- general form elements -->
@@ -64,7 +69,7 @@
                             </div>
                             <div class="form-group">
                             <label>Type</label>
-                            <select class="form-control" name="type_id">
+                            <select class="form-control" name="pet_type_id">
                                 @foreach($types as $type)
                                 <option value="{{$type->id}}">{{$type->name}}</option>
                                 @endforeach

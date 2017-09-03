@@ -22,7 +22,6 @@
         <a class="navbar-brand" href="/">Cebu Pound</a>
         </div>
 
-        @if (Auth::guest())
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#feature">Adopt Me</a></li>
@@ -34,53 +33,7 @@
         </div>
       </div>
     </nav>
-    <!--/ Navigation bar-->
-    
-
-    @else
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-                  <li class=""><a href="/user">Home</a></li>         
-                  <li><a href="/profile">Profile</a></li>
-                  <li class="dropdown collapse">
-                     <a href=" " class="dropdown-toggle" data-toggle="dropdown">Pets <b class="caret"></b></a>
-                        <ul class="dropdown-menu btn btn-danger">
-                           <li><a href="/petRegistration">Pet Registration</a></li>
-                           <li><a href="/adopt">Adoption</a></li>
-                           <li><a href="/impound">Impounding</a></li>
-                        </ul>
-                  </li>
-                  <li class="dropdown collapse ">
-                     <a href=" " class="dropdown-toggle" data-toggle="dropdown">Services <b class="caret"></b></a>
-                        <ul class="dropdown-menu btn btn-danger">
-                           <li><a href="ideworm.php">Deworming</a></li>
-                           <li><a href="imange.php">Mange Treatment</a></li>
-                           <li><a href="isandn.php">Spay and Neuter</a></li>
-                           <li><a href="irabies.php">Rabies Vaccination</a></li>
-                           <li><a href="ibasic.php">Basic Medical Consultation</a></li>
-                        </ul>
-                  </li>
-                  <li><a href="/donation">Donation</a></li>
-                  <li><a href="notices">Notices</a></li>       
-                  <li><a href='/logout'> {{ Auth::user()->name }} <span class="caret"></span></a>
-
-                      <li>
-                        <a href="{{ url('/logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        Sign Out
-                        </a>
-
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                      </li>
-
-                  </li>
-               </ul>
-            </div>
-      
-    @endif
+  
 
     @yield('content')
 

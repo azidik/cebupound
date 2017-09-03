@@ -56,15 +56,21 @@ class PetController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $imageName = $request->file('image')->getClientOriginalExtension();
-    
-            $request->file('image')->move(
-                base_path() . '/public/images/', $imageName
-            );
-
-            $params['image'] = imageName;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $destinationPath = public_path('images');
+                if (!File::exists($destinationPath)) {
+                    $fileDir = File::makeDirectory('images' . $params['image']);
+                }
+                $image = $file->getClientOriginalName();
+                $file->move($destinationPath, $image);
+                $params['image'] = $image;
+            }
+            $params['pet_category_id'] = 1;
+            $params['user_id'] = Auth::user()->id;
             $pet = Pet::create($params);
             if($pet) {
+                session()->flash('message', 'Pet created...');
                 return redirect('/dashboard/pets');
             } else {
                 return redirect('/dashboard/pets/create');
