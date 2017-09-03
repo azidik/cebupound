@@ -344,7 +344,7 @@
           </a>
         </li>
         <li class="active">
-          <a href="#">
+          <a href="{{ url('/logout')}}">
             <i class="fa fa-sign-out"></i> <span>Logout</span>
           </a>
         </li>
