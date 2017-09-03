@@ -17,10 +17,12 @@ Route::get('/', 'HomeController@guest');
 Route::get('/about', 'HomeController@about');
 Route::get('/contact', 'HomeController@contact');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('dashboard', function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
+    Route::get('/', function () {
         return view('dashboard.index');
     });
+    Route::get('pets', 'PetController@index');
+    Route::get('pets/create', 'PetController@create');
 });
 
 
