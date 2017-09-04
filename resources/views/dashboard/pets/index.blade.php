@@ -9,10 +9,10 @@
         <small>List</small>
 	</h1>
 	<br>
-		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</button>
+		<div><a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</button></a></div>
 	<br>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
