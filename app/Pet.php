@@ -20,4 +20,14 @@ class Pet extends Model
     {
         return $this->belongsTo('App\PetType', 'pet_type_id');
     }
+
+    public function impound ()
+    {
+        return $this->hasOne('App\Impound', 'pet_id');
+    }
+
+    public function user ()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

@@ -6,7 +6,7 @@
 <section class="content-header">
     <h1>
         Pet
-        <small>Create</small>
+        <small>Details</small>
 	</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -37,47 +37,49 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" value="{{ $pet->name }}">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age"class="form-control">
+                            <input type="number" name="age"class="form-control" value="{{ $pet->age }}">
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
                             <select class="form-control" name="gender">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="Male" {{$pet->gender == 'Male'}} ?? 'selected' : ''>Male</option>
+                                <option value="Female" {{$pet->gender == 'Female'}} ?? 'selected' : ''>Female</option>
                             </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">
+                                    <img src="{{ asset('/images/'. $pet->image)}}" width="200">
+                                </label>
+                                <input type="file" name="image" value="{{ $pet->image}}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control">
+                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed }}">
                             </div>
                             <div class="form-group">
                             <label >Color</label>
-                            <input type="text" name="color" class="form-control">
+                            <input type="text" name="color" class="form-control" value="{{ $pet->color }}">
                             </div>
                             <div class="form-group">
                             <label>Type</label>
                             <select class="form-control" name="pet_type_id">
                                 @foreach($types as $type)
-                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                <option value="{{$type->id}}" {{$pet->pet_type_id == $type->id}} ?? 'selected' : ''>{{$type->name}}</option>
                                 @endforeach
                             </select>
-                            </div>
-                            <div class="form-group">
-                            <label for="exampleInputFile">Pet Image</label>
-                            <input type="file" name="image">
                             </div>
                         </div>
                     </div>

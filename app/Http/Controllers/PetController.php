@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Pet;
 use App\PetType;
 use Auth;
 use Validator;
+use App\Impound;
 
 class PetController extends Controller
 {
@@ -60,7 +62,7 @@ class PetController extends Controller
                 $file = $request->file('image');
                 $destinationPath = public_path('images');
                 if (!File::exists($destinationPath)) {
-                    $fileDir = File::makeDirectory('images' . $params['image']);
+                    $fileDir = File::makeDirectory('images');
                 }
                 $image = $file->getClientOriginalName();
                 $file->move($destinationPath, $image);
@@ -86,7 +88,9 @@ class PetController extends Controller
      */
     public function show($id)
     {
-        //
+        $types = PetType::all();
+        $pet = Pet::find($id);
+        return view('dashboard.pets.details', compact('pet', 'types'));
     }
 
     /**
@@ -121,5 +125,21 @@ class PetController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function proceedToImpound($id) {
+        $impound = Impound::create([
+            'pet_id' => $id
+        ]);
+        if($impound) {
+            $response = [
+                'status' => 1
+            ];
+        } else {
+            $response = [
+                'status' => 0
+            ];
+        }   
+        return $response;
     }
 }
