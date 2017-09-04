@@ -13,11 +13,17 @@ class Impound extends Model
      * @var array
      */
      protected $fillable = [
-        'pet_id', 'place_founded','surrendered_at','surrendered_by'
+        'pet_id', 'place_founded','surrendered_at','surrendered_by', 'is_accepted'
     ];
 
     public function type ()
     {
         return $this->belongsTo('App\PetType', 'pet_type_id');
     }
+
+    public function pet ()
+    {
+        return $this->belongsTo('App\Pet', 'pet_id');
+    }
+    
 }

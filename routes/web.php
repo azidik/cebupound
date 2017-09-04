@@ -25,6 +25,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::post('pets/create', 'PetController@store');
     Route::get('pets/{id}', 'PetController@show');
     Route::get('pets/impound/{id}', 'PetController@proceedToImpound');
+
+    // Admin
+    Route::group(['prefix' => 'admin'], function () { 
+        Route::get('impoundRequest', 'Admin\ImpoundController@impoudRequest');
+        Route::get('impoundAccept/{id}', 'Admin\ImpoundController@impoundAccept');
+    });
 });
 
 

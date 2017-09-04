@@ -12,7 +12,7 @@
 		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</a>
 	<br>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
@@ -57,8 +57,12 @@
 							<td>{{ $pet->breed }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>
-							@if(isset($pet->impound) != '') 
-								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button>
+							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
+								<td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+								<td><button class="btn btn-info btn-xs" disabled="true">Accepted</button><td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
+							<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button><td>
 							@else 
 								<td><button class="btn btn-info btn-xs" onclick="impound('{{$pet->id}}')">Proceed to impound</button>
 							@endif		

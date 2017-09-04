@@ -112,11 +112,11 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <!-- <div class="pull-left image">
+        <!-- <div class="pull-middle image">
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div> -->
         <div>
-          <p style="color: #fff; font-weight: 400;">{{ Auth::user()->first_name }}</p>
+          <p style="color: #fff; font-weight: 400;">{{ Auth::user()->first_name}}</p>
           <a href="#">{{ Auth::user()->email }}</a>
         </div>
       </div>
@@ -135,17 +135,35 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="#">
+          <a href="{{ url('/dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        @if(Auth::user()->is_admin)
+        <li class="active">
+          <a href="{{ url('/dashboard/pets') }}">
+            <i class="fa fa-dashboard"></i> <span>Pet List</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{{ url('/dashboard/admin/impoundRequest') }}">
+            <i class="fa fa-dashboard"></i> <span>Impound Request</span>
           </a>
         </li>
         <li class="active">
           <a href="{{ url('/dashboard/pets') }}">
-            <i class="fa fa-dashboard"></i> <span>My Pets</span>
+            <i class="fa fa-dashboard"></i> <span>Adoption Request</span>
           </a>
         </li>
+        @else
+          <li class="active">
+            <a href="{{ url('/dashboard/pets') }}">
+              <i class="fa fa-dashboard"></i> <span>My Pets</span>
+            </a>
+          </li>
+        @endif
         <li class="active">
-          <a href="{{ url('/logout')}}">
+          <a href="{{ url('/logout') }}">
             <i class="fa fa-sign-out"></i> <span>Logout</span>
           </a>
         </li>F
@@ -322,13 +340,10 @@
 
 
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+  <footer class="main-footer"><center>
+    <strong>©2017 Cebu Pound.</strong> All rights
     reserved.
-  </footer>
+  </center></footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
