@@ -32,4 +32,22 @@ class ImpoundController extends Controller
         }
         return $response;
     }
+
+    public function impoundDecline($id)
+    {
+        $impound = Impound::find($id)->update([
+            'is_accepted' => 2
+        ]);
+
+        if($impound) {
+            $response = [
+                'status' => 1
+            ];
+        } else {
+            $response = [
+                'status' => 0
+            ];
+        }
+        return $response;
+    }
 }

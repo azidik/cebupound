@@ -60,14 +60,14 @@
 							<td>{{ $impound->pet->color }}</td>
 							<td>{{ $impound->pet->type->name }}</td>
                             <td>{{ $impound->pet->user->first_name }}</td>
-							@if($impound->is_accepted)
+							@if($impound->is_accepted == 1)
 								<td><button class="btn btn-info btn-xs" disabled="true">Accepted</button></td>
-                            @elseif ($impound->is_accepted == 2)
+                            @elseif($impound->is_accepted == 2)
                                 <td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
                             @else
                                 <td>
                                     <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
-                                    <button class="btn btn-danger btn-xs" onclick="accept('{{ $impound->id }}')">Decline</button>
+                                    <button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
                                 </td>  
 							@endif		
 						</tr>
@@ -110,11 +110,31 @@
                     }
                 });
             }
-            
         }
 
         function decline (id) {
-
+            if(confirm('Are you sure you want to decline this pet?')){
+                $.ajax({
+                    type: "GET",
+                    url: '/dashboard/admin/impoundDecline/' + id,
+                    success: function(response) {
+                        if(response.status){
+                            toastr.success('Pet successfully declined. Thank you!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        } else {
+                            toastr.error('Something went wrong!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error)
+                    }
+                });
+            }
         }
 		// function impound (id) {
 		// 	$.ajax({
