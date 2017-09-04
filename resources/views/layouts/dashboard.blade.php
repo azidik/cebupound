@@ -111,9 +111,9 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-middle image">
+        <!-- <div class="pull-middle image">
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
+        </div> -->
         <div>
           <p style="color: #fff; font-weight: 400;">{{ Auth::user()->first_name}}</p>
           <a href="#">{{ Auth::user()->email }}</a>
