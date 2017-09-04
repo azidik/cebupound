@@ -9,7 +9,7 @@
         <small>List</small>
 	</h1>
 	<br>
-		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</button>
+		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</a>
 	<br>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -25,33 +25,43 @@
 				<table id="example" class="display" cellspacing="0" width="100%">
 					<thead>
 						<tr>
+							<th>Image</th>
 							<th>Name</th>
 							<th>Age</th>
 							<th>Gender</th>
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
+							<th>Image</th>
 							<th>Name</th>
 							<th>Age</th>
 							<th>Gender</th>
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
+							<th>Action</th>
 						</tr>
 					</tfoot>
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
-							<td>{{ $pet->name }}</td>
+							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
+							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
 							<td>{{ $pet->age }}</td>
 							<td>{{ $pet->gender }}</td>
 							<td>{{ $pet->breed }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>
+							@if(isset($pet->impound) != '') 
+								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button>
+							@else 
+								<td><button class="btn btn-info btn-xs" onclick="impound('{{$pet->id}}')">Proceed to impound</button>
+							@endif		
 						</tr>
 						@endforeach
 					</tbody>
@@ -68,5 +78,24 @@
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
+
+		function impound (id) {
+			$.ajax({
+				type: "GET",
+				url: '/dashboard/pets/impound/' + id,
+				success: function(response) {
+					if(response.status){
+						toastr.success('Your pet was successfully impounded. Thank you!');
+						location.reload();
+					} else {
+						toastr.error('Something went wrong!');
+						location.reload();
+					}
+				},
+				error: function(error) {
+					console.log(error)
+				}
+			});
+		}
 	</script>
 @stop

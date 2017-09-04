@@ -28,6 +28,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -120,7 +121,7 @@
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <!-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -128,7 +129,7 @@
                 </button>
               </span>
         </div>
-      </form>
+      </form> -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -139,7 +140,7 @@
           </a>
         </li>
         <li class="active">
-          <a href="#">
+          <a href="{{ url('/dashboard/pets') }}">
             <i class="fa fa-dashboard"></i> <span>My Pets</span>
           </a>
         </li>
@@ -567,6 +568,9 @@
 
 <!-- DATA TABLES -->
 <script src="{{ asset('js/datatables.js') }}"></script>
+
+<!-- TOASTR -->
+<script src="{{ asset('js/toastr.js') }}"></script>
 
 </body>
 </html>
