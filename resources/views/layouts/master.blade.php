@@ -22,6 +22,16 @@
         <a class="navbar-brand" href="/">Cebu Pound</a>
         </div>
 
+        @if(Auth::user(0))
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#feature">Adopt Me</a></li>
+          <li><a href="{{ url('/about')}}">About Us</a></li>
+          <li><a href="{{ url('/contact')}}">Contact Us</a></li>
+          <li><a href="#">Hello {{ Auth::user()->first_name}}</a></li>
+        </ul>
+        </div>
+        @else
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#feature">Adopt Me</a></li>
@@ -31,6 +41,7 @@
           <li class="btn-trial"><a href="{{ url('/register')}}">Register</a></li>
         </ul>
         </div>
+        @endif
       </div>
     </nav>
   
