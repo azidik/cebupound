@@ -61,12 +61,12 @@
 							<td>{{ $impound->pet->type->name }}</td>
                             <td>{{ $impound->pet->user->first_name }}</td>
 							@if($impound->is_accepted == 1)
-								<td><button class="btn btn-info btn-xs" disabled="true">Accepted</button></td>
+								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
                             @elseif($impound->is_accepted == 2)
                                 <td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
                             @else
                                 <td>
-                                    <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
+                                    <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Impound</button>
                                     <button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
                                 </td>  
 							@endif		

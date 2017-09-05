@@ -60,7 +60,7 @@
 							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
 								<td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td><button class="btn btn-info btn-xs" disabled="true">Accepted</button><td>
+								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button><td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
 							<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button><td>
 							@else 
