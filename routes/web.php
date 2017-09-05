@@ -40,3 +40,9 @@ Route::post('/login', 'Auth\AuthController@postLogin');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 Route::get('/logout', 'Auth\AuthController@logout');
+
+
+// For Mobile Route APi only
+Route::group(['prefix' => 'mobile'], function () {
+    Route::post('/login', 'Mobile\AuthController@login');
+}); 
