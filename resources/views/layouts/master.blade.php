@@ -33,7 +33,7 @@
         </div>
       </div>
     </nav>
-  
+  </body>
 
     @yield('content')
 
@@ -49,7 +49,7 @@
         <li><a href="#link"><i class="fa fa-linkedin fa-fw"></i></a></li>
       </ul>
         ©2017 Cebu Pound. All rights reserved
-      </div>
+     
     </footer>
     <!--/ Footer-->
     
@@ -59,5 +59,5 @@
     <script src="js/custom.js"></script>
     <script src="contactform/contactform.js"></script>
     
-  </body>
+   </div>
 </html>

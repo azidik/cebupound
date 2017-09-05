@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     public function guest()
     {
-        return view('layouts.master');
+        return view('guest.home');
     }
 
     public function about()
