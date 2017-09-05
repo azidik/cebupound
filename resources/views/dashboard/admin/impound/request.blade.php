@@ -63,7 +63,11 @@
                                 <td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
                             @else
                                 <td>
+<<<<<<< HEAD
                                     <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">impound</button>
+=======
+                                    <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Impound</button>
+>>>>>>> f0d52975af12eb233a37ffa981658d7336f73228
                                     <button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
                                 </td>  
 							@endif		
