@@ -30,6 +30,6 @@ class CreateImpoundingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pet_status');
+        Schema::dropIfExists('impoundings');
     }
 }

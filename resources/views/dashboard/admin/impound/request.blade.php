@@ -7,10 +7,7 @@
     <h1>
         Impound Request
         <small>List</small>
-	</h1>
-	<br>
-		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</a>
-	<br>
+	</h1>	
     <ol class="breadcrumb">
         <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
@@ -61,12 +58,12 @@
 							<td>{{ $impound->pet->type->name }}</td>
                             <td>{{ $impound->pet->user->first_name }}</td>
 							@if($impound->is_accepted == 1)
-								<td><button class="btn btn-info btn-xs" disabled="true">Accepted</button></td>
+								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
                             @elseif($impound->is_accepted == 2)
                                 <td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
                             @else
                                 <td>
-                                    <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
+                                    <button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">impound</button>
                                     <button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
                                 </td>  
 							@endif		

@@ -151,7 +151,7 @@
           </a>
         </li>
         <li class="active">
-          <a href="{{ url('/dashboard/pets') }}">
+          <a href="{{ url('#') }}">
             <i class="fa fa-dashboard"></i> <span>Adoption Request</span>
           </a>
         </li>
