@@ -14,7 +14,8 @@ class AuthController extends Controller
         if (Auth::attempt(['username' => $params['username'], 'password' => $params['password']])) {
             // Authentication passed...
             $response = [
-                'status' => 1
+                'status' => 1,
+                'user' => Auth::user()
             ];
         } else {
             $response = [

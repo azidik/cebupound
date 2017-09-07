@@ -4,19 +4,19 @@
 
 @section('content')
 <section class="content-header">
-    <h1>
-        Pets
-        <small>List</small>
+	<h1>
+		Pets
+		<small>List</small>
 	</h1>
 	<br>
 		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</a>
 	<br>
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-	</section>	
+	<ol class="breadcrumb">
+		<li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li>Dashboard</li>
+		<li class="active">Pets</li>
+	</ol>
+</section>	
 	<br>
     <!-- Main content -->
     <section class="content">
