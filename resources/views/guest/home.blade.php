@@ -58,4 +58,54 @@
 </section>
 
 
+<section class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="header-section text-center">
+            <h2>Features</h2>
+            <hr class="bottom-line">
+          </div>
+          <div class="feature-info">
+            <div class="fea">
+              <div class="col-md-4">
+                <div class="heading pull-right">
+                  <h4>ADOPTION</h4>
+                  <p>A process in which only a registered and capable Client will be able to do so. A Client will be capable once they will get the passing percentage after taking the test to know if they are able to raise the pet under their custody.</p>
+                </div>
+                <div class="fea-img pull-left">
+                </div>
+              </div>
+            </div>
+            <div class="fea">
+              <div class="col-md-4">
+                <div class="heading pull-right">
+                  <h4>IMPOUNDING</h4>
+                  <p>Has two category the Sheltered wherein it is to take control of the custody of every animal surrendered by their owner, and Stray wherein it is to take custody of those animals without owner that is reported by the community.</p>
+                </div>
+                <div class="fea-img pull-left">
+                </div>
+              </div>
+            </div>
+            <div class="fea">
+              <div class="col-md-4">
+                <div class="heading pull-right">
+                  <h4>SERVICES</h4>
+                  <p>Caters what every pet needs.
+                  	<li>Deworming</li>
+                  	<li>Mange Treatment</li>
+                  	<li>Spay and Neuter</li>
+                  	<li>Rabies Vaccination</li>
+                  	<li>Basic Medical Consultation</li>
+                  </p>
+                </div>
+                <div class="fea-img pull-left">
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+
 @endsection

@@ -31,6 +31,11 @@ class HomeController extends Controller
         return view('guest.home');
     }
 
+    public function adoption()
+    {
+        return view('guest.adoption');
+    }
+
     public function about()
     {
         return view('guest.about');
