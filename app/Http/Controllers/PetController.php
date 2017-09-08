@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Pet;
 use App\PetType;
+use App\PetCategory;
+use App\User;
 use Auth;
 use Validator;
 use App\Impound;
@@ -88,6 +90,8 @@ class PetController extends Controller
      */
     public function show($id)
     {
+        $users = User::all();
+        $categories = PetCategory::all();
         $types = PetType::all();
         $pet = Pet::find($id);
         return view('dashboard.pets.details', compact('pet', 'types'));

@@ -8,6 +8,11 @@
 		Pets
 		<small>List</small>
 	</h1>
+	@if(session()->has('message'))
+    <div class="alert alert-primary">
+        {{ session()->get('message') }}
+    </div>
+    @endif
 	@if(Auth::user()->is_admin)
 	<!-- Nothing to put -->
 	@else
@@ -42,24 +47,11 @@
 							<th>Owner</th>
 						</tr>
 					</thead>
-					<tfoot>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-							<th>Category</th>
-							<th>Owner</th>
-						</tr>
-					</tfoot>
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
 							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td>{{ $pet->name }}</td>
+							<td><a href="{{ url('/dashboard/admin/pets/'. $pet->id)}}">{{ $pet->name }}</td>
 							<td>{{ $pet->age }}</td>
 							<td>{{ $pet->gender }}</td>
 							<td>{{ $pet->breed }}</td>
@@ -67,7 +59,6 @@
 							<td>{{ $pet->type->name }}</td>	
 							<th>{{ $pet->category->name}}</th>
 							<th>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</th>
-
 						</tr>
 						@endforeach
 					</tbody>

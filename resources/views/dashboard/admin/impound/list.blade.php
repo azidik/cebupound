@@ -30,46 +30,26 @@
 							<th>Color</th>
 							<th>Type</th>
                             <th>Impounded By</th>
-							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</thead>
-					<tfoot>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-                            <th>Impounded By</th>
-							<th>Action</th>
-						</tr>
-					</tfoot>
 					<tbody>
 						@foreach($impounds as $impound)
-							@if($impound->is_accepted == 0)
-								<tr>
-									<td><img src="{{ asset('/images/' . $impound->pet->image)}}" width="50" height="auto"></td>
-									<td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
-									<td>{{ $impound->pet->age }}</td>
-									<td>{{ $impound->pet->gender }}</td>
-									<td>{{ $impound->pet->breed }}</td>
-									<td>{{ $impound->pet->color }}</td>
-									<td>{{ $impound->pet->type->name }}</td>
-									<td>{{ $impound->pet->user->first_name }}</td>
-									@if($impound->is_accepted == 1)
-										<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
-									@elseif($impound->is_accepted == 2)
-										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
-									@else
-										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
-										</td>  
-									@endif		
-								</tr>
-							@endif
+                            <tr>
+                                <td><img src="{{ asset('/images/' . $impound->pet->image)}}" width="50" height="auto"></td>
+                                <td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
+                                <td>{{ $impound->pet->age }}</td>
+                                <td>{{ $impound->pet->gender }}</td>
+                                <td>{{ $impound->pet->breed }}</td>
+                                <td>{{ $impound->pet->color }}</td>
+                                <td>{{ $impound->pet->type->name }}</td>
+                                <td>{{ $impound->pet->user->first_name }}</td>
+                                @if($impound->is_accepted == 1)
+                                    <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
+                                @elseif($impound->is_accepted == 2)
+                                    <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
+                                @endif		
+                            </tr>
 						@endforeach
 					</tbody>
 				</table>

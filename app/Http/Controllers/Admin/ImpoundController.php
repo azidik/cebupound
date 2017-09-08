@@ -50,4 +50,11 @@ class ImpoundController extends Controller
         }
         return $response;
     }
+
+    public function list()
+    {
+        $impounds = Impound::all();
+
+        return view('dashboard.admin.impound.list', compact('impounds'));
+    }
 }

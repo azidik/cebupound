@@ -82,20 +82,46 @@
           </a>
         </li>
         @if(Auth::user()->is_admin)
-        <li class="active">
-          <a href="{{ url('/dashboard/pets') }}">
-            <i class="fa fa-dashboard"></i> <span>Pet List</span>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-cubes"></i> <span>Pets</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li class="active"><a href="{{ url('/dashboard/admin/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/pets/create') }}"><i class="fa fa-circle-o"></i> Create</a></li>
+          </ul>
         </li>
-        <li class="active">
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-institution"></i> <span>Impound</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li class="active"><a href="{{ url('/dashboard/admin/impoundList') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request</a></li>
+          </ul>
+        </li>
+        <!-- <li class="\\">
           <a href="{{ url('/dashboard/admin/impoundRequest') }}">
             <i class="fa fa-dashboard"></i> <span>Impound Request</span>
           </a>
-        </li>
-        <li class="active">
-          <a href="{{ url('#') }}">
-            <i class="fa fa-dashboard"></i> <span>Adoption Request</span>
+        </li> -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-history"></i> <span>Adoptions</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li class="active"><a href="{{ url('/dashboard/admin/impoundList') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request</a></li>
+          </ul>
         </li>
         @else
           <li class="active">
