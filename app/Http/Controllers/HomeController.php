@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Impound;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,9 @@ class HomeController extends Controller
 
     public function adoption()
     {
-        return view('guest.adoption');
+        $impoudings = Impound::where('is_accepted', 1)->get();
+
+        return view('guest.adoption', compact('impoudings'));
     }
 
     public function about()

@@ -103,7 +103,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{ url('/dashboard/admin/impoundList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request</a></li>
+            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">16</small></a></li>
           </ul>
         </li>
         <!-- <li class="\\">
@@ -120,9 +120,21 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{ url('/dashboard/admin/impoundList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request</a></li>
+            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">16</small></a></li>
           </ul>
         </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-calculator"></i> <span>Reports</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="fa fa-briefcase"></i> <span>Inventories</span>
+          </a>
+        </li>
+        
         @else
           <li class="active">
             <a href="{{ url('/dashboard/pets') }}">

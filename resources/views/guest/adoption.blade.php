@@ -8,21 +8,22 @@
         	<div class="container">
         		<div class="row">
           			<div class="col-md-4 col-sm-6 padleft-right">
+					  	@foreach($impoudings as $impouding)
             			<figure class="imghvr-fold-up">
-              				<img src="img/bull.jpg" class="img-responsive">
+              				<img src="{{ asset('images/'. $impouding->pet->image )}}" class="img-responsive">
                 				<figcaption>
-                  				<center><h3>Shame</h3></center>
+                  				<center><h3>{{ $impouding->pet->name }}</h3></center>
                   				<p class="subtitle">
-                  					Age:<br>
-                  					Breed:<br>
-                  					Species:<br>
-                  					Color:<br>
-                  					Other Description
+                  					Age: {{ $impouding->pet->age }}<br>
+                  					Breed: {{ $impouding->pet->breed }}<br>
+                  					Species: {{ $impouding->pet->type->name }}<br>
+                  					Color: {{ $impouding->pet->color }}<br>
                   				</p>
               					</figcaption>
               						
             			</figure>
             			<center><button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">ADOPT</button></center>
+						@endforeach
           			</div>
           		</div>
           	</div>
