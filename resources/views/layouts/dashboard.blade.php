@@ -103,7 +103,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{ url('/dashboard/admin/impoundList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">16</small></a></li>
+            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\Impound::where('is_accepted', 0)->count() }}</small></a></li>
           </ul>
         </li>
         <!-- <li class="\\">
@@ -119,8 +119,8 @@
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li class="active"><a href="{{ url('/dashboard/admin/impoundList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">16</small></a></li>
+            <li class="active"><a href="{{ url('/dashboard/admin/adoptList') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/adoptRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\Adopt::where('is_accepted', 0)->count() }}</small></a></li>
           </ul>
         </li>
         <li>
@@ -136,11 +136,23 @@
         </li>
         
         @else
-          <li class="active">
-            <a href="{{ url('/dashboard/pets') }}">
-              <i class="fa fa-dashboard"></i> <span>My Pets</span>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cubes"></i> <span>My Pets</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
             </a>
+            <ul class="treeview-menu" style="display: none;">
+              <li class="active"><a href="{{ url('/dashboard/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
+              <li><a href="{{ url('/dashboard/pets/create') }}"><i class="fa fa-circle-o"></i> Create</a></li>
+            </ul>
           </li>
+          <li>
+          <a href="{{ url('/dashboard/pets/adoption/available')}}">
+            <i class="fa fa-briefcase"></i> <span>Available for adoption</span>
+          </a>
+        </li>
         @endif
         <li class="active">
           <a href="{{ url('/logout') }}">

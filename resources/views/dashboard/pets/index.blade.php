@@ -8,14 +8,6 @@
 		Pets
 		<small>List</small>
 	</h1>
-	@if(Auth::user()->is_admin)
-	<!-- Nothing to put -->
-	@else
-	<br>
-		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</a>
-	<br>
-
-	@endif
     <ol class="breadcrumb">
         <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
@@ -24,58 +16,6 @@
 	</section>
 	<br>
     <!-- Main content -->
-    @if(Auth::user()->is_admin)
-    <section class="content">
-		<div class="box box-primary">
-            <div class="box-header">
-				<table id="example" class="display" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-							<th>Category</th>
-							<th>Owner</th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-							<th>Category</th>
-							<th>Owner</th>
-						</tr>
-					</tfoot>
-					<tbody>
-						@foreach($pets as $pet)
-						<tr>
-							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td>{{ $pet->name }}</td>
-							<td>{{ $pet->age }}</td>
-							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed }}</td>
-							<td>{{ $pet->color }}</td>
-							<td>{{ $pet->type->name }}</td>	
-							<th>{{ $pet->category->name}}</th>
-							<th>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</th>
-
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
-		</div>
-    </section>
-    @else
     <section class="content">
 		<div class="box box-primary">
             <div class="box-header">
@@ -115,11 +55,17 @@
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>
 							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
-								<td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
+								<td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button><td>
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+								<td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
-							<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button><td>
+							<td>
+								<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Declined</small>
+							<td>
 							@else 
 								<td><button class="btn btn-info btn-xs" onclick="impound('{{$pet->id}}')">Proceed to impound</button>
 							@endif		
@@ -130,7 +76,6 @@
 			</div>
 		</div>
     </section>
-    @endif
     <!-- /.content -->
 @endsection
 

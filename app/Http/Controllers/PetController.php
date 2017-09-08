@@ -8,9 +8,11 @@ use App\Pet;
 use App\PetType;
 use App\PetCategory;
 use App\User;
+use Carbon\Carbon;
 use Auth;
 use Validator;
 use App\Impound;
+use App\Adopt;
 
 class PetController extends Controller
 {
@@ -46,6 +48,7 @@ class PetController extends Controller
     {
         $params = $request->all();
 
+        return $params;
         $validator = Validator::make($params, [
             'name' => 'required',
             'age' => 'required|numeric',
@@ -136,6 +139,33 @@ class PetController extends Controller
             'pet_id' => $id
         ]);
         if($impound) {
+            $response = [
+                'status' => 1
+            ];
+        } else {
+            $response = [
+                'status' => 0
+            ];
+        }   
+        return $response;
+    }
+    public function availableAdoption()
+    {
+        $available_adoptions = Impound::where('is_accepted', 1)->get();
+        return view('dashboard.pets.available', compact('available_adoptions'));
+    }
+
+    public function proceedToAdopt($id){
+
+        // $impound = Impound::find($id)
+
+        $adopt = Adopt::create([
+            'impound_id' => $id,
+            'adopted_at' => Carbon::now()->toDateTimeString(),
+            'adopted_by' => Auth::user()->id
+
+        ]);
+        if($adopt) {
             $response = [
                 'status' => 1
             ];

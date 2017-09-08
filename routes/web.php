@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::post('pets/create', 'PetController@store');
     Route::get('pets/{id}', 'PetController@show');
     Route::get('pets/impound/{id}', 'PetController@proceedToImpound');
+    Route::get('pets/adopt/{id}', 'PetController@proceedToAdopt');
+    Route::get('pets/adoption/available', 'PetController@availableAdoption');
 
     // Admin
     Route::group(['prefix' => 'admin'], function () { 
@@ -37,6 +39,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('pets/{id}', 'Admin\PetController@show');
         Route::post('pets/update/{id}', 'Admin\PetController@update');
         Route::get('impoundList', 'Admin\ImpoundController@list');
+        Route::get('adoptList', 'Admin\AdoptController@list');
+        Route::get('adoptRequest', 'Admin\AdoptController@adoptRequest');
+        Route::get('adoptAccept/{id}', 'Admin\AdoptController@adoptAccept');
+        Route::get('adoptDecline/{id}', 'Admin\AdoptController@adoptDecline');
     });
 });
 

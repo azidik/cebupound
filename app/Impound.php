@@ -25,5 +25,9 @@ class Impound extends Model
     {
         return $this->belongsTo('App\Pet', 'pet_id');
     }
+    public function adopt()
+    {
+        return $this->HasOne('App\Adopt', 'impound_id');
+    }
     
 }

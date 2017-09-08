@@ -37,7 +37,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post" enctype="multipart/form-data">
+            <form  action="{{ url('dashboard/pets/create') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
