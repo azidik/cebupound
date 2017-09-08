@@ -26,6 +26,11 @@ class Pet extends Model
         return $this->hasOne('App\Impound', 'pet_id');
     }
 
+    public function category ()
+    {
+        return $this->belongsTo('App\PetCategory', 'pet_category_id');
+    }
+
     public function user ()
     {
         return $this->belongsTo('App\User', 'user_id');

@@ -91,7 +91,7 @@
                     url: '/dashboard/admin/impoundAccept/' + id,
                     success: function(response) {
                         if(response.status){
-                            toastr.success('Pet successfully accepted. Thank you!');
+                            toastr.success('Pet successfully impounded. Thank you!');
                             setTimeout(function() {
                                 location.reload();    
                             }, 3000);
