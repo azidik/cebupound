@@ -91,7 +91,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{ url('/dashboard/admin/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/pets/create') }}"><i class="fa fa-circle-o"></i> Create</a></li>
+            <li><a href="{{ url('/dashboard/admin/pets/create') }}"><i class="fa fa-circle-o"></i> Register</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -145,7 +145,7 @@
             </a>
             <ul class="treeview-menu" style="display: none;">
               <li class="active"><a href="{{ url('/dashboard/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
-              <li><a href="{{ url('/dashboard/pets/create') }}"><i class="fa fa-circle-o"></i> Create</a></li>
+              <li><a href="{{ url('/dashboard/pets/create') }}"><i class="fa fa-circle-o"></i> Register</a></li>
             </ul>
           </li>
           <li>

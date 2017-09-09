@@ -13,14 +13,7 @@
         {{ session()->get('message') }}
     </div>
     @endif
-	@if(Auth::user()->is_admin)
-	<!-- Nothing to put -->
-	@else
-	<br>
-		<a href="{{ url('/dashboard/pets/create')}}" class="btn btn-info pull-left">Create</a>
-	<br>
 
-	@endif
     <ol class="breadcrumb">
         <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>

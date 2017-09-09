@@ -8,16 +8,16 @@
         	<div class="container">
         		<div class="row">
           			<div class="col-md-4 col-sm-6 padleft-right">
-					  	@foreach($impoudings as $impouding)
+					  	@foreach($impoundings as $impounding)
             			<figure class="imghvr-fold-up">
-              				<img src="{{ asset('images/'. $impouding->pet->image )}}" class="img-responsive">
+              				<img src="{{ asset('images/'. $impounding->pet->image )}}" class="img-responsive">
                 				<figcaption>
-                  				<center><h3>{{ $impouding->pet->name }}</h3></center>
+                  				<center><h3>{{ $impounding->pet->name }}</h3></center>
                   				<p class="subtitle">
-                  					Age: {{ $impouding->pet->age }}<br>
-                  					Breed: {{ $impouding->pet->breed }}<br>
-                  					Species: {{ $impouding->pet->type->name }}<br>
-                  					Color: {{ $impouding->pet->color }}<br>
+                  					Age: {{ $impounding->pet->age }}<br>
+                  					Breed: {{ $impounding->pet->breed }}<br>
+                  					Species: {{ $impounding->pet->type->name }}<br>
+                  					Color: {{ $impounding->pet->color }}<br>
                   				</p>
               					</figcaption>
             			</figure>
