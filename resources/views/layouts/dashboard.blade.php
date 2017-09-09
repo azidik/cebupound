@@ -149,7 +149,7 @@
             </ul>
           </li>
           <li>
-          <a href="{{ url('/dashboard/pets/adoption/available')}}">
+          <a href="{{ url('/adopt')}}">
             <i class="fa fa-briefcase"></i> <span>Available for adoption</span>
           </a>
         </li>
