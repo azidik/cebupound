@@ -58,4 +58,5 @@ Route::get('/logout', 'Auth\AuthController@logout');
 Route::group(['prefix' => 'mobile'], function () {
     Route::post('/login', 'Mobile\AuthController@login');
     Route::get('/mypets/{userId}', 'Mobile\PetController@mypets');
+    Route::post('/mypets/create', 'Mobile\PetController@store');
 }); 

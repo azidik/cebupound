@@ -41,14 +41,18 @@
 								<b>Color</b> <a class="pull-right">{{ $available_adoption->pet->color }}</a>
 								</li>
 							</ul>
-							@if(Auth::user()->id == $available_adoption->adopt->adopted_by)
-								@if($available_adoption->adopt->is_accepted == 0)
-									<a href="#" class="btn btn-warning btn-block" disabled="true"><b>Pending</b></a>
-								@elseif($available_adoption->adopt->is_accepted == 1)
-									<a href="#" class="btn btn-primary btn-block" disabled="true"><b>Accepted</b></a>
-								@else
-									<a href="#" class="btn btn-danger btn-block" disabled="true"><b>Declined</b></a>
+							@if(count($available_adoption->adopt) > 0)
+								@if(Auth::user()->id == $available_adoption->adopt->adopted_by)
+									@if($available_adoption->adopt->is_accepted == 0)
+										<a href="#" class="btn btn-warning btn-block" disabled="true"><b>Pending</b></a>
+									@elseif($available_adoption->adopt->is_accepted == 1)
+										<a href="#" class="btn btn-primary btn-block" disabled="true"><b>Accepted</b></a>
+									@else
+										<a href="#" class="btn btn-danger btn-block" disabled="true"><b>Declined</b></a>
+									@endif
 								@endif
+							@else
+							<a href="#" class="btn btn-danger btn-block"  onclick="adopt('{{$available_adoption->id}}')"><b>Adopt</b></a>
 							@endif
 						</div>
 					</div>
