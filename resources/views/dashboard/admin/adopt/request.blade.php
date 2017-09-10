@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Impound Request
+        Adoption Request
         <small>List</small>
 	</h1>	
     <ol class="breadcrumb">
