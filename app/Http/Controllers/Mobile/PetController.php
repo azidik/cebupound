@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Pet;
 use Validator;
 use Auth;
+use App\PetService;
 
 class PetController extends Controller
 {
@@ -103,5 +104,28 @@ class PetController extends Controller
     {
         $pets = Pet::with('type')->where('user_id', $userId)->get();
         return $pets;
+    }
+
+    public function createPetService(Request $request)
+    {
+        $params = $request->all();
+
+        $pet_service  = PetService::create([
+            'pet_id' => $params['pet_id'],
+            'service_id' => $params['service_id'],
+            'status' => 'Request'
+        ]);
+
+        if($pet_service) {
+            $response = [
+                'status' => 1,
+                'pet_service' => $pet_service 
+            ];
+        } else {
+            $response = [
+                'status' => 0   
+            ];
+        }
+        return $response;
     }
 }
