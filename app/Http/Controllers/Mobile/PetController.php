@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Mobile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pet;
+use Validator;
+use Auth;
 
 class PetController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
         $params = $request->all();
     
@@ -35,7 +37,7 @@ class PetController extends Controller
                 $params['image'] = $image;
             }
             $params['pet_category_id'] = 1;
-            $params['user_id'] = Auth::user()->id;
+            $params['user_id'] = $params['user_id'];
             $pet = Pet::create($params);
             if($pet) {
                 $response = [
@@ -46,6 +48,54 @@ class PetController extends Controller
                     'status' => 0
                 ];
             }
+            return $response;
+        }
+    }
+    public function show($id) 
+    {
+        $pet = Pet::find($id);
+
+        return $pet;
+    }
+    public function update(Request $request, $id)
+    {
+        $params = $request->all();
+        
+        $validator = Validator::make($params, [
+            'name' => 'required',
+            'age' => 'required|numeric',
+            'gender' => 'required',
+            'breed' => 'required',
+            'color' => 'required',
+            // 'image' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return $validator->errors();
+        } else {
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $destinationPath = public_path('images');
+                if (!File::exists($destinationPath)) {
+                    $fileDir = File::makeDirectory('images');
+                }
+                $image = $file->getClientOriginalName();
+                $file->move($destinationPath, $image);
+                $params['image'] = $image;
+            }
+            $params['pet_category_id'] = 1;
+            $params['user_id'] = $params['user_id'];
+            $pet = Pet::find($id)->update($params);
+            if($pet) {
+                $response = [
+                    'status' => 1
+                ];
+            } else {
+                $response = [
+                    'status' => 0
+                ];
+            }
+
             return $response;
         }
     }
