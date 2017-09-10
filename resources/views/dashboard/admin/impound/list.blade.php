@@ -9,7 +9,7 @@
         <small>List</small>
 	</h1>	
     <ol class="breadcrumb">
-        <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
@@ -44,7 +44,9 @@
                                 <td>{{ $impound->pet->color }}</td>
                                 <td>{{ $impound->pet->type->name }}</td>
                                 <td>{{ $impound->pet->user->first_name }}</td>
-                                @if($impound->is_accepted == 1)
+                                @if($impound->is_accepted == 0) 
+                                <td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
+                                @elseif($impound->is_accepted == 1)
                                     <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
                                 @elseif($impound->is_accepted == 2)
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
