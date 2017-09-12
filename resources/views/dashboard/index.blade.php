@@ -3,17 +3,13 @@
 @section('title', 'Dashboard')
 
 @section('content')
+@if(Auth::user()->is_admin)
 <section class="content-header">
       <h1>
         Dashboard
         <small>Control panel</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>   
-@if(Auth::user()->is_admin)
+</section>   
 <section class="content">
  <section class="col-lg-5 connectedSortable">
    <!-- solid sales graph -->
@@ -66,6 +62,16 @@
 
 </section>
 @else
+<section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+</section>
 <section class="content">
   <div class="row">
         <div class="col-lg-3 col-xs-6">
