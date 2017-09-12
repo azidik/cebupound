@@ -15,4 +15,5 @@ class PetType extends Model
      protected $fillable = [
         'name'
     ];
+    
 }

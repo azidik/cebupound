@@ -24,52 +24,41 @@
 						<tr>
 							<th>Image</th>
 							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
 							<th>Breed</th>
-							<th>Color</th>
 							<th>Type</th>
-                            <th>Impounded By</th>
-							<th>Action</th>
+                            <th>Owner Name</th>
+							<th>Service Request</th>
+							<th>Status</th>
+							<th>Service Scheduled</th>
+							<!-- <th>Status</th> -->
 						</tr>
 					</thead>
-					<tfoot>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-                            <th>Impounded By</th>
-							<th>Action</th>
-						</tr>
-					</tfoot>
 					<tbody>
-						@foreach($impounds as $impound)
-							@if($impound->is_accepted == 0)
-								<tr>
-									<td><img src="{{ asset('/images/' . $impound->pet->image)}}" width="50" height="auto"></td>
-									<td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
-									<td>{{ $impound->pet->age }}</td>
-									<td>{{ $impound->pet->gender }}</td>
-									<td>{{ $impound->pet->breed }}</td>
-									<td>{{ $impound->pet->color }}</td>
-									<td>{{ $impound->pet->type->name }}</td>
-									<td>{{ $impound->pet->user->first_name }}</td>
-									@if($impound->is_accepted == 1)
-										<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
-									@elseif($impound->is_accepted == 2)
-										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
+						@foreach($serviceRequests as $serviceRequest)
+							<tr>
+								<td><img src="{{ asset('/images/' . $serviceRequest->pet->image)}}" width="50" height="auto"></td>
+								<td><a href="{{ url('/dashboard/pets/'. $serviceRequest->pet->id) }}">{{ $serviceRequest->pet->name }}</a></td>
+								<td>{{ $serviceRequest->pet->breed }}</td>
+								<td>{{ $serviceRequest->pet->type->name }}</td>
+								<td>{{ $serviceRequest->pet->user->first_name }}</td>
+								<td>{{ $serviceRequest->service->name }}</td>
+								<!-- <td>12/12/12 9:10 PM</td> -->
+								<td>
+									@if($serviceRequest->status == 'Pending')
+										<small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
 									@else
-										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
-										</td>  
-									@endif		
-								</tr>
-							@endif
+										<small class="label label-success"><i class="fa fa-thumbs-o-up"></i> Confirmed</small>
+									@endif
+								</td>
+								<td>
+									<div class='input-group date' id='datetimepicker1' style="width: 70%;" data-id="{{ $serviceRequest->id }}">
+										<input type='text' class="form-control" id="schedule" value="{{ $serviceRequest->schedule }}"/>
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</td>
+							</tr>
 						@endforeach
 					</tbody>
 				</table>
@@ -81,9 +70,45 @@
 
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+
+
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
+			$('#datetimepicker1').datepicker(function(){
+				console.log('aw');
+			});
+
+			$("#datetimepicker1").change(function() {
+				var scheduleDate = $(this).datepicker("getDate");
+				var id = $(this).data("id");
+				$.ajax({
+                    type: "POST",
+                    url: '/dashboard/admin/serviceSchedule/setDate',
+					data: {
+						_token: '{{ csrf_token() }}',
+						id: id,
+						scheduleDate: scheduleDate
+					},
+                    success: function(response) {
+                        if(response.status){
+                            toastr.success('Pet successfully booked for services. Thank you!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        } else {
+                            toastr.error('Something went wrong!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error)
+                    }
+                });
+			});
 		});
 
         function accept (id) {
@@ -135,23 +160,5 @@
                 });
             }
         }
-		// function impound (id) {
-		// 	$.ajax({
-		// 		type: "GET",
-		// 		url: '/dashboard/pets/impound/' + id,
-		// 		success: function(response) {
-		// 			if(response.status){
-		// 				toastr.success('Your pet was successfully impounded. Thank you!');
-		// 				location.reload();
-		// 			} else {
-		// 				toastr.error('Something went wrong!');
-		// 				location.reload();
-		// 			}
-		// 		},
-		// 		error: function(error) {
-		// 			console.log(error)
-		// 		}
-		// 	});
-		// }
 	</script>
 @stop

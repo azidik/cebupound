@@ -11,4 +11,9 @@ class Service extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function pet()
+    {
+        return $this->belongsToMany('App\Pet');
+    }
 }

@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('adoptRequest', 'Admin\AdoptController@adoptRequest');
         Route::get('adoptAccept/{id}', 'Admin\AdoptController@adoptAccept');
         Route::get('adoptDecline/{id}', 'Admin\AdoptController@adoptDecline');
+        Route::get('serviceSchedules', 'Admin\ServiceController@request');
+        Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
     });
 });
 

@@ -35,4 +35,9 @@ class Pet extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function service()
+    {
+        return $this->belongsToMany('App\Service');
+    }
 }
