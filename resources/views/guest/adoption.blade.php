@@ -4,11 +4,11 @@
     <section class="section-padding">
     <div class="container">
         <div class="row col-lg-12" style="margin-top:40px;">
-
+          
         	<div class="container">
         		<div class="row">
+            @foreach($impoundings as $impounding)
           			<div class="col-md-4 col-sm-6 padleft-right">
-					  	@foreach($impoundings as $impounding)
             			<figure class="imghvr-fold-up">
               				<img src="{{ asset('images/'. $impounding->pet->image )}}" class="img-responsive">
                 				<figcaption>
@@ -21,12 +21,12 @@
                   				</p>
               					</figcaption>
             			</figure>
-            			<center><button id="submit" class="form contact-form-button light-form-button oswald light">ADOPT</button></center>
-						@endforeach
+            			<center><a href="{{ url('/login')}}" id="submit" class="form contact-form-button light-form-button oswald light">ADOPT</a></center>
           			</div>
+                @endforeach
           		</div>
           	</div>
-
+            
         </div>
     </div>
     </section>
