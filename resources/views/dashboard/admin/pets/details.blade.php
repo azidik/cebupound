@@ -8,11 +8,18 @@
         Pet
         <small>Details</small>
 	</h1>
+    @if(Auth::user()->is_admin)
+    <ol class="breadcrumb">
+        <li>Dashboard</li>
+        <li class="active">Pets</li>
+    </ol>
+    @else
     <ol class="breadcrumb">
         <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
+    @endif
     </section>	
     @if ($errors->any())
         <div class="alert alert-danger">
