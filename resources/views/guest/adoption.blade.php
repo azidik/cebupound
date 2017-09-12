@@ -10,7 +10,7 @@
             @foreach($impoundings as $impounding)
           			<div class="col-md-4 col-sm-6 padleft-right">
             			<figure class="imghvr-fold-up">
-              				<img src="{{ asset('images/'. $impounding->pet->image )}}" class="img-responsive">
+              				<img src="{{ asset('images/'. $impounding->pet->image )}}" class="img-responsive" width="100%" height="70%">
                 				<figcaption>
                   				<center><h3>{{ $impounding->pet->name }}</h3></center>
                   				<p class="subtitle">
