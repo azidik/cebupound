@@ -438,6 +438,9 @@ Course
     background-color: #367fa9;
 }
 [class*=" imghvr-"], [class^="imghvr-"] {
+    display: block;
+    width: 100%;
+    height: 70%;
     background-color: #367fa9;
     color: #fff;
 }
