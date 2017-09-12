@@ -25,11 +25,10 @@
         @if(Auth::user(0))
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#feature">Adopt Me</a></li>
+          <li><a href="{{ url('/adopt')}}">Adopt Me</a></li>
           <li><a href="{{ url('/about')}}">About Us</a></li>
           <li><a href="{{ url('/contact')}}">Contact Us</a></li>
-          <li><a href="{{ url('/dashboard')}}">Dashboard</a></li>
-          <li><a href="#">Hello {{ Auth::user()->first_name}}</a></li>
+          <li><a href="{{ url('/dashboard')}}">Hello {{ Auth::user()->first_name}}</a></li>
         </ul>
         </div>
         @else

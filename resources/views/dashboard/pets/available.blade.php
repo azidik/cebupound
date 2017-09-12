@@ -6,10 +6,10 @@
 <section class="content-header">
 	<h1>
 		Pets
-		<small>Available Adoption</small>
+		<small>Available for Adoption</small>
 	</h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
         <li class="active">Available Adoptions</li>
@@ -41,14 +41,18 @@
 								<b>Color</b> <a class="pull-right">{{ $available_adoption->pet->color }}</a>
 								</li>
 							</ul>
-							@if(Auth::user()->id == $available_adoption->adopt->adopted_by)
-								@if($available_adoption->adopt->is_accepted == 0)
-									<a href="#" class="btn btn-warning btn-block" disabled="true"><b>Pending</b></a>
-								@elseif($available_adoption->adopt->is_accepted == 1)
-									<a href="#" class="btn btn-primary btn-block" disabled="true"><b>Accepted</b></a>
-								@else
-									<a href="#" class="btn btn-danger btn-block" disabled="true"><b>Declined</b></a>
+							@if(count($available_adoption->adopt) > 0)
+								@if(Auth::user()->id == $available_adoption->adopt->adopted_by)
+									@if($available_adoption->adopt->is_accepted == 0)
+										<a href="#" class="btn btn-warning btn-block" disabled="true"><b>Pending</b></a>
+									@elseif($available_adoption->adopt->is_accepted == 1)
+										<a href="#" class="btn btn-primary btn-block" disabled="true"><b>Accepted</b></a>
+									@else
+										<a href="#" class="btn btn-danger btn-block" disabled="true"><b>Declined</b></a>
+									@endif
 								@endif
+							@else
+							<a href="#" class="btn btn-danger btn-block"  onclick="adopt('{{$available_adoption->id}}')"><b>Adopt</b></a>
 							@endif
 						</div>
 					</div>

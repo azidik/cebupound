@@ -34,9 +34,15 @@
       {{ session()->get('message') }}
     </div>
     @endif
+   
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg"><center><h4>Sign in to start your session</h4></center></p><br>
+    @if (session()->has('success_reset'))
+      <div class="alert alert-success">
+        {{ session()->get('success_reset') }}
+      </div>
+    @endif
+      <p class="login-box-msg"><center  ><h4>Sign in to start your session</h4></center></p><br>
 
       <form action="{{ url('/login') }}" method="post">
         {{ csrf_field() }}
@@ -52,7 +58,7 @@
           <div class="col-xs-8">
             <div class="checkbox icheck">
               <label>
-                <input type="checkbox"> Remember Me
+                <a href="{{ url('/forgot') }}">Forgot Password</a>
               </label>
             </div>
           </div>

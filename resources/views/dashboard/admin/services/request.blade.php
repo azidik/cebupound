@@ -5,11 +5,11 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Adoption List
+        Impound Request
         <small>List</small>
 	</h1>	
     <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
@@ -29,29 +29,47 @@
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
-                            <th>Adopted By</th>
-							<th>Status</th>
+                            <th>Impounded By</th>
+							<th>Action</th>
 						</tr>
 					</thead>
+					<tfoot>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th>Age</th>
+							<th>Gender</th>
+							<th>Breed</th>
+							<th>Color</th>
+							<th>Type</th>
+                            <th>Impounded By</th>
+							<th>Action</th>
+						</tr>
+					</tfoot>
 					<tbody>
-						@foreach($adopts as $adopt)
-                            <tr>
-                                <td><img src="{{ asset('/images/' . $adopt->impound->pet->image)}}" width="50" height="auto"></td>
-                                <td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
-                                <td>{{ $adopt->impound->pet->age }}</td>
-                                <td>{{ $adopt->impound->pet->gender }}</td>
-                                <td>{{ $adopt->impound->pet->breed }}</td>
-                                <td>{{ $adopt->impound->pet->color }}</td>
-                                <td>{{ $adopt->impound->pet->type->name }}</td>
-                                <td>{{ $adopt->user->first_name }}</td>
-                                @if($adopt->is_accepted == 1)
-                                    <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
-                                @elseif($adopt->is_accepted == 2)
-                                    <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
-                                @else
-                                    <td><small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small></td>
-                                @endif		
-                            </tr>
+						@foreach($impounds as $impound)
+							@if($impound->is_accepted == 0)
+								<tr>
+									<td><img src="{{ asset('/images/' . $impound->pet->image)}}" width="50" height="auto"></td>
+									<td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
+									<td>{{ $impound->pet->age }}</td>
+									<td>{{ $impound->pet->gender }}</td>
+									<td>{{ $impound->pet->breed }}</td>
+									<td>{{ $impound->pet->color }}</td>
+									<td>{{ $impound->pet->type->name }}</td>
+									<td>{{ $impound->pet->user->first_name }}</td>
+									@if($impound->is_accepted == 1)
+										<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
+									@elseif($impound->is_accepted == 2)
+										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
+									@else
+										<td>
+											<button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
+											<button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
+										</td>  
+									@endif		
+								</tr>
+							@endif
 						@endforeach
 					</tbody>
 				</table>
@@ -117,5 +135,23 @@
                 });
             }
         }
+		// function impound (id) {
+		// 	$.ajax({
+		// 		type: "GET",
+		// 		url: '/dashboard/pets/impound/' + id,
+		// 		success: function(response) {
+		// 			if(response.status){
+		// 				toastr.success('Your pet was successfully impounded. Thank you!');
+		// 				location.reload();
+		// 			} else {
+		// 				toastr.error('Something went wrong!');
+		// 				location.reload();
+		// 			}
+		// 		},
+		// 		error: function(error) {
+		// 			console.log(error)
+		// 		}
+		// 	});
+		// }
 	</script>
 @stop

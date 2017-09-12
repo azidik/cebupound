@@ -6,10 +6,10 @@
 <section class="content-header">
     <h1>
         Pet
-        <small>Create</small>
+        <small>Registration</small>
 	</h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>

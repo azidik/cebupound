@@ -1,8 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 100px;">
     <div class="row">
+        @if (session()->has('reset'))
+            <div class="alert alert-primary">
+                {{ session()->get('reset') }}
+            </div>
+        @endif
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Reset Password</div>
@@ -14,16 +19,16 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/reset') }}">
                         {{ csrf_field() }}
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                        <input type="hidden" name="reset_token" value="{{ $user->reset_token }}"> 
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" readonly required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

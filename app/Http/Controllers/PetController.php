@@ -47,8 +47,7 @@ class PetController extends Controller
     public function store(Request $request)
     {
         $params = $request->all();
-
-        return $params;
+        
         $validator = Validator::make($params, [
             'name' => 'required',
             'age' => 'required|numeric',

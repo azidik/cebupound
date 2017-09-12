@@ -34,9 +34,9 @@ class HomeController extends Controller
 
     public function adoption()
     {
-        $impoudings = Impound::where('is_accepted', 1)->get();
+        $impoundings = Impound::where('is_accepted', 1)->get();
 
-        return view('guest.adoption', compact('impoudings'));
+        return view('guest.adoption', compact('impoundings'));
     }
 
     public function about()
