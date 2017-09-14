@@ -5,8 +5,8 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Pet
-        <small>Registration</small>
+        Questions and answers
+        <small>Create</small>
 	</h1>
     @if(Auth::user()->is_admin)
     <ol class="breadcrumb">

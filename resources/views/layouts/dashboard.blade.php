@@ -136,6 +136,18 @@
             <li><a href="{{ url('/dashboard/admin/serviceSchedules') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\PetService::where('status', 'Request')->count() }}</small></a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-history"></i> <span>Q/A</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li class="active"><a href="{{ url('/dashboard/admin/questionsAndAnswers') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/questionsAndAnswers/create') }}"><i class="fa fa-circle-o"></i> Create </a></li>
+          </ul>
+        </li>
         <li>
           <a href="#">
             <i class="fa fa-calculator"></i> <span>Reports</span>
