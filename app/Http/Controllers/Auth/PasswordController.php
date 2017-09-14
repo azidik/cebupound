@@ -29,7 +29,7 @@ class PasswordController extends Controller
 
             Mail::send('auth.passwords.resetEmail', ['token' => $reset_token], function($message)  use ($user)
             {
-                $message->to($user->email, $user->first_name)->subject('Password Reset Request!');
+                $message->to($user->email, 'Cebu Pound Animal Team')->subject('Password Reset Request!');
             });
 
             return 'Please check your email to reset your password! Thank you.';
@@ -79,6 +79,7 @@ class PasswordController extends Controller
                 ->withErrors($validation)
                 ->withInput();
             } else {
+                $user->reset_token = '';
                 $user->password = bcrypt($params['password']);
                 $user->save();
                 session()->flash('success_reset', 'You can now login with your new password!');

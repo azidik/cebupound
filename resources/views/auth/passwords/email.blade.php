@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                 @if (session()->has('email'))
+                @if (session()->has('email'))
                     <div class="alert alert-danger">
                         {{ session()->get('email') }}
                     </div>
