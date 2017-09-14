@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'cebupound@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'CebuPound'),
+        'name' => env('MAIL_FROM_NAME', 'Cebu City Pound')
     ],
 
     /*
