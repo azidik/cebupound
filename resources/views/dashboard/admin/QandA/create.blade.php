@@ -33,7 +33,7 @@
     <!-- Main content -->
     <section class="content">
         <!-- general form elements -->
-        @if(session()->has('message'))
+        @if(session()->has('message'))  
         <div class="alert alert-success">
             {{ session()->get('message') }}
         </div>
