@@ -44,7 +44,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ url('dashboard/admin/questionsAndAnswers/update') }}" method="post" >
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
@@ -65,16 +65,20 @@
                                                         </a>
                                                     </h4>
                                                 </div>
-                                                <div id="{{$index}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div id="{{$index}}" class="panel-collapse collapse" aria-expanded="true" style="height: 0px;">
                                                     <div class="box-body">
                                                         @foreach($question->answers as $answer)
                                                             <div class="input-group">
                                                                     <span class="input-group-addon">
-                                                                    <input type="radio" name="answerCheck" value="1">
+                                                                    <input type="radio" name="is_correct" value="{{ $answer->id }}">
                                                                     </span>
-                                                                <input type="text" class="form-control" name="answer[]" value="{{ $answer->name }}">
+                                                                <input type="text" class="form-control" name="answer[{{$answer->id}}]" value="{{ $answer->name }}">
                                                             </div>
                                                         @endforeach
+                                                        <!-- <div class="box-footer"> -->
+                                                        <br>
+                                                            <button type="submit" class="btn btn-primary pull-left">Update</button>
+                                                        <!-- </div> -->
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -88,9 +92,9 @@
                 </div>
                 <!-- /.box-body -->
 
-                <div class="box-footer">
+                <!-- <div class="box-footer">
                     <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
+                </div> -->
             </form>
         </div>
     </section>

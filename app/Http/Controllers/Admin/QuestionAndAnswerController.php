@@ -83,9 +83,17 @@ class QuestionAndAnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $params = $request->all();
+
+        foreach ($params['answer'] as $key => $answer) {
+            $answer = Answer::find($key);
+            $answer->name = (string) $answer;
+            $answer->save();
+        }
+
+        // return $params;
     }
 
     /**

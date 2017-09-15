@@ -13,6 +13,7 @@ use Auth;
 use Validator;
 use App\Impound;
 use App\Adopt;
+use App\UserExam;
 
 class PetController extends Controller
 {
@@ -158,21 +159,32 @@ class PetController extends Controller
 
         // $impound = Impound::find($id)
 
-        $adopt = Adopt::create([
-            'impound_id' => $id,
-            'adopted_at' => Carbon::now()->toDateTimeString(),
-            'adopted_by' => Auth::user()->id
-
-        ]);
-        if($adopt) {
-            $response = [
-                'status' => 1
-            ];
+        $checkUserExam = UserExam::where('user_id', Auth::user()->id)->first();
+        if($checkUserExam) {
+            if($checkUserExam->remarks == 'Passed') {
+                $adopt = Adopt::create([
+                    'impound_id' => $id,
+                    'adopted_at' => Carbon::now()->toDateTimeString(),
+                    'adopted_by' => Auth::user()->id
+        
+                ]);
+                $response = [
+                    'status' => 1,
+                    'canAdopt' => 1
+                ];
+            } else {
+                $response = [
+                    'status' => 2,
+                    'canAdopt' => 0
+                ];
+            }
         } else {
             $response = [
-                'status' => 0
+                'status' => 0,
+                'canAdopt' => 0
             ];
-        }   
+        }
+         
         return $response;
     }
 }

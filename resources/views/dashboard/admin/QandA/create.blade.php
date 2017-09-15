@@ -56,21 +56,21 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Answers</label>
                                 <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <!-- <span class="input-group-addon">
                                         <input type="radio" name="answerCheck" value="1">
-                                        </span>
+                                    </span> -->
                                     <input type="text" class="form-control" name="answer[]">
                                 </div>
                                 <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <!-- <span class="input-group-addon">
                                         <input type="radio" name="answerCheck" value="2">
-                                        </span>
+                                    </span> -->
                                     <input type="text" class="form-control" name="answer[]">
                                 </div>
                                 <div class="input-group">
-                                        <span class="input-group-addon">
+                                    <!-- <span class="input-group-addon">
                                         <input type="radio" name="answerCheck" value="3">
-                                        </span>
+                                    </span> -->
                                     <input type="text" class="form-control" name="answer[]">
                                 </div>
                             </div>

@@ -59,7 +59,7 @@
 									@endif
 								@endif
 							@else
-							<a href="#" class="btn btn-danger btn-block"  onclick="adopt('{{$available_adoption->id}}')"><b>Adopt</b></a>
+							<a href="#" class="btn btn-info btn-block"  onclick="adopt('{{$available_adoption->id}}')"><b>Adopt</b></a>
 							@endif
 						</div>
 					</div>
@@ -83,12 +83,17 @@
 				type: "GET",
 				url: '/dashboard/pets/adopt/' + id,
 				success: function(response) {
-					if(response.status){
+					if(response.status && response.canAdopt){
 						toastr.success('Pet successfully requested for adoption. Thank you!');
 						location.reload();
+					} else if(!response.status && !response.canAdopt) {
+						if(confirm('You need to take the exam before proceeding to adopt!')){
+							window.location.href = '/dashboard/pets/exams';
+						}
+					} else if(response.status == 2 && !response.canAdopt) {
+						toastr.error("Sorry! You're failed to take the exam.");
 					} else {
-						toastr.error('Something went wrong!');
-						location.reload();
+						toastr.error("Something went wrong...");
 					}
 				},
 				error: function(error) {
