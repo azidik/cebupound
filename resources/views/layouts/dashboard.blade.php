@@ -132,8 +132,8 @@
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li class="active"><a href="{{ url('/dashboard/admin/adoptList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/serviceSchedules') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\PetService::where('status', 'Request')->count() }}</small></a></li>
+            <li class="active"><a href="{{ url('/dashboard/admin/serviceSchedules') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/serviceSchedules/request') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\PetService::where('status', 'Request')->count() }}</small></a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -162,7 +162,7 @@
         
         @else
           <li class="treeview">
-            <a href="#">
+            <a href="#">  
               <i class="fa fa-cubes"></i> <span>My Pets</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>

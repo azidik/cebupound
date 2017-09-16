@@ -51,11 +51,7 @@
 								<td>{{ $serviceRequest->service->name }}</td>
 								<!-- <td>12/12/12 9:10 PM</td> -->
 								<td>
-									@if($serviceRequest->status == 'Pending')
-										<small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
-									@else
-										<small class="label label-success"><i class="fa fa-thumbs-o-up"></i> Confirmed</small>
-									@endif
+								    <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
 								</td>
 								<td>
 									<div class='input-group date' id='datetimepicker1' style="width: 70%;" data-id="{{ $serviceRequest->id }}">

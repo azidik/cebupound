@@ -13,7 +13,9 @@ use Auth;
 use Validator;
 use App\Impound;
 use App\Adopt;
+use App\PetService;
 use App\UserExam;
+use App\Service;
 
 class PetController extends Controller
 {
@@ -185,6 +187,36 @@ class PetController extends Controller
             ];
         }
          
+        return $response;
+    }
+
+    public function schedules()
+    {
+        $pets = Pet::where('user_id', Auth::user()->id)->get();
+        $services = Service::all();
+        return view('dashboard.pets.schedule', compact('pets', 'services'));
+    }
+
+    public function createPetService(Request $request)
+    {
+        $params = $request->all();
+
+        $pet_service  = PetService::create([
+            'pet_id' => $params['pet_id'],
+            'service_id' => $params['service_id'],
+            'status' => 'Request'
+        ]);
+
+        if($pet_service) {
+            $response = [
+                'status' => 1,
+                'pet_service' => $pet_service 
+            ];
+        } else {
+            $response = [
+                'status' => 0   
+            ];
+        }
         return $response;
     }
 }
