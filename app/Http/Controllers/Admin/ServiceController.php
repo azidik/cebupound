@@ -7,9 +7,9 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $serviceScheduleList = PetService::where('status', 'Confirmed')->get();
+        $serviceScheduleLists = PetService::where('status', 'Confirmed')->get();
         
-        return view('dashboard.admin.services.list', compact('serviceScheduleList'));
+        return view('dashboard.admin.services.list', compact('serviceScheduleLists'));
     }
     public function request()
     {
@@ -19,10 +19,15 @@ class ServiceController extends Controller
     public function setDateSchedule(Request $request)
     {
         $params = $request->all();
+        return $params['scheduleDate'];
         // return date('Y-m-d  ', strtotime($params['scheduleDate']));   
         $date = strtr($params['scheduleDate'], '/', '-');
+        // return date('Y-m-d H:i:s', strtotime($date));
         // return DateTime::createFromFormat('d/m/Y', $date1);
-        $serviceSchedule = PetService::find($params['id'])->update(['schedule' => date('Y-m-d H:i:s', strtotime($date)), 'status' => 'Confirmed']);
+        $serviceSchedule = PetService::find($params['id'])->update([
+            'schedule' => date('Y-m-d H:i:s', strtotime($date)), 
+            'status' => 'Confirmed'
+        ]);
         if($serviceSchedule){
             $response = [
                 'status' => 1

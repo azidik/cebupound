@@ -132,8 +132,8 @@
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li class="active"><a href="{{ url('/dashboard/admin/adoptList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/serviceSchedules') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\PetService::where('status', 'Request')->count() }}</small></a></li>
+            <li class="active"><a href="{{ url('/dashboard/admin/serviceSchedules') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li><a href="{{ url('/dashboard/admin/serviceSchedules/request') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\PetService::where('status', 'Request')->count() }}</small></a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -162,7 +162,7 @@
         
         @else
           <li class="treeview">
-            <a href="#">
+            <a href="#">  
               <i class="fa fa-cubes"></i> <span>My Pets</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -172,6 +172,17 @@
               <li class="active"><a href="{{ url('/dashboard/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
               <li><a href="{{ url('/dashboard/pets/create') }}"><i class="fa fa-circle-o"></i> Register</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Services</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cubes"></i> <span>Services</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu" style="display: none;">
+              <li class="active"><a href="{{ url('/dashboard/pets/schedules') }}"><i class="fa fa-circle-o"></i> Schedules</a></li>
             </ul>
           </li>
           <li>

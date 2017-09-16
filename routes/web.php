@@ -21,9 +21,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('dashboard.index');
     });
+    Route::get('pets/exams', 'ExamController@index');
+    Route::post('pets/exams/submit', 'ExamController@submit');
     Route::get('pets', 'PetController@index');
     Route::get('pets/create', 'PetController@create');
     Route::post('pets/create', 'PetController@store');
+    Route::get('pets/schedules', 'PetController@schedules');
+    Route::post('pets/schedules/create', 'PetController@createPetService');
     Route::get('pets/{id}', 'PetController@show');
     Route::get('pets/impound/{id}', 'PetController@proceedToImpound');
     Route::get('pets/adopt/{id}', 'PetController@proceedToAdopt');
@@ -44,9 +48,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('adoptRequest', 'Admin\AdoptController@adoptRequest');
         Route::get('adoptAccept/{id}', 'Admin\AdoptController@adoptAccept');
         Route::get('adoptDecline/{id}', 'Admin\AdoptController@adoptDecline');
-        Route::get('serviceSchedules', 'Admin\ServiceController@request');
+        Route::get('serviceSchedules', 'Admin\ServiceController@index');
+        Route::get('serviceSchedules/request', 'Admin\ServiceController@request');
         Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
+        Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
     });
 });
 

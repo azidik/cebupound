@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Question;
+use App\PassingRate;
 use App\Answer;
 class QuestionAndAnswerController extends Controller
 {
@@ -16,7 +17,12 @@ class QuestionAndAnswerController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('dashboard.admin.QandA.index', compact('questions'));
+        $passing_rate = PassingRate::find(1);
+        if($passing_rate)
+            $passing_rate = $passing_rate->percent;
+        else 
+            $passing_rate = '';
+        return view('dashboard.admin.QandA.index', compact('questions', 'passing_rate'));
     }
 
     /**
@@ -83,9 +89,35 @@ class QuestionAndAnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $params = $request->all();
+        foreach ($params as $key => $val) {
+            $answer = Answer::where('id', $val)->first();
+            if($answer) {
+                $answer->is_correct = 1;
+                $answer->save();
+            }
+            foreach($params['answer'] as $key => $data) {
+                $init = Answer::find($key);
+                $init->name = $data;
+                $init->save();
+            }
+        }
+
+        $passing_rate = PassingRate::find(1);
+        if($passing_rate) {
+            $passing_rate->percent = $params['passing_rate'];
+            $passing_rate->save();
+        } else {
+            $passing_rate = new PassingRate;
+            $passing_rate->percent = $params['passing_rate'];
+            $passing_rate->save();
+        }
+
+        session()->flash('message', 'Questionaire updated...');
+
+        return redirect('/dashboard/admin/questionsAndAnswers');
     }
 
     /**
