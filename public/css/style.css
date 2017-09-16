@@ -29,7 +29,7 @@ table {
 	border-spacing: 0;
 }
 .section-padding{
-	padding: 60px 0px;
+	padding: 50px 0px;
 }
 h1, h2, h3, h4, h5, h6{
     font-family: Open Sans, sans-serif;
@@ -52,7 +52,7 @@ Navigation bar
     background-color: #ffffff;
 }
 .course-text{
-    padding: 84px;
+    padding: 80px;
 }
 .navbar-default .navbar-nav > li > a {
     color: #717f86;

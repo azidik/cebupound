@@ -45,7 +45,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ url('')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>CPA</span>
       <!-- logo for regular state and mobile devices -->
@@ -171,7 +171,7 @@
             <ul class="treeview-menu" style="display: none;">
               <li class="active"><a href="{{ url('/dashboard/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
               <li><a href="{{ url('/dashboard/pets/create') }}"><i class="fa fa-circle-o"></i> Register</a></li>
-              <li><a href="{{ url('/dashboard/pets/services') }}"><i class="fa fa-circle-o"></i> Services</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Services</a></li>
             </ul>
           </li>
           <li>

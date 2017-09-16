@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 @section('content')
+<div class="row col-lg-12" style="margin-top:70px;">
 <body class="hold-transition login-page">
   <div class="login-box">
 

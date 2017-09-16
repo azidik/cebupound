@@ -5,6 +5,7 @@
 <!--contact-->
 <section id ="contact" class="section-padding">
       <div class="container">
+      <div class="row col-lg-12" style="margin-top:70px;">
         <div class="row">
           <div class="header-section text-center">
             <h2>Contact Us</h2>

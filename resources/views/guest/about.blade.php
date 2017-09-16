@@ -4,7 +4,7 @@
     @section('content')
     <section class="section-padding">
     <div class="container">
-        <div class="row col-lg-12" style="margin-top:40px;">
+        <div class="row col-lg-12" style="margin-top:70px;">
        
                 <div class="col-lg-8 col-lg-offset-2">
                     <center>
