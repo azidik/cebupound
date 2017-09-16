@@ -30,11 +30,6 @@
             </ul>
         </div>
     @endif
-    @if(session()->has('message'))
-    <div class="alert alert-danger">
-        {{ session()->get('message') }}
-    </div>
-    @endif
     <!-- Main content -->
     <section class="content">
         <!-- general form elements -->
@@ -44,11 +39,18 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <form role="form" action="{{ url('dashboard/admin/questionsAndAnswers/update') }}" method="post" >
                 {{ csrf_field() }}
+                
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-12">
+                            <div>Passing Rate Percentage: <input type="text" class="form-control" name="passing_rate" placeholder="Passing percentage" value="{{ $passing_rate }}" style="width: 10%"></div>
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
                                     </div>
@@ -70,14 +72,12 @@
                                                         @foreach($question->answers as $answer)
                                                             <div class="input-group">
                                                                     <span class="input-group-addon">
-                                                                    <input type="radio" name="is_correct" value="{{ $answer->id }}">
+                                                                    <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}" {{ $answer->is_correct ? 'checked' : '' }}>
                                                                     </span>
                                                                 <input type="text" class="form-control" name="answer[{{$answer->id}}]" value="{{ $answer->name }}">
                                                             </div>
                                                         @endforeach
                                                         <!-- <div class="box-footer"> -->
-                                                        <br>
-                                                            <button type="submit" class="btn btn-primary pull-left">Update</button>
                                                         <!-- </div> -->
                                                     </div>
                                                 </div>
@@ -92,9 +92,9 @@
                 </div>
                 <!-- /.box-body -->
 
-                <!-- <div class="box-footer">
+                <div class="box-footer">
                     <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div> -->
+                </div>
             </form>
         </div>
     </section>
