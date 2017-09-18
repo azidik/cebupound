@@ -166,7 +166,6 @@ class PetController extends Controller
         // $impound = Impound::find($id)
 
         $checkUserExam = UserExam::where('user_id', Auth::user()->id)->where('pet_id', $pet_id)->first();
-        return $checkUserExam;
         if($checkUserExam) {
             if($checkUserExam->remarks == 'Passed') {
                 $adopt = Adopt::create([
@@ -205,7 +204,8 @@ class PetController extends Controller
 
     public function schedules()
     {
-        $pets = Pet::where('user_id', Auth::user()->id)->get();
+        $pets = Pet::with('service')->where('user_id', Auth::user()->id)->get();
+        // return $pets;
         $services = Service::all();
         return view('dashboard.pets.schedule', compact('pets', 'services'));
     }

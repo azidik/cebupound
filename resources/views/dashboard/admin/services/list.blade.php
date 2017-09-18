@@ -37,6 +37,7 @@
 							<th>Service Request</th>
 							<th>Status</th>
 							<th>Service Scheduled</th>
+                            <th>Action</th>
 							<!-- <th>Status</th> -->
 						</tr>
 					</thead>
@@ -54,13 +55,10 @@
 								    <small class="label label-success"><i class="fa fa-thumbs-o-up"></i> Confirmed</small>
 								</td>
 								<td>
-									<div class='input-group date' id='datetimepicker1' style="width: 70%;" data-id="{{ $serviceRequest->id }}">
-										<input type='text' class="form-control" id="schedule" value="{{ $serviceRequest->schedule }}"/>
-										<span class="input-group-addon">
-											<span class="glyphicon glyphicon-calendar"></span>
-										</span>
-									</div>
+                                    {{ $serviceRequest->schedule }}
+                                    <input id="schedule" type="datetime-local" value="$serviceRequest->schedule">
 								</td>
+                                <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
 							</tr>
 						@endforeach
 					</tbody>
@@ -80,16 +78,21 @@
 				console.log('aw');
 			});
 
-			$("#datetimepicker1").change(function() {
-				var scheduleDate = $(this).datepicker({ dateFormat: 'dd,MM,yyyy' }); 
-				var id = $(this).data("id");
+			// var $inputDate = $("<input></input>");
+            // $inputDate.attr("type", "datetime-local");
+            // $inputDate.attr("value", "2004-05-03");
+            // $inputDate.blur(function(event) {
+				// var scheduleDate = $(this).datepicker({ dateFormat: 'dd,MM,yyyy' }); 
+            $('#submit').click(function(e) {
+                e.preventDefault();
+                var id = $(this).data("id");
 				$.ajax({
                     type: "POST",
                     url: '/dashboard/admin/serviceSchedule/setDate',
 					data: {
 						_token: '{{ csrf_token() }}',
 						id: id,
-						scheduleDate: scheduleDate
+						scheduleDate: $('#schedule').val()
 					},
                     success: function(response) {
                         if(response.status){
@@ -100,16 +103,29 @@
                         } else {
                             toastr.error('Something went wrong!');
                             setTimeout(function() {
-                                // location.reload();    
+                                // location.reload(); 
                             }, 3000);
                         }
                     },
                     error: function(error) {
                         console.log(error)
                     }
-                });
-			});
+                });  
+            })
 		});
+        function formatDate(date) {
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
+        }
+
+        var d = new Date();
+        var e = formatDate(d);
 
         function accept (id) {
             if(confirm('Are you sure you want to accept this pet?')){

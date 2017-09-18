@@ -32,9 +32,9 @@
 						<tr>
 							<th>Image</th>
 							<th>Name</th>
-							<th>Age</th>
 							<th>Breed</th>
 							<th>Type</th>
+                            <th>Service Name</th>
                             <th>Schedule</th>
 							<th>Action</th>
 						</tr>
@@ -44,10 +44,19 @@
 						<tr>
 							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
 							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->age }}</td>
 							<td>{{ $pet->breed }}</td>
 							<td>{{ $pet->type->name }}</td>
-                            <td>N/A</td>
+                            <td>
+                                @foreach($pet->service as $service)
+                                    {{ $service->name }}
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($pet->service as $service)
+                                    {{ $service->pivot->schedule }}
+                                @endforeach
+                            </td>
+                            
 							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
 								<td>
 									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
