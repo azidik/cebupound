@@ -109,6 +109,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('pets/adopt/{id}', 'PetController@proceedToAdopt');
     Route::get('pets/adoption/available', 'PetController@availableAdoption');
 
+
     // Admin
     Route::group(['prefix' => 'admin'], function () { 
         Route::get('impoundRequest', 'Admin\ImpoundController@impoudRequest');

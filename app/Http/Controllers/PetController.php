@@ -19,6 +19,10 @@ use App\Service;
 
 class PetController extends Controller
 {
+    public function test()
+    {
+        return view('dashboard.pets.services');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -219,4 +223,5 @@ class PetController extends Controller
         }
         return $response;
     }
+
 }

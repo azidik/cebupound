@@ -19,8 +19,10 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-        <a class="navbar-brand" href="/">Cebu Pound</a>
+        <a class="navbar-brand" href="/"><img src="img/log.png" width="110px" height="80px" position="nav navbar-left"></a>
         </div>
+
+        
 
         @if(Auth::user(0))
         <div class="collapse navbar-collapse" id="myNavbar">

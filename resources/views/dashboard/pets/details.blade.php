@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age"class="form-control" value="{{ $pet->age }}">
+                            <input type="number" name="age" class="form-control" value="{{ $pet->age }}">
                             </div>
                             <div class="form-group">
                             <label>Gender</label>

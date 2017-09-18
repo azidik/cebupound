@@ -10,7 +10,7 @@
  
  		<section class="section-padding">
     		<div class="container">
-        		<div class="row col-lg-12" style="margin-top:40px;">
+        		<div class="row col-lg-12" style="margin-top:70px;">
   					<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
