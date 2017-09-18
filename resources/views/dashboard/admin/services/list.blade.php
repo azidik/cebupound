@@ -81,7 +81,7 @@
 			});
 
 			$("#datetimepicker1").change(function() {
-				var scheduleDate = $(this).datepicker({ dateFormat: 'dd,MM,yyyy' });
+				var scheduleDate = $(this).datepicker({ dateFormat: 'dd,MM,yyyy' }); 
 				var id = $(this).data("id");
 				$.ajax({
                     type: "POST",

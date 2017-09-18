@@ -59,7 +59,7 @@
 									@endif
 								@endif
 							@else
-							<a href="#" class="btn btn-info btn-block"  onclick="adopt('{{$available_adoption->id}}')"><b>Adopt</b></a>
+							<a href="#" class="btn btn-info btn-block" onclick="adopt('{{$available_adoption->id}}', '{{ $available_adoption->pet->id }}')"><b>Adopt</b></a>
 							@endif
 						</div>
 					</div>
@@ -74,24 +74,25 @@
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function() {	
 			$('#example').DataTable();
 		});
 
-		function adopt (id) {
+		function adopt (id, pet_id) {
 			$.ajax({
 				type: "GET",
-				url: '/dashboard/pets/adopt/' + id,
+				url: '/dashboard/pets/adopt/' + id + '/'+ pet_id,
 				success: function(response) {
+					console.log(response);
 					if(response.status && response.canAdopt){
 						toastr.success('Pet successfully requested for adoption. Thank you!');
 						location.reload();
 					} else if(!response.status && !response.canAdopt) {
 						if(confirm('You need to take the exam before proceeding to adopt!')){
-							window.location.href = '/dashboard/pets/exams';
+							window.location.href = '/dashboard/pets/exams/'+pet_id;
 						}
 					} else if(response.status == 2 && !response.canAdopt) {
-						toastr.error("Sorry! You're failed to take the exam.");
+						toastr.error("Sorry! You're failed to take the exam. you need to wait for the next exam until " + response.updated_at.date);
 					} else {
 						toastr.error("Something went wrong...");
 					}

@@ -161,11 +161,12 @@ class PetController extends Controller
         return view('dashboard.pets.available', compact('available_adoptions'));
     }
 
-    public function proceedToAdopt($id){
+    public function proceedToAdopt($id, $pet_id){
 
         // $impound = Impound::find($id)
 
-        $checkUserExam = UserExam::where('user_id', Auth::user()->id)->first();
+        $checkUserExam = UserExam::where('user_id', Auth::user()->id)->where('pet_id', $pet_id)->first();
+        return $checkUserExam;
         if($checkUserExam) {
             if($checkUserExam->remarks == 'Passed') {
                 $adopt = Adopt::create([
@@ -179,10 +180,18 @@ class PetController extends Controller
                     'canAdopt' => 1
                 ];
             } else {
-                $response = [
-                    'status' => 2,
-                    'canAdopt' => 0
-                ];
+                if(strtotime($checkUserExam->updated_at) < strtotime('-30 days')) {
+                    $response = [
+                        'status' => 0,
+                        'canAdopt' => 0
+                    ];
+                } else {
+                    $response = [
+                        'status' => 2,
+                        'canAdopt' => 0,
+                        'updated_at' => $checkUserExam->updated_at
+                    ];
+                }
             }
         } else {
             $response = [

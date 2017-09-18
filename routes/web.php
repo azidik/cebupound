@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('dashboard.index');
     });
-    Route::get('pets/exams', 'ExamController@index');
+    Route::get('pets/exams/{pet_id}', 'ExamController@index');
     Route::post('pets/exams/submit', 'ExamController@submit');
     Route::get('pets', 'PetController@index');
     Route::get('pets/create', 'PetController@create');
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::post('pets/schedules/create', 'PetController@createPetService');
     Route::get('pets/{id}', 'PetController@show');
     Route::get('pets/impound/{id}', 'PetController@proceedToImpound');
-    Route::get('pets/adopt/{id}', 'PetController@proceedToAdopt');
+    Route::get('pets/adopt/{id}/{pet_id}', 'PetController@proceedToAdopt');
     Route::get('pets/adoption/available', 'PetController@availableAdoption');
 
 
