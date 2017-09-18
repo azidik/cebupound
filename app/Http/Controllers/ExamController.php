@@ -14,7 +14,8 @@ class ExamController extends Controller
     public function index($id)
     {   
         $pet_id = $id;
-        $questions = Question::all();
+        $init = PassingRate::find(1);
+        $questions = Question::inRandomOrder()->take($init->count_question)->get();
         return view('dashboard.pets.exam', compact('questions', 'pet_id'));
     }
 

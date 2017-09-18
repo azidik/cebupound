@@ -51,6 +51,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div>Passing Rate Percentage: <input type="text" class="form-control" name="passing_rate" placeholder="Passing percentage" value="{{ $passing_rate }}" style="width: 10%"></div>
+                            <div>Question to display: <input type="text" class="form-control" name="count_question" placeholder="Question to display" value="{{ $count_question }}" style="width: 10%"></div>
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
                                     </div>
