@@ -55,10 +55,12 @@
 								</td>
 								<td>
 									<div class='input-group date' id='datetimepicker1' style="width: 70%;" data-id="{{ $serviceRequest->id }}">
+                                        <input type="date" id="schedule" type="datetime-local">
+                                        <!-- <input type="text" name="date_begin" id="date_begin" value=""> 
 										<input type='text' class="form-control" id="schedule" value="{{ $serviceRequest->schedule }}"/>
 										<span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
-										</span>
+										</span> -->
 									</div>
 								</td>
 							</tr>
@@ -69,19 +71,33 @@
 		</div>
     </section>
     <!-- /.content -->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
+    <style>
+    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+    .ui-timepicker-div dl { text-align: left; }
+    .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+    .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+    .ui-timepicker-div td { font-size: 90%; }
+    .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+    .ui-timepicker-rtl{ direction: rtl; }
+    .ui-timepicker-rtl dl { text-align: right; }
+    .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+    </style>
 @endsection
 
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"></script>
+    <script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-sliderAccess.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
-			$('#datetimepicker1').datepicker(function(){
-				console.log('aw');
-			});
+            $('#date_begin,#date_end').datetimepicker(); 
+			$('#datetimepicker1').datepicker();
 
-			$("#datetimepicker1").change(function() {
-				var scheduleDate = $(this).datepicker({ dateFormat: 'dd,MM,yyyy' });
+			$("#schedule").change(function() {
+				var scheduleDate = $(this).datepicker('getDate');
 				var id = $(this).data("id");
 				$.ajax({
                     type: "POST",
@@ -89,7 +105,7 @@
 					data: {
 						_token: '{{ csrf_token() }}',
 						id: id,
-						scheduleDate: scheduleDate
+						scheduleDate: $('#schedule').val()
 					},
                     success: function(response) {
                         if(response.status){
