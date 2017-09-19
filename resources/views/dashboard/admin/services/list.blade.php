@@ -56,7 +56,7 @@
 								</td>
 								<td>
                                     {{ $serviceRequest->schedule }}
-                                    <input id="schedule" type="datetime-local" value="$serviceRequest->schedule">
+                                    <input id="schedule" type="datetime-local" value="{{$serviceRequest->schedule}}">
 								</td>
                                 <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
 							</tr>
@@ -67,17 +67,30 @@
 		</div>
     </section>
     <!-- /.content -->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
+    <style>
+    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+    .ui-timepicker-div dl { text-align: left; }
+    .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+    .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+    .ui-timepicker-div td { font-size: 90%; }
+    .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+    .ui-timepicker-rtl{ direction: rtl; }
+    .ui-timepicker-rtl dl { text-align: right; }
+    .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+    </style>
 @endsection
 
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"></script>
+    <script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-sliderAccess.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
-			$('#datetimepicker1').datepicker(function(){
-				console.log('aw');
-			});
-
+            $('#date_begin,#date_end').datetimepicker(); 
+			$('#datetimepicker1').datepicker();
 			// var $inputDate = $("<input></input>");
             // $inputDate.attr("type", "datetime-local");
             // $inputDate.attr("value", "2004-05-03");
