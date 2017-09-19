@@ -129,6 +129,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
         Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
+        Route::get('reports', 'Admin\ReportController@index');
+        Route::get('inventories', 'Admin\InventoryController@index');
+        Route::get('inventories/create', 'Admin\InventoryController@create');
+        Route::post('inventories/create', 'Admin\InventoryController@store');
     });
 });
 
