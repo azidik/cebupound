@@ -49,6 +49,7 @@
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-12">
+                            <input type="hidden" name="pet_id" value="{{ $pet_id }}">
                             @foreach($questions as $i => $question)
                                 {{ $i + 1}}. {{ $question->name }} 
                                 <div class="radio" style="padding-left: 10px;">

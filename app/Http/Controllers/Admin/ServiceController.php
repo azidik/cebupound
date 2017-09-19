@@ -19,13 +19,12 @@ class ServiceController extends Controller
     public function setDateSchedule(Request $request)
     {
         $params = $request->all();
-        return $params['scheduleDate'];
         // return date('Y-m-d  ', strtotime($params['scheduleDate']));   
-        $date = strtr($params['scheduleDate'], '/', '-');
+        // $date = strtr($params['scheduleDate'], '/', '-');
         // return date('Y-m-d H:i:s', strtotime($date));
         // return DateTime::createFromFormat('d/m/Y', $date1);
         $serviceSchedule = PetService::find($params['id'])->update([
-            'schedule' => date('Y-m-d H:i:s', strtotime($date)), 
+            'schedule' => date('Y-m-d H:i:s', strtotime($params['scheduleDate'])), 
             'status' => 'Confirmed'
         ]);
         if($serviceSchedule){
