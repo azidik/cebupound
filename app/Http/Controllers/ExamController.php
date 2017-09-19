@@ -11,15 +11,18 @@ use Auth;
 
 class ExamController extends Controller
 {
-    public function index()
-    {
-        $questions = Question::all();
-        return view('dashboard.pets.exam', compact('questions'));
+    public function index($id)
+    {   
+        $pet_id = $id;
+        $init = PassingRate::find(1);
+        $questions = Question::inRandomOrder()->take($init->count_question)->get();
+        return view('dashboard.pets.exam', compact('questions', 'pet_id'));
     }
 
     public function submit(Request $request)
     {
-        $params = $request->all();
+        $params = $request->all();  
+        // return $params;
         $questions = Question::all();
         $passing = PassingRate::find(1);
         $count = 0;
@@ -28,19 +31,28 @@ class ExamController extends Controller
             if($answer['is_correct'])
                 $count ++;
         }
-        
-
+    
         $score = round($count * 100 / $questions->count());
         if($score >= $passing->percent)
             $result = 'Passed';
         else
             $result = 'Failed';
-        $user_exam = UserExam::create([
-            'user_id' => Auth::user()->id,
-            'score' => $score,
-            'take' => 1,
-            'remarks' => $result
-        ]);
+        
+        $checkUserExam = UserExam::where('user_id', Auth::user()->id)->where('pet_id', $params['pet_id'])->first();
+        if($checkUserExam) {
+            $checkUserExam->score = $score;
+            $checkUserExam->take = $checkUserExam->take + 1;
+            $checkUserExam->remarks = $result;
+            $checkUserExam->save();
+        } else {
+            UserExam::create([
+                'user_id' => Auth::user()->id,
+                'score' => $score,
+                'take' => 1,
+                'remarks' => $result,
+                'pet_id' => $params['pet_id']
+            ]);
+        }
         
         return view('dashboard.pets.result', compact('result', 'score', 'passing'));
     }

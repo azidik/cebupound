@@ -38,6 +38,6 @@ class Pet extends Model
 
     public function service()
     {
-        return $this->belongsToMany('App\Service');
+        return $this->belongsToMany('App\Service', 'pet_services', 'pet_id', 'service_id')->withPivot('schedule', 'status');
     }
 }
