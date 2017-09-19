@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'last_name' => 'Administrator',
             'address' => 'Block 9 Lot 3 Palm River Subdivision',
             'contact_no' => 13,
-            'username' => 'admin',
+            'username' => 'administrator',
             'email' => 'administrator@gmail.com',
             'password' => bcrypt('password'),
             'is_admin' => 1
