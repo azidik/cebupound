@@ -1,5 +1,5 @@
 <?php
-$url = parse_url("mysql://id2917658_cebupoundanimal:password@cebupoundanimal.000webhostapp.com:3306/id2917658_cebupoundanimal");
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $host = $url["host"];
 $username = $url["user"];
@@ -72,15 +72,15 @@ return [
         ],
 
         'mysql' => array(
-            'driver'   => 'pgsql',
-            'host'     => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
-            'charset'  => 'utf8',
-            'prefix'   => '',
-            'schema'   => 'public',
-        ),
+            'driver'    => 'mysql',
+            'host'      => $host,
+            'database'  => $database,
+            'username'  => $username,
+            'password'  => $password,
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        )
     ],
 
     /*
