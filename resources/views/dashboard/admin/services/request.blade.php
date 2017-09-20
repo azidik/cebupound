@@ -55,7 +55,7 @@
 								    <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
 								</td>
 								<td>
-                                    <input id="schedule" type="datetime-local" value="$serviceRequest->schedule">
+                                    <input id="schedule" type="datetime-local" value="{{$serviceRequest->schedule}}">
 								</td>
                             
                                 <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
@@ -71,8 +71,6 @@
 
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-
-
 
 	<script>
 		$(document).ready(function() {
@@ -109,57 +107,7 @@
                         console.log(error)
                     }
                 });  
-            })
+            });
 		});
-
-        function accept (id) {
-            if(confirm('Are you sure you want to accept this pet?')){
-                $.ajax({
-                    type: "GET",
-                    url: '/dashboard/admin/impoundAccept/' + id,
-                    success: function(response) {
-                        if(response.status){
-                            toastr.success('Pet successfully impounded. Thank you!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        } else {
-                            toastr.error('Something went wrong!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error)
-                    }
-                });
-            }
-        }
-
-        function decline (id) {
-            if(confirm('Are you sure you want to decline this pet?')){
-                $.ajax({
-                    type: "GET",
-                    url: '/dashboard/admin/impoundDecline/' + id,
-                    success: function(response) {
-                        if(response.status){
-                            toastr.success('Pet successfully declined. Thank you!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        } else {
-                            toastr.error('Something went wrong!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error)
-                    }
-                });
-            }
-        }
 	</script>
 @stop
