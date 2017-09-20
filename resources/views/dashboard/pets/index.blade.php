@@ -38,6 +38,7 @@
 							<th>Color</th>
 							<th>Type</th>
 							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -50,6 +51,7 @@
 							<th>Color</th>
 							<th>Type</th>
 							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -68,15 +70,28 @@
 								<td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
 								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
-								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impound</small>
+								</td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
 							<td>
-								<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Declined</small>
+								<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined</small>
 							<td>
 							@else 
 								<td><button class="btn btn-info btn-xs" onclick="impound('{{$pet->id}}')">Proceed to impound</button>
-							@endif		
+							@endif
+							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 0)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
+								</td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+								<td>
+							@else
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>
+								<td>
+							@endif
 						</tr>
 						@endforeach
 					</tbody>

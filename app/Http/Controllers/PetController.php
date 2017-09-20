@@ -178,6 +178,7 @@ class PetController extends Controller
                     'status' => 1,
                     'canAdopt' => 1
                 ];
+                
             } else {
                 if(strtotime($checkUserExam->updated_at) < strtotime('-30 days')) {
                     $response = [

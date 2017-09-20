@@ -92,7 +92,7 @@
 							window.location.href = '/dashboard/pets/exams/'+pet_id;
 						}
 					} else if(response.status == 2 && !response.canAdopt) {
-						toastr.error("Sorry! You're failed to take the exam. you need to wait for the next exam until " + response.updated_at.date);
+						toastr.error("Sorry! You've failed to take the exam. you need to wait after 30 days. Thank you!");
 					} else {
 						toastr.error("Something went wrong...");
 					}
