@@ -130,8 +130,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
         Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
         Route::get('reports', 'Admin\ReportController@index');
-        Route::get('inventories', 'Admin\InventoryController@index');
-        Route::get('inventories/create', 'Admin\InventoryController@create');
+        Route::get('inventories/foodList', 'Admin\InventoryController@foodList');
+        Route::get('inventories/medicineList', 'Admin\InventoryController@medicineList');
+        Route::get('inventories/createFood', 'Admin\InventoryController@createFood');
+        Route::get('inventories/createMedicine', 'Admin\InventoryController@createMedicine');
         Route::post('inventories/create', 'Admin\InventoryController@store');
     });
 });
