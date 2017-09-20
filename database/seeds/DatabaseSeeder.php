@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
         //$this->call(PetTypeTableSeeder::class);
         //$this->call(PetCategoryTableSeeder::class);
         //$this->call(UserTableSeeder::class);
-        //$this->call(InventoryTypeTableSeeder::class);
+        $this->call(InventoryTypeTableSeeder::class);
         //$this->call(ServiceSeeder::class);
-        //$this->call(FoodCategoryTableSeeder::class);
+        $this->call(FoodCategoryTableSeeder::class);
         $this->call(MedicineCategoryTableSeeder::class);
     }
 }
