@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Questions and answers
+        Pets
         <small>Create</small>
 	</h1>
     @if(Auth::user()->is_admin)

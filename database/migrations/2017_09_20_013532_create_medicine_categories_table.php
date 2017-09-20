@@ -1,10 +1,11 @@
+
 <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoriesTable extends Migration
+class CreateMedicineCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +14,9 @@ class CreateInventoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('medicine_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('item_code');
-            $table->string('item');
-            $table->string('description');
-            $table->float('price');
-            $table->integer('stock_in');
-            $table->integer('stock_out');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('medicine_categories');
     }
 }

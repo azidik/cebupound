@@ -67,36 +67,30 @@
 		</div>
     </section>
     <!-- /.content -->
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
+    <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
     <style>
-    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
-    .ui-timepicker-div dl { text-align: left; }
-    .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
-    .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
-    .ui-timepicker-div td { font-size: 90%; }
-    .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
-    .ui-timepicker-rtl{ direction: rtl; }
-    .ui-timepicker-rtl dl { text-align: right; }
-    .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
-    </style>
+        .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+        .ui-timepicker-div dl { text-align: left; }
+        .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+        .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+        .ui-timepicker-div td { font-size: 90%; }
+        .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+        .ui-timepicker-rtl{ direction: rtl; }
+        .ui-timepicker-rtl dl { text-align: right; }
+        .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+    </style> -->
 @endsection
 
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-    <script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"></script>
-    <script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-sliderAccess.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
-            $('#date_begin,#date_end').datetimepicker(); 
-			$('#datetimepicker1').datepicker();
-			// var $inputDate = $("<input></input>");
-            // $inputDate.attr("type", "datetime-local");
-            // $inputDate.attr("value", "2004-05-03");
-            // $inputDate.blur(function(event) {
-				// var scheduleDate = $(this).datepicker({ dateFormat: 'dd,MM,yyyy' }); 
-            $('#submit').click(function(e) {
+			$('#datetimepicker1').datepicker(function(){
+				console.log('aw');
+			});
+
+			$('#submit').click(function(e) {
                 e.preventDefault();
                 var id = $(this).data("id");
 				$.ajax({
@@ -124,70 +118,7 @@
                         console.log(error)
                     }
                 });  
-            })
+            });
 		});
-        function formatDate(date) {
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var ampm = hours >= 12 ? 'pm' : 'am';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0'+minutes : minutes;
-        var strTime = hours + ':' + minutes + ' ' + ampm;
-        return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
-        }
-
-        var d = new Date();
-        var e = formatDate(d);
-
-        function accept (id) {
-            if(confirm('Are you sure you want to accept this pet?')){
-                $.ajax({
-                    type: "GET",
-                    url: '/dashboard/admin/impoundAccept/' + id,
-                    success: function(response) {
-                        if(response.status){
-                            toastr.success('Pet successfully impounded. Thank you!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        } else {
-                            toastr.error('Something went wrong!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error)
-                    }
-                });
-            }
-        }
-
-        function decline (id) {
-            if(confirm('Are you sure you want to decline this pet?')){
-                $.ajax({
-                    type: "GET",
-                    url: '/dashboard/admin/impoundDecline/' + id,
-                    success: function(response) {
-                        if(response.status){
-                            toastr.success('Pet successfully declined. Thank you!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        } else {
-                            toastr.error('Something went wrong!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error)
-                    }
-                });
-            }
-        }
 	</script>
 @stop
