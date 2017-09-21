@@ -5,15 +5,15 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Inventory
+        Medicine Inventory
         <small>Create</small>
-	</h1>
+    </h1>
     <ol class="breadcrumb">
         <li>Dashboard</li>
         <li class="active">Inventory</li>
     </ol>
 
-    </section>	
+    </section>  
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -37,30 +37,42 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ url('dashboard/inventories/medicine/create') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Item Code</label>
-                                <input type="text" name="code" class="form-control">
+                                <label for="type">Type</label>
+                                <select class="form-control" name="pet_type_id">
+                                @foreach($types as $type)
+                                <option value="{{$type->id}}" required="">{{$type->name}}</option>
+                                @endforeach
+                            </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Item Name</label>
-                                <input type="text" name="name"class="form-control">
+                                <label for="Category">Category</label>
+                                <select class="form-control" name="food_category_id">
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}" required="">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Item Description</label>
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="description"> Description</label>
                                 <textarea type="text" class="form-control" name="description"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Price</label>
-                                <input type="number" name="price"class="form-control">
+                                <label for="stock_in">Quantity</label>
+                                <input type="number" name="quantity"class="form-control" required="">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Quantity</label>
-                                <input type="number" name="quantity"class="form-control">
+                                <label for="expiry">Expiry Date</label>
+                                <input id="expiry" type="date" value="" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -76,10 +88,10 @@
 @endsection
 
 @section('javascript')
-	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-	<script>
-		$(document).ready(function() {
-			$('#example').DataTable();
-		});
-	</script>
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 @stop

@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Impound Request
+        Schedule Request
         <small>List</small>
 	</h1>	
    @if(Auth::user()->is_admin)

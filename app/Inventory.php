@@ -9,7 +9,21 @@ class Inventory extends Model
     public $tables = 'inventories';
 
     protected $fillable = [
-        'item_code', 'item','description','price', 'stock_in', 'stock_out'
+        'pet_type_id', 'inventory_type_id','name','description', 'stock_in', 'stock_out', 'expiry_date', 'food_category_id'
     ];
 
+    public function pettype()
+    {
+    	return $this->belongsTo('App/PetType', 'pet_type_id');
+    }
+
+    public function inventorytype()
+    {
+    	return $this->belongsTo('App/InventoryType', 'inventory_type_id');
+    }
+
+    public function categorytype()
+    {
+        return $this->belongsTo('App/FoodCategory', 'food_category_id');
+    }
 }
