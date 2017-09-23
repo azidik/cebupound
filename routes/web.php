@@ -16,6 +16,9 @@ Route::get('/', 'HomeController@guest');
 Route::get('/adopt', 'HomeController@adoption');
 Route::get('/about', 'HomeController@about');
 Route::get('/contact', 'HomeController@contact');
+Route::post('/deviceToken', function() {
+    
+});
 Route::get('/test', function() {
 
     $url = 'https://android.googleapis.com/gcm/send';

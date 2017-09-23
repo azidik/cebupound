@@ -68,11 +68,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="stock_in">Quantity</label>
-                                <input type="number" name="quantity"class="form-control" required="">
+                                <input type="number" name="quantity" class="form-control" required="">
                             </div>
                             <div class="form-group">
                                 <label for="expiry">Expiry Date</label>
-                                <input id="expiry" type="date" value="">
+                                <input id="expiry" type="date" value="" class="form-control">
                             </div>
                         </div>
                     </div>
