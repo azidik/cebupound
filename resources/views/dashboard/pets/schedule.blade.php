@@ -93,7 +93,7 @@
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
-                    </div>
+                </div>
 			</div>
 		</div>
     </section>

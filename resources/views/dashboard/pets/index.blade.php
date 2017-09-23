@@ -75,13 +75,35 @@
 								<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Declined</small>
 							<td>
 							@else 
-								<td><button class="btn btn-info btn-xs" onclick="impound('{{$pet->id}}')">Proceed to impound</button>
+								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
 							@endif		
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
 			</div>
+		</div>
+		<div class="modal fade" id="modal-default">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Services List</h4>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" name="pet_id" id="pet_id" value="">
+					<p>Select service</p>
+					<input id="schedule" type="datetime-local">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="submitRequest">Request</button>
+				</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
 		</div>
     </section>
     <!-- /.content -->
@@ -93,11 +115,19 @@
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
-
-		function impound (id) {
+		$(document).on("click", ".click-modal", function () {
+			var pet_id = $(this).data('id');
+			$('#pet_id').val(pet_id);
+		});
+		//  onclick="impound('{{$pet->id}}')" 
+		$('#submitRequest').click(function() {
 			$.ajax({
-				type: "GET",
-				url: '/dashboard/pets/impound/' + id,
+				type: "POST",
+				url: '/dashboard/pets/impound',
+				data: {
+					pet_id: $('#pet_id').val(),
+					schedule: $('#schedule').val()
+				},
 				success: function(response) {
 					if(response.status){
 						toastr.success('Your pet was successfully impounded. Thank you!');
@@ -111,6 +141,6 @@
 					console.log(error)
 				}
 			});
-		}
+		});
 	</script>
 @stop

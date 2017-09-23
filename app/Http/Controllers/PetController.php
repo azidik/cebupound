@@ -140,9 +140,10 @@ class PetController extends Controller
         //
     }
 
-    public function proceedToImpound($id) {
+    public function proceedToImpound(Request $request) {
         $impound = Impound::create([
-            'pet_id' => $id
+            'pet_id' => $request->get('pet_id'),
+            'surrendered_at' => date('Y-m-d H:i:s', strtotime($request->get('schedule')))
         ]);
         if($impound) {
             $response = [
