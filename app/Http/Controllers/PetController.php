@@ -201,6 +201,7 @@ class PetController extends Controller
         }
          
         return $response;
+        
     }
 
     public function schedules()

@@ -65,13 +65,40 @@
 <section class="content-header">
       <h1>
         Dashboard
-        <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Dashboard</li>
       </ol>
+
 </section>
+@if(Auth::user(0))
+<section class="content">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <center>
+        <h2>User Profile</h2> 
+          <hr class="bottom-line">
+            <div class="inner">
+              <div class="avatar"><img src="img/add.png" alt="" class="img-responsive img-circle" width="80px" height="50px" />
+                  <center>
+                  <h3>{{ Auth::user()->first_name}}</h3>
+                  <hr>
+                       <div class="row">
+                      <div class="col-md-3">
+            
+        </div>
+       
+    </div>
+                 </center>
+              </div>
+            </div>
+ </center>
+ 
+    </div>
+  </div>
+</section>
+@endif
 <section class="content">
   <div class="row">
         <div class="col-lg-3 col-xs-6">

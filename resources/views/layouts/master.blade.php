@@ -19,7 +19,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-        <a class="navbar-brand" href="/"><img src="img/log.png" width="110px" height="80px" position="nav navbar-left"></a>
+        <a class="nav navbar-nav navbar-left" href="/"><img src="img/logoo.png" width="120px" height="100px"></a>
         </div>
 
         
