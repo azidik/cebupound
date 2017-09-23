@@ -112,4 +112,40 @@ class PetController extends Controller
             }
         }
     }
+
+    public function accept($id) 
+    {
+        $pet = Pet::find($id)->update([
+            'is_accepted' => 1
+        ]);
+
+        if($pet) {
+            $response = [
+                'status' => 1
+            ];
+        } else {
+            $response = [
+                'status' => 0
+            ];
+        }
+        return $response;
+    }
+
+    public function decline($id) 
+    {
+        $pet = Pet::find($id)->update([
+            'is_accepted' => 2
+        ]);
+
+        if($pet) {
+            $response = [
+                'status' => 1
+            ];
+        } else {
+            $response = [
+                'status' => 0
+            ];
+        }
+        return $response;
+    }
 }

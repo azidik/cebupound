@@ -120,6 +120,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('impoundDecline/{id}', 'Admin\ImpoundController@impoundDecline');
         Route::get('pets', 'Admin\PetController@list');
         Route::get('pets/create', 'Admin\PetController@create');
+        Route::get('pets/accept/{id}', 'Admin\PetController@accept');
+        Route::get('pets/decline/{id}', 'Admin\PetController@decline');
         Route::get('pets/{id}', 'Admin\PetController@show');
         Route::post('pets/update/{id}', 'Admin\PetController@update');
         Route::get('impoundList', 'Admin\ImpoundController@list');

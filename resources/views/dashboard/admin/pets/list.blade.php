@@ -45,6 +45,7 @@
 							<th>Type</th>
 							<th>Category</th>
 							<th>Owner</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,8 +58,18 @@
 							<td>{{ $pet->breed }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>	
-							<th>{{ $pet->category->name}}</th>
-							<th>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</th>
+							<td>{{ $pet->category->name}}</td>
+							<td>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</td>
+							@if($pet->is_accepted == 0) 
+							<td>
+								<button class="btn btn-info btn-xs" onclick="acceptPet('{{ $pet->id }}')">Accept</button>
+								<button class="btn btn-danger btn-xs" onclick="declinePet('{{ $pet->id }}')">Decline</button>
+							</td>
+							@elseif($pet->is_accepted == 1)
+								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
+							@elseif($pet->is_accepted == 2)
+								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
+							@endif
 						</tr>
 						@endforeach
 					</tbody>
@@ -66,62 +77,7 @@
 			</div>
 		</div>
     </section>
-    @else
-    <section class="content">
-		<div class="box box-primary">
-            <div class="box-header">
-				<table id="example" class="display" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-							<th>Action</th>
-						</tr>
-					</tfoot>
-					<tbody>
-						@foreach($pets as $pet)
-						<tr>
-							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->age }}</td>
-							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed }}</td>
-							<td>{{ $pet->color }}</td>
-							<td>{{ $pet->type->name }}</td>
-							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
-								<td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button><td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
-							<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button><td>
-							@else 
-								<td><button class="btn btn-info btn-xs" onclick="impound('{{$pet->id}}')">Proceed to impound</button>
-							@endif		
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
-		</div>
-    </section>
-    @endif
+	@endif
     <!-- /.content -->
 @endsection
 
@@ -150,5 +106,54 @@
 				}
 			});
 		}
+		function acceptPet (id) {
+            if(confirm('Are you sure you want to accept this pet?')){
+                $.ajax({
+                    type: "GET",
+                    url: '/dashboard/admin/pets/accept/' + id,
+                    success: function(response) {
+                        if(response.status){
+                            toastr.success('Pet successfully accepted. Thank you!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        } else {
+                            toastr.error('Something went wrong!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error)
+                    }
+                });
+            }
+        }
+
+        function declinePet (id) {
+            if(confirm('Are you sure you want to decline this pet?')){
+                $.ajax({
+                    type: "GET",
+                    url: '/dashboard/admin/pets/decline/' + id,
+                    success: function(response) {
+                        if(response.status){
+                            toastr.success('Pet successfully declined. Thank you!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        } else {
+                            toastr.error('Something went wrong!');
+                            setTimeout(function() {
+                                location.reload();    
+                            }, 3000);
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error)
+                    }
+                });
+            }
+        }
 	</script>
 @stop
