@@ -53,7 +53,7 @@
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>
 							<td>
-								@if($pet->impound->surrendered_at != NULL) 
+								@if(isset($pet->impound->surrendered_at)  && $pet->impound->surrendered_at != NULL) 
 									{{ $pet->impound->surrendered_at }}
 								@else
 									N/A
