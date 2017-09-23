@@ -224,6 +224,9 @@
           <a href="{{ url('/dashboard/pets/adoption/available')}}">
             <i class="fa fa-briefcase"></i> <span>Available for adoption</span>
           </a>
+          <a href="{{ url('/dashboard/profile')}}">
+            <i class="fa fa-briefcase"></i> <span>My Profile</span>
+          </a>
         </li>
         @endif
         <li class="active">

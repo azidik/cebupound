@@ -100,6 +100,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('dashboard.index');
     });
+    Route::get('profile', 'ProfileController@show');
+    Route::post('profile/update/{id}', 'ProfileController@update');
     Route::get('pets/exams/{pet_id}', 'ExamController@index');
     Route::post('pets/exams/submit', 'ExamController@submit');
     Route::get('pets', 'PetController@index');
