@@ -29,6 +29,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{{ url('/about')}}">About Us</a></li>
           <li><a href="{{ url('/contact')}}">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
           <li><a href="{{ url('/dashboard')}}">Hello {{ Auth::user()->first_name}}</a></li>
         </ul>
         </div>
@@ -38,6 +39,7 @@
           <li><a href="{{ url('/adopt')}}">Adopt Me</a></li>
           <li><a href="{{ url('/about')}}">About Us</a></li>
           <li><a href="{{ url('/contact')}}">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
           <li><a href="{{ url('/login')}}">Sign in</a></li>
           <li class="btn-trial"><a href="{{ url('/register')}}">Register</a></li>
         </ul>
