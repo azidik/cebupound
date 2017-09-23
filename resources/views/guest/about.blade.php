@@ -17,7 +17,7 @@
 
                         <center><h4>OAMS' Developers</h4></center>
                         <br><br><br>
-                        <div class="row">
+                        <div class="row"><center>
                             <div class="col-md-3">
                                     <div class="team boxed-grey">
                                         <div class="inner">
@@ -54,18 +54,7 @@
                                         </div>
                                     </div>
                             </div>
-                            <div class="col-md-3">
-                                    <div class="team boxed-grey">
-                                        <div class="inner">
-                                            <div class="avatar"><img src="img/rey.jpg" alt="" class="img-responsive img-circle" />
-                                            <center>
-                                            <h5>Rey Abellana</h5>
-                                            <p class="subtitle">Documentation</p>
-                                            </center>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
+                        </center>  
                         </div> 
                 </div> 
         </div>  

@@ -87,13 +87,15 @@
 					if(response.status && response.canAdopt){
 						toastr.success('Pet successfully requested for adoption. Thank you!');
 						location.reload();
+					} else if(!response.status && !response.canAdopt && response.hasImpound){
+						toastr.error("You're not able to adopt the pets.");
 					} else if(!response.status && !response.canAdopt) {
 						if(confirm('You need to take the exam before proceeding to adopt!')){
 							window.location.href = '/dashboard/pets/exams/'+pet_id;
 						}
 					} else if(response.status == 2 && !response.canAdopt) {
-						toastr.error("Sorry! You're failed to take the exam. you need to wait for the next exam until " + response.updated_at.date);
-					} else {
+						toastr.error("Sorry! You've failed to take the exam. you need to wait after 30 days. Thank you!");
+					}  else {
 						toastr.error("Something went wrong...");
 					}
 				},

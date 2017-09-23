@@ -108,7 +108,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('pets/schedules', 'PetController@schedules');
     Route::post('pets/schedules/create', 'PetController@createPetService');
     Route::get('pets/{id}', 'PetController@show');
-    Route::get('pets/impound/{id}', 'PetController@proceedToImpound');
+    Route::post('pets/impound', 'PetController@proceedToImpound');
     Route::get('pets/adopt/{id}/{pet_id}', 'PetController@proceedToAdopt');
     Route::get('pets/adoption/available', 'PetController@availableAdoption');
 

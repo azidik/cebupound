@@ -65,25 +65,51 @@
 <section class="content-header">
       <h1>
         Dashboard
-        <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Dashboard</li>
       </ol>
+
 </section>
+@if(Auth::user(0))
+<section class="content">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <center>
+        <h2>User Profile</h2> 
+          <hr class="bottom-line">
+            <div class="inner">
+              <div class="avatar"><img src="img/add.png" alt="" class="img-responsive img-circle" width="80px" height="50px" />
+                  <center>
+                  <h3>{{ Auth::user()->first_name}}</h3>
+                  <hr>
+                       <div class="row">
+                      <div class="col-md-3">
+            
+        </div>
+       
+    </div>
+                 </center>
+              </div>
+            </div>
+ </center>
+ 
+    </div>
+  </div>
+</section>
+@endif
 <section class="content">
   <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+            <h3>Adopt</h3>
+              <p>New Adopted Pet</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-person-add"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -93,12 +119,11 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+            <h3>Impound</h3>
+              <p>New Impounded Pet</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-person-add"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -108,9 +133,8 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
+            <h3>Register</h3>
+              <p>New Registered Pet</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -123,12 +147,11 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
+            <h3>Services</h3>
+              <p>Recent Services</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion ion-bag"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>

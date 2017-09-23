@@ -37,21 +37,11 @@
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
+							<th>Schedule</th>
 							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</thead>
-					<tfoot>
-						<tr>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Breed</th>
-							<th>Color</th>
-							<th>Type</th>
-							<th>Action</th>
-						</tr>
-					</tfoot>
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
@@ -62,21 +52,38 @@
 							<td>{{ $pet->breed }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>
+							<td>
+								@if($pet->impound->surrendered_at != NULL) 
+									{{ $pet->impound->surrendered_at }}
+								@else
+									N/A
+								@endif
+							</td>
 							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
 								<td>
 									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
 								<td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
 								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
-								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impound</small>
+								</td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
-							<td>
-								<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Declined</small>
-							<td>
+								<td>
+									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined</small>
+								<td>
 							@else 
 								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
 							@endif		
+							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
+								</td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+								<td>
+							
+							@endif
 						</tr>
 						@endforeach
 					</tbody>
@@ -125,6 +132,7 @@
 				type: "POST",
 				url: '/dashboard/pets/impound',
 				data: {
+					_token: "{{ csrf_token() }}",
 					pet_id: $('#pet_id').val(),
 					schedule: $('#schedule').val()
 				},

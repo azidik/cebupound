@@ -165,42 +165,59 @@ class PetController extends Controller
     public function proceedToAdopt($id, $pet_id){
 
         // $impound = Impound::find($id)
-
-        $checkUserExam = UserExam::where('user_id', Auth::user()->id)->where('pet_id', $pet_id)->first();
-        if($checkUserExam) {
-            if($checkUserExam->remarks == 'Passed') {
-                $adopt = Adopt::create([
-                    'impound_id' => $id,
-                    'adopted_at' => Carbon::now()->toDateTimeString(),
-                    'adopted_by' => Auth::user()->id
-        
-                ]);
-                $response = [
-                    'status' => 1,
-                    'canAdopt' => 1
-                ];
-            } else {
-                if(strtotime($checkUserExam->updated_at) < strtotime('-30 days')) {
+        $checkUserHasImpounds = Impound::all();
+        $userImpound = false;
+        foreach ($checkUserHasImpounds as $key => $checkUserHasImpound) {
+            if($checkUserHasImpound->pet->user->id == Auth::user()->id) {
+                $userImpound = true;
+                break;
+            }
+        }
+        if(!$userImpound) {
+            $checkUserExam = UserExam::where('user_id', Auth::user()->id)->where('pet_id', $pet_id)->first();
+            if($checkUserExam) {
+                if($checkUserExam->remarks == 'Passed') {
+                    $adopt = Adopt::create([
+                        'impound_id' => $id,
+                        'adopted_at' => Carbon::now()->toDateTimeString(),
+                        'adopted_by' => Auth::user()->id
+            
+                    ]);
                     $response = [
-                        'status' => 0,
-                        'canAdopt' => 0
+                        'status' => 1,
+                        'canAdopt' => 1
                     ];
+                    
                 } else {
-                    $response = [
-                        'status' => 2,
-                        'canAdopt' => 0,
-                        'updated_at' => $checkUserExam->updated_at
-                    ];
+                    if(strtotime($checkUserExam->updated_at) < strtotime('-30 days')) {
+                        $response = [
+                            'status' => 0,
+                            'canAdopt' => 0
+                        ];
+                    } else {
+                        $response = [
+                            'status' => 2,
+                            'canAdopt' => 0,
+                            'updated_at' => $checkUserExam->updated_at
+                        ];
+                    }
                 }
+            } else {
+                $response = [
+                    'status' => 0,
+                    'canAdopt' => 0
+                ];
             }
         } else {
             $response = [
                 'status' => 0,
-                'canAdopt' => 0
+                'canAdopt' => 0,
+                'hasImpound' => 1   
             ];
         }
          
         return $response;
+        
     }
 
     public function schedules()

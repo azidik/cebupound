@@ -79,10 +79,10 @@
             if(confirm('Are you sure you want to accept this pet?')){
                 $.ajax({
                     type: "GET",
-                    url: '/dashboard/admin/impoundAccept/' + id,
+                    url: '/dashboard/admin/adoptAccept/' + id,
                     success: function(response) {
                         if(response.status){
-                            toastr.success('Pet successfully impounded. Thank you!');
+                            toastr.success('Pet successfully adopted. Thank you!');
                             setTimeout(function() {
                                 location.reload();    
                             }, 3000);
