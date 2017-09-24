@@ -38,7 +38,6 @@
 							<th>Color</th>
 							<th>Type</th>
 							<th>Schedule</th>
-							<th>Action</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -65,7 +64,7 @@
 								<td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
 								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impound</small>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
 								</td>
 							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
 								<td>
@@ -73,16 +72,6 @@
 								<td>
 							@else 
 								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
-							@endif		
-							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
-								<td>
-									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
-								</td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
-								<td>
-							
 							@endif
 						</tr>
 						@endforeach
@@ -126,7 +115,6 @@
 			var pet_id = $(this).data('id');
 			$('#pet_id').val(pet_id);
 		});
-		//  onclick="impound('{{$pet->id}}')" 
 		$('#submitRequest').click(function() {
 			$.ajax({
 				type: "POST",
@@ -137,10 +125,14 @@
 					schedule: $('#schedule').val()
 				},
 				success: function(response) {
-					if(response.status){
+					console.log(response);
+					if(response.status == 2) {
+						toastr.error('Schedule date is empty. Please input schedule date...');
+					}
+					else if(response.status == 1){
 						toastr.success('Your pet was successfully impounded. Thank you!');
 						location.reload();
-					} else {
+					} 	else {
 						toastr.error('Something went wrong!');
 						location.reload();
 					}

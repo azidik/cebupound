@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Address</label>
-                            <textarea name="address" id="" cols="10" rows="10" class="form-control" value="{{ $user->address }}"></textarea>
+                            <textarea name="address" id="" cols="10" rows="10" class="form-control" value="{{ $user->address }}">{{ $user->address }}</textarea>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Contact No.</label>
