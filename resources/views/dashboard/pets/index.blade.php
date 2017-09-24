@@ -82,7 +82,14 @@
 								<td>
 									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
 								<td>
-							
+							@elseif($pet->is_accepted == 0)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
+								</td>
+							@else
+								<td>
+									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Registered</small>
+								</td>
 							@endif
 						</tr>
 						@endforeach

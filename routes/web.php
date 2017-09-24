@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@guest');
 Route::get('/adopt', 'HomeController@adoption');
 Route::get('/about', 'HomeController@about');
 Route::get('/contact', 'HomeController@contact');
+Route::get('/FAQs', 'HomeController@faqs');
 Route::post('/deviceToken', function() {
     
 });
