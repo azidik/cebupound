@@ -81,6 +81,7 @@ class PetController extends Controller
             }
             $params['pet_category_id'] = 1;
             $params['user_id'] = Auth::user()->id;
+            $params['is_accepted'] = 0;
             $pet = Pet::create($params);
             if($pet) {
                 session()->flash('message', 'Pet created...');
@@ -141,20 +142,28 @@ class PetController extends Controller
     }
 
     public function proceedToImpound(Request $request) {
-        $impound = Impound::create([
-            'pet_id' => $request->get('pet_id'),
-            'surrendered_at' => date('Y-m-d H:i:s', strtotime($request->get('schedule')))
-        ]);
-        if($impound) {
-            $response = [
-                'status' => 1
+
+        $sched_date = date('Y-m-d H:i:s', strtotime($request->get('schedule')));
+        if($sched_date == '1970-01-01 00:00:00') {
+            return [
+                'status' => 2
             ];
         } else {
-            $response = [
-                'status' => 0
-            ];
-        }   
-        return $response;
+            $impound = Impound::create([
+                'pet_id' => $request->get('pet_id'),
+                'surrendered_at' => date('Y-m-d H:i:s', strtotime($request->get('schedule')))
+            ]);
+            if($impound) {
+                $response = [
+                    'status' => 1
+                ];
+            } else {
+                $response = [
+                    'status' => 0
+                ];
+            }   
+            return $response;   
+        }
     }
     public function availableAdoption()
     {
