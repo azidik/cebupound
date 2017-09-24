@@ -13,10 +13,10 @@ class AuthController extends Controller
         $params = $request->all();
         if (Auth::attempt(['username' => $params['username'], 'password' => $params['password']])) {
             $user = User::where('id', Auth::user()->id)->first();
-            if($user) {
-                $user->device_token = $params['device_token'];
-                $user->save();
-            }
+            // if($user) {
+            $user->device_token = $params['device_token'];
+            $user->save();
+            // }
             // Authentication passed...
             $response = [
                 'status' => 1,
