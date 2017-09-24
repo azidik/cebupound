@@ -85,10 +85,10 @@
 				success: function(response) {
 					console.log(response);
 					if(response.status && response.canAdopt){
-						toastr.success('Pet successfully requested for adoption. Thank you!');
+						toastr.success('You have successfully requested to adopt your chosen pet. Thank you!');
 						location.reload();
 					} else if(!response.status && !response.canAdopt && response.hasImpound){
-						toastr.error("You're not able to adopt the pets.");
+						toastr.error("Sorry. You are no longer able to adopt any pets.");
 					} else if(!response.status && !response.canAdopt) {
 						if(confirm('You need to take the exam before proceeding to adopt!')){
 							window.location.href = '/dashboard/pets/exams/'+pet_id;

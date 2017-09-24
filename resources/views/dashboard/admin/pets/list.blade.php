@@ -46,6 +46,7 @@
 							<th>Category</th>
 							<th>Owner</th>
 							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,6 +70,16 @@
 								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
 							@elseif($pet->is_accepted == 2)
 								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
+							@endif
+							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
+								</td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+								<td>
+							
 							@endif
 						</tr>
 						@endforeach

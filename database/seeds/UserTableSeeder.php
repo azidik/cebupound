@@ -15,10 +15,10 @@ class UserTableSeeder extends Seeder
         User::create([
             'first_name' => 'Administrator',
             'last_name' => 'Administrator',
-            'address' => 'Block 9 Lot 3 Palm River Subdivision',
+            'address' => 'F. Cabahug North Reclamation',
             'contact_no' => 13,
             'username' => 'administrator',
-            'email' => 'administrator@gmail.com',
+            'email' => 'cebupound@gmail.com',
             'password' => bcrypt('password'),
             'is_admin' => 1
         ]);

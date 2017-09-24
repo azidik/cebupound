@@ -53,7 +53,7 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4><i class="icon fa fa-ban"></i> Failed</h4>
-                        Sorry! You're not pass the exam. However you can take back the exam after 1 month. Thank you.
+                        Sorry! You have not pass the exam. However you can take the exam again.
                     </div>
                 @endif
             </div>
