@@ -72,6 +72,23 @@
 								<td>
 							@else 
 								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
+							@endif		
+							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
+								</td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+								<td>
+							@elseif($pet->is_accepted == 0)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
+								</td>
+							@else
+								<td>
+									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Registered</small>
+								</td>
 							@endif
 						</tr>
 						@endforeach
