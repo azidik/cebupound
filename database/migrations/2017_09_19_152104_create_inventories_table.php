@@ -21,6 +21,7 @@ class CreateInventoriesTable extends Migration
             $table->string('description');
             $table->integer('stock_in');
             $table->integer('stock_out');
+            $table->dateTime('expiry_date');
             $table->timestamps();
         });
     }
