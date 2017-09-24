@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mobile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\User;
 
 class AuthController extends Controller
 {
