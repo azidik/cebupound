@@ -12,7 +12,7 @@ class MedicineCategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Syrup', 'Tablet'];
+        $categories = ['Injectable', 'Tablet'];
 
         foreach ($categories as $key => $category) {
         	MedicineCategory::create([

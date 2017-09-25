@@ -13,23 +13,13 @@
         {{ session()->get('message') }}
     </div>
     @endif
-
-    @if(Auth::user()->is_admin)
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Pet List</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
 	</section>
 	<br>
     <!-- Main content -->
-    @if(Auth::user()->is_admin)
     <section class="content">
 	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
 	<br>
@@ -49,6 +39,7 @@
 							<th>Category</th>
 							<th>Owner</th>
 							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,9 +60,19 @@
 								<button class="btn btn-danger btn-xs" onclick="declinePet('{{ $pet->id }}')">Decline</button>
 							</td>
 							@elseif($pet->is_accepted == 1)
-								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
+								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>  </td>
 							@elseif($pet->is_accepted == 2)
 								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
+							@endif
+							
+							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
+								<td>
+									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
+								</td>
+							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+								<td>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+								<td>
 							@endif
 							<td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
 						</tr>
@@ -81,7 +82,6 @@
 			</div>
 		</div>
     </section>
-	@endif
     <!-- /.content -->
 @endsection
 
@@ -98,7 +98,7 @@
 				url: '/dashboard/pets/impound/' + id,
 				success: function(response) {
 					if(response.status){
-						toastr.success('Your pet was successfully impounded. Thank you!');
+						toastr.success('Pet was successfully impounded. Thank you!');
 						location.reload();
 					} else {
 						toastr.error('Something went wrong!');
