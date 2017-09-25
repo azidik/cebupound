@@ -108,6 +108,10 @@
 					<input type="hidden" name="pet_id" id="pet_id" value="">
 					<p>Select service</p>
 					<input id="schedule" type="datetime-local">
+					<div class="form-group">
+					<label for="exampleInputFile">Reason</label>
+					<textarea name="reason" id="reason" cols="10" rows="10" class="form-control"></textarea>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -139,7 +143,8 @@
 				data: {
 					_token: "{{ csrf_token() }}",
 					pet_id: $('#pet_id').val(),
-					schedule: $('#schedule').val()
+					schedule: $('#schedule').val(),
+					reason: $('#reason').val()
 				},
 				success: function(response) {
 					console.log(response);

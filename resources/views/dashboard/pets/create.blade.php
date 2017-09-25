@@ -54,8 +54,12 @@
                             <input type="text" name="name" class="form-control">
                             </div>
                             <div class="form-group">
+                            <label for="exampleInputPassword1">Birth Date</label>
+                            <input type="date" name="birth_date" id="birth_date" class="form-control">
+                            </div>
+                            <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age"class="form-control">
+                            <input type="number" name="age" id="age" readonly class="form-control">
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
@@ -105,6 +109,34 @@
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
+            $('#birth_date').change(function () {
+                var birt_date = $('#birth_date').val();
+                var d = new Date( birt_date );
+                year = d.getFullYear();
+                month = d.getMonth();
+                day = d.getDate();
+
+                var age = calculate_age(month, day, year);
+                $('#age').val(age);
+            });
 		});
+        function calculate_age(birth_month,birth_day,birth_year)
+        {
+            today_date = new Date();
+            today_year = today_date.getFullYear();
+            today_month = today_date.getMonth();
+            today_day = today_date.getDate();
+            age = today_year - birth_year;
+        
+            if ( today_month < (birth_month - 1))
+            {
+                age--;
+            }
+            if (((birth_month - 1) == today_month) && (today_day < birth_day))
+            {
+                age--;
+            }
+            return age;
+        }
 	</script>
 @stop

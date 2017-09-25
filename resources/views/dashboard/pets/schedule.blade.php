@@ -56,14 +56,18 @@
                                     {{ $service->pivot->schedule }}
                                 @endforeach
                             </td>
-                            
-							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
+                            @if(empty($pet->service))
+                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
+                            @else
+                                <td><small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> You have been requested.</small></td>
+                            @endif
+							<!-- @if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
 								<td>
 									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
 								<td>
 							@else 
-								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
-							@endif		
+								
+							@endif		 -->
 						</tr>
 						@endforeach
 					</tbody>

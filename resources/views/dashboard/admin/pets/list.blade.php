@@ -31,6 +31,9 @@
     <!-- Main content -->
     @if(Auth::user()->is_admin)
     <section class="content">
+	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
+	<br>
+	<br>	
 		<div class="box box-primary">
             <div class="box-header">
 				<table id="example" class="display" cellspacing="0" width="100%">
@@ -70,6 +73,7 @@
 							@elseif($pet->is_accepted == 2)
 								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
 							@endif
+							<td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
 						</tr>
 						@endforeach
 					</tbody>

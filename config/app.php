@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,       
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -228,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'FCM' => LaravelFCM\Facades\FCM::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
