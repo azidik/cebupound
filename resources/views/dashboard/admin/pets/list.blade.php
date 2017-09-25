@@ -13,23 +13,13 @@
         {{ session()->get('message') }}
     </div>
     @endif
-
-    @if(Auth::user()->is_admin)
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Pet List</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
 	</section>
 	<br>
     <!-- Main content -->
-    @if(Auth::user()->is_admin)
     <section class="content">
 		<div class="box box-primary">
             <div class="box-header">
@@ -67,7 +57,7 @@
 								<button class="btn btn-danger btn-xs" onclick="declinePet('{{ $pet->id }}')">Decline</button>
 							</td>
 							@elseif($pet->is_accepted == 1)
-								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
+								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>  </td>
 							@elseif($pet->is_accepted == 2)
 								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
 							@endif
@@ -79,7 +69,6 @@
 								<td>
 									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
 								<td>
-							
 							@endif
 						</tr>
 						@endforeach
@@ -88,7 +77,6 @@
 			</div>
 		</div>
     </section>
-	@endif
     <!-- /.content -->
 @endsection
 
@@ -105,7 +93,7 @@
 				url: '/dashboard/pets/impound/' + id,
 				success: function(response) {
 					if(response.status){
-						toastr.success('Your pet was successfully impounded. Thank you!');
+						toastr.success('Pet was successfully impounded. Thank you!');
 						location.reload();
 					} else {
 						toastr.error('Something went wrong!');

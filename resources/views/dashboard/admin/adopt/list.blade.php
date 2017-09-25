@@ -7,19 +7,11 @@
     <h1>
         Adoption List
         <small>List</small>
-	</h1>	
-    @if(Auth::user()->is_admin)
+	</h1><br>
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Adoption List</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
 	</section>	
 	<br>
     <!-- Main content -->
@@ -57,7 +49,7 @@
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @else
                                     <td><small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small></td>
-                                @endif		
+                                @endif	
                             </tr>
 						@endforeach
 					</tbody>

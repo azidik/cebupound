@@ -39,7 +39,7 @@ class AuthController extends Controller
             'last_name' => 'required',
             'address' => 'required',
             'contact_no' => 'required|min:11|max:13',
-            'username' => 'required|min:5',
+            'username' => 'required|min:5|unique',
             'email' => 'required|email',
             'password' => 'required|min:5|confirmed',
             'password_confirmation' => 'required|min:5'

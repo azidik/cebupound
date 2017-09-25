@@ -6,20 +6,13 @@
 <section class="content-header">
     <h1>
         Pets
-        <small>Create</small>
+        <small>Registration</small>
 	</h1>
-    @if(Auth::user()->is_admin)
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Register Pet</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
+
     </section>	
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -40,7 +33,7 @@
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Pet Form</h3>
+                <h3 class="box-title">Pet Registration Form</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

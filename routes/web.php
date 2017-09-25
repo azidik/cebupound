@@ -137,12 +137,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
         Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
-        Route::get('reports', 'Admin\ReportController@index');
-        Route::get('inventories/foodList', 'Admin\InventoryController@foodList');
-        Route::get('inventories/medicineList', 'Admin\InventoryController@medicineList');
-        Route::get('inventories/createFood', 'Admin\InventoryController@createFood');
-        Route::get('inventories/createMedicine', 'Admin\InventoryController@createMedicine');
-        Route::post('inventories/create', 'Admin\InventoryController@store');
+        Route::get('inventory/reports', 'Admin\ReportController@index');
+        Route::get('inventory/foodList', 'Admin\ReportController@foodList');
+        Route::get('inventory/medicineList', 'Admin\ReportController@medicineList');
+        Route::get('inventory/createFood', 'Admin\ReportController@createFood');
+        Route::get('inventory/createMedicine', 'Admin\ReportController@createMedicine');
+        Route::post('inventory/create', 'Admin\ReportController@store');
     });
 });
 

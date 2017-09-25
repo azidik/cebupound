@@ -8,17 +8,17 @@
         Q/A
         <small>Create</small>
 	</h1>
-    @if(Auth::user()->is_admin)
+    <!-- @if(Auth::user()->is_admin) -->
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Q/A</li>
     </ol>
-    @else
+    <!-- @else
     <ol class="breadcrumb">
         <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
-    </ol>
+    </ol> -->
     @endif
     </section>	
     @if ($errors->any())
