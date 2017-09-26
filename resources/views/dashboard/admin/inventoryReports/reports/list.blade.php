@@ -26,7 +26,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $clients->count() }}</h3>
 
               <p>Client's Registration</p>
             </div>
@@ -40,7 +40,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $pets->count() }}</h3>
 
               <p>Pet's Registration</p>
             </div>
@@ -55,7 +55,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{ $impound_pets->count() }}</h3>
 
               <p>Impounded Pets</p>
             </div>
@@ -70,7 +70,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>{{ $adopted_pets->count() }}</h3>
 
               <p>Adopted Pets</p>
             </div>
@@ -85,7 +85,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{ $questions->count() }}</h3>
 
               <p>Questions</p>
             </div>
@@ -99,7 +99,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{ $foods->count() }}</h3>
 
               <p>Food</p>
             </div>
@@ -114,7 +114,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{ $medicines->count() }}</h3>
 
               <p>Medicine</p>
             </div>

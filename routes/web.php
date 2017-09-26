@@ -72,7 +72,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('inventory/medicineList', 'Admin\ReportController@medicineList');
         Route::get('inventory/createFood', 'Admin\ReportController@createFood');
         Route::get('inventory/createMedicine', 'Admin\ReportController@createMedicine');
-        Route::post('inventory/create', 'Admin\ReportController@store');
+        Route::post('inventory/food/create', 'Admin\ReportController@storeFood');
+        Route::post('inventory/medicine/create', 'Admin\ReportController@storeMedicine');
     });
 });
 

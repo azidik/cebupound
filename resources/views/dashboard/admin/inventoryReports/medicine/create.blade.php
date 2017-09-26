@@ -37,7 +37,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/inventories/medicine/create') }}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ url('dashboard/admin/inventory/medicine/create') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
@@ -70,11 +70,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="stock_in">Quantity</label>
-                                <input type="number" name="quantity"class="form-control" required="">
+                                <input type="number" name="stock_in"class="form-control" required="">
                             </div>
                             <div class="form-group">
                                 <label for="expiry">Expiry Date</label>
-                                <input id="expiry" type="date" value="" class="form-control">
+                                <input id="expiry" type="date" name="expiry_date" value="" class="form-control">
                             </div>
                         </div>
                     </div>
