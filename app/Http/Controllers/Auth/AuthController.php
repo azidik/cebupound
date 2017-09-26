@@ -11,15 +11,6 @@ use Auth;
 class AuthController extends Controller
 {
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => 'required|unique:users',
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
-
     public function getLogin() 
     {
         return view('auth.login');
@@ -39,7 +30,7 @@ class AuthController extends Controller
             'last_name' => 'required',
             'address' => 'required',
             'contact_no' => 'required|min:11|max:13',
-            'username' => 'required|min:5',
+            'username' => 'required|min:5|unique:users',
             'email' => 'required|email',
             'password' => 'required|min:5|confirmed',
             'password_confirmation' => 'required|min:5'

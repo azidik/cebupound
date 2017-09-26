@@ -39,9 +39,7 @@
     <section class="content">
         <!-- general form elements -->
         <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Pet Form</h3>
-            </div>
+            
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" action="{{ url('dashboard/pets/create') }}" method="post">

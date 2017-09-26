@@ -124,7 +124,7 @@
                     },
                     success: function(response) {
                         if(response.status){
-                            toastr.success('Reqested for service schedule. Thank you!');
+                            toastr.success('Requested for service schedule. Thank you!');
                             location.reload();
                         } else {
                             toastr.error('Something went wrong!');
@@ -137,24 +137,5 @@
                 })
             });
 		});
-
-		function impound (id) {
-			$.ajax({
-				type: "GET",
-				url: '/dashboard/pets/impound/' + id,
-				success: function(response) {
-					if(response.status){
-						toastr.success('Your pet was successfully impounded. Thank you!');
-						location.reload();
-					} else {
-						toastr.error('Something went wrong!');
-						location.reload();
-					}
-				},
-				error: function(error) {
-					console.log(error)
-				}
-			});
-		}
 	</script>
 @stop

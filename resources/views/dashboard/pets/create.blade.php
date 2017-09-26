@@ -8,18 +8,6 @@
         Pet
         <small>Registration</small>
 	</h1>
-    @if(Auth::user()->is_admin)
-    <ol class="breadcrumb">
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
     </section>	
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -54,8 +42,12 @@
                             <input type="text" name="name" class="form-control">
                             </div>
                             <div class="form-group">
+                            <label for="exampleInputPassword1">Birhtdate</label>
+                            <input id="schedule" type="date" name="birthdate" class="form-control">
+                            </div>
+                            <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age"class="form-control">
+                            <input type="number" name="age" class="form-control">
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
@@ -67,20 +59,20 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label >Breed</label>
-                            <input type="text" name="breed" class="form-control">
-                            </div>
-                            <div class="form-group">
-                            <label >Color</label>
-                            <input type="text" name="color" class="form-control">
-                            </div>
-                            <div class="form-group">
                             <label>Type</label>
                             <select class="form-control" name="pet_type_id">
                                 @foreach($types as $type)
                                 <option value="{{$type->id}}">{{$type->name}}</option>
                                 @endforeach
                             </select>
+                            </div>
+                            <div class="form-group">
+                            <label >Breed</label>
+                            <input type="text" name="breed" class="form-control">
+                            </div>
+                            <div class="form-group">
+                            <label >Color</label>
+                            <input type="text" name="color" class="form-control">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputFile">Pet Image</label>

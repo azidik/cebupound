@@ -39,6 +39,12 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function impound()
+    {
+        $pets = Pet::where('user_id', Auth::user()->id)->get();
+        return view('dashboard.pets.impound', compact('pets'));
+    }
+
     public function create()
     {
         $types = PetType::all();
