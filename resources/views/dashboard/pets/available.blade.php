@@ -8,19 +8,12 @@
 		Pets
 		<small>Available for Adoption</small>
 	</h1>
-	@if(Auth::user()->is_admin)
-    <ol class="breadcrumb">
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-        <li class="active">Available Adoptions</li>
-    </ol>
-    @else
+	
     <ol class="breadcrumb">
         <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
-    @endif
 	</section>
 	<br>
     <!-- Main content -->
@@ -85,10 +78,14 @@
 				success: function(response) {
 					console.log(response);
 					if(response.status && response.canAdopt){
-						toastr.success('Pet successfully requested for adoption. Thank you!');
+						toastr.success('You have successfully requested to adopt your chosen pet. Thank you!');
 						location.reload();
 					} else if(!response.status && !response.canAdopt && response.hasImpound){
+<<<<<<< HEAD
 						toastr.error("You're not able to adopt the pet.");
+=======
+						toastr.error("Sorry. You are no longer able to adopt any pets.");
+>>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
 					} else if(!response.status && !response.canAdopt) {
 						if(confirm('You need to take the exam before proceeding to adopt!')){
 							window.location.href = '/dashboard/pets/exams/'+pet_id;

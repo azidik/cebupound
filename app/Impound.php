@@ -13,7 +13,7 @@ class Impound extends Model
      * @var array
      */
      protected $fillable = [
-        'pet_id', 'place_founded','surrendered_at','surrendered_by', 'is_accepted'
+        'pet_id', 'place_founded','surrendered_at','surrendered_by', 'is_accepted', 'reason'
     ];
 
     public function type ()

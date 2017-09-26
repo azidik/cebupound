@@ -8,22 +8,18 @@
         Impound List
         <small>List</small>
 	</h1>	
-    @if(Auth::user()->is_admin)
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Impound List</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
 	</section>	
 	<br>
     <!-- Main content -->
+    
     <section class="content">
+    <a href="{{ url('dashboard/admin/pets/pdf/impoundAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
+    <br>
+    <br>
 		<div class="box box-primary">
             <div class="box-header">
 				<table id="example" class="display" cellspacing="0" width="100%">
@@ -38,6 +34,7 @@
 							<th>Type</th>
                             <th>Impounded By</th>
 							<th>Status</th>
+                            <th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,12 +49,13 @@
                                 <td>{{ $impound->pet->type->name }}</td>
                                 <td>{{ $impound->pet->user->first_name }}</td>
                                 @if($impound->is_accepted == 0) 
-                                <td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
+                                    <td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
                                 @elseif($impound->is_accepted == 1)
-                                    <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
+                                    <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small></td>
                                 @elseif($impound->is_accepted == 2)
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @endif		
+                                <td><a href="{{ url('dashboard/admin/pets/pdf/impound'. $impound->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
                             </tr>
 						@endforeach
 					</tbody>

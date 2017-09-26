@@ -7,23 +7,18 @@
     <h1>
         Adoption List
         <small>List</small>
-	</h1>	
-    @if(Auth::user()->is_admin)
+	</h1><br>
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Adoption List</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
 	</section>	
 	<br>
     <!-- Main content -->
     <section class="content">
+        <a href="{{ url('dashboard/admin/pets/pdf/adoptAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
+        <br>
+        <br>
 		<div class="box box-primary">
             <div class="box-header">
 				<table id="example" class="display" cellspacing="0" width="100%">
@@ -38,6 +33,7 @@
 							<th>Type</th>
                             <th>Adopted By</th>
 							<th>Status</th>
+                            <th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,6 +54,7 @@
                                 @else
                                     <td><small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small></td>
                                 @endif		
+                                <td><a href="{{ url('dashboard/admin/pets/pdf/adopt/'. $adopt->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
                             </tr>
 						@endforeach
 					</tbody>

@@ -71,7 +71,7 @@ return [
             'engine' => null,
         ],
 
-        // 'mysql1' => array(
+        // 'mysql' => array(
         //     'driver'    => 'mysql',
         //     'host'      => $host,
         //     'database'  => $database,

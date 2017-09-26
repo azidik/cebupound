@@ -8,6 +8,14 @@
         Pet
         <small>Registration</small>
 	</h1>
+<<<<<<< HEAD
+=======
+    <ol class="breadcrumb">
+        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Dashboard</li>
+        <li class="active">Pets</li>
+    </ol>
+>>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
     </section>	
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -42,12 +50,21 @@
                             <input type="text" name="name" class="form-control">
                             </div>
                             <div class="form-group">
+<<<<<<< HEAD
                             <label for="exampleInputPassword1">Birhtdate</label>
                             <input id="schedule" type="date" name="birthdate" class="form-control">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
                             <input type="number" name="age" class="form-control">
+=======
+                            <label for="exampleInputPassword1">Birth Date</label>
+                            <input type="date" name="birth_date" id="birth_date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Age</label>
+                            <input type="number" name="age" id="age" readonly class="form-control">
+>>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
@@ -97,6 +114,34 @@
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
+            $('#birth_date').change(function () {
+                var birt_date = $('#birth_date').val();
+                var d = new Date( birt_date );
+                year = d.getFullYear();
+                month = d.getMonth();
+                day = d.getDate();
+
+                var age = calculate_age(month, day, year);
+                $('#age').val(age);
+            });
 		});
+        function calculate_age(birth_month,birth_day,birth_year)
+        {
+            today_date = new Date();
+            today_year = today_date.getFullYear();
+            today_month = today_date.getMonth();
+            today_day = today_date.getDate();
+            age = today_year - birth_year;
+        
+            if ( today_month < (birth_month - 1))
+            {
+                age--;
+            }
+            if (((birth_month - 1) == today_month) && (today_day < birth_day))
+            {
+                age--;
+            }
+            return age;
+        }
 	</script>
 @stop

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddExpiryDateOnInventoriesTable extends Migration
+class AddBirthDateColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddExpiryDateOnInventoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->dateTime('expiry_date');
+        Schema::table('pets', function (Blueprint $table) {
+            $table->date('birth_date');
         });
     }
 
@@ -25,7 +25,7 @@ class AddExpiryDateOnInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('inventories', function (Blueprint $table) {
+        Schema::table('pets', function (Blueprint $table) {
             //
         });
     }

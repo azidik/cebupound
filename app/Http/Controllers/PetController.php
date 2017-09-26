@@ -67,7 +67,8 @@ class PetController extends Controller
             'gender' => 'required',
             'breed' => 'required',
             'color' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'birth_date' => 'required'
         ]);
 
         if($validator->fails()) {
@@ -157,7 +158,8 @@ class PetController extends Controller
         } else {
             $impound = Impound::create([
                 'pet_id' => $request->get('pet_id'),
-                'surrendered_at' => date('Y-m-d H:i:s', strtotime($request->get('schedule')))
+                'surrendered_at' => date('Y-m-d H:i:s', strtotime($request->get('schedule'))),
+                'reason' => $request->get('reason')
             ]);
             if($impound) {
                 $response = [

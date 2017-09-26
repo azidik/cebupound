@@ -8,18 +8,10 @@
         Adoption Request
         <small>List</small>
 	</h1>	
-	@if(Auth::user()->is_admin)
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Pets</li>
+        <li class="active">Adoption Request</li>
     </ol>
-    @else
-    <ol class="breadcrumb">
-        <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Dashboard</li>
-        <li class="active">Pets</li>
-    </ol>
-    @endif
 	</section>	
 	<br>
     <!-- Main content -->
@@ -53,7 +45,7 @@
 									<td>{{ $adopt->impound->pet->type->name }}</td>
 									<td>{{ $adopt->impound->pet->user->first_name }}</td>
 									@if($adopt->is_accepted == 1)
-										<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
+										<td><button class="btn btn-info btn-xs" disabled="true">Adopted</button></td>
 									@elseif($adopt->is_accepted == 2)
 										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
 									@else
