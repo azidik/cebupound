@@ -13,7 +13,9 @@ class ServiceController extends Controller
     }
     public function request()
     {
-        $serviceRequests = PetService::where('status', 'Request')->get();
+        $serviceRequests = PetService::where('status', 'Request')->first();
+        echo $serviceRequests->pet->image;
+        exit;
         return view('dashboard.admin.services.request', compact('serviceRequests'));
     }
     public function setDateSchedule(Request $request)

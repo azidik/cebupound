@@ -40,7 +40,8 @@
 								<td><a href="{{ url('/dashboard/pets/'. $serviceRequest->pet->id) }}">{{ $serviceRequest->pet->name }}</a></td>
 								<td>{{ $serviceRequest->pet->breed }}</td>
 								<td>{{ $serviceRequest->pet->type->name }}</td>
-
+								<td>{{ $serviceRequest->pet->user->first_name }}</td>
+								<td>{{ $serviceRequest->service->name }}</td>
 								<td>
 								    <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
 								</td>
