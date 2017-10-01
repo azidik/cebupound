@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Pet;
 use Validator;
 use Auth;
+use App\Service;
 use App\PetService;
 
 class PetController extends Controller
@@ -104,6 +105,20 @@ class PetController extends Controller
     {
         $pets = Pet::with('type')->where('user_id', $userId)->get();
         return $pets;
+    }
+
+    public function schedules($id)
+    {
+        $pets = Pet::with('service')->where('user_id', $id)->get();
+        // return $pets;
+        $services = Service::all();
+
+        $response = [
+            'services' => $services,
+            'pets' => $pets
+        ];
+
+        return $response;
     }
 
     public function createPetService(Request $request)

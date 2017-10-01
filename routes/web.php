@@ -100,4 +100,5 @@ Route::group(['prefix' => 'mobile'], function () {
     Route::get('/mypets/details/{id}', 'Mobile\PetController@show');
     Route::post('/mypets/update/{id}', 'Mobile\PetController@update');
     Route::post('/mypets/service/create', 'Mobile\PetController@createPetService');
+    Route::get('/mypets/service/schedules/{id}', 'Mobile\PetController@schedules');
 }); 
