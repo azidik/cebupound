@@ -47,7 +47,7 @@
 								    <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
 								</td>
 								<td>
-                                    <input id="schedule" type="datetime-local" value="{{$serviceRequest->schedule ? $serviceRequest->schedule : ''}}">
+                                    <input id="schedule" type="datetime-local">
 								</td>
                             
                                 <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
