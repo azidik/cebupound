@@ -42,6 +42,7 @@
 								<td>{{ $serviceRequest->pet->type->name }}</td>
 								<td>{{ $serviceRequest->pet->user->first_name }}</td>
 								<td>{{ $serviceRequest->service->name }}</td>
+								<!-- <td>12/12/12 9:10 PM</td> -->
 								<td>
 								    <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
 								</td>
