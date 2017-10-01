@@ -35,29 +35,23 @@
 					</thead>
 					<tbody>
 						@foreach($serviceRequests as $serviceRequest)
-							@if($serviceRequest && !empty($serviceRequest))
-								<tr>
-									@if($serviceRequest->pet->image != "")
-										<td><img src="{{ asset('/images/' . $serviceRequest->pet->image)}}" width="50" height="auto"></td>
-									@else
-										<td><img src="" width="50" height="auto"></td>
-									@endif
-									<td><a href="{{ url('/dashboard/pets/'. $serviceRequest->pet->id) }}">{{ $serviceRequest->pet->name }}</a></td>
-									<td>{{ $serviceRequest->pet->breed ? $serviceRequest->pet->breed : ''}}</td>
-									<td></td>
-									<td>{{ $serviceRequest->pet->user->first_name }}</td>
-									<td>{{ $serviceRequest->service->name }}</td>
-									<!-- <td>12/12/12 9:10 PM</td> -->
-									<td>
-										<small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
-									</td>
-									<td>
-										<input id="schedule" type="datetime-local" value="{{$serviceRequest->schedule}}">
-									</td>
-								
-									<td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
-								</tr>
-							@endif
+							<tr>
+								<td><img src="{{ asset('/images/' . $serviceRequest->pet->image)}}" width="50" height="auto"></td>
+								<td><a href="{{ url('/dashboard/pets/'. $serviceRequest->pet->id) }}">{{ $serviceRequest->pet->name }}</a></td>
+								<td>{{ $serviceRequest->pet->breed }}</td>
+								<td>{{ $serviceRequest->pet->type->name }}</td>
+								<td>{{ $serviceRequest->pet->user->first_name }}</td>
+								<td>{{ $serviceRequest->service->name }}</td>
+								<!-- <td>12/12/12 9:10 PM</td> -->
+								<td>
+								    <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
+								</td>
+								<td>
+                                    <input id="schedule" type="datetime-local" value="{{$serviceRequest->schedule}}">
+								</td>
+                            
+                                <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
+							</tr>
 						@endforeach
 					</tbody>
 				</table>

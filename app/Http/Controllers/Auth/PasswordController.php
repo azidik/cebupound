@@ -31,11 +31,26 @@ class PasswordController extends Controller
             {
                 $message->to($user->email, 'Cebu Pound Animal Team')->subject('Password Reset Request!');
             });
-
-            return 'Please check your email to reset your password! Thank you.';
+            if(isset($params['is_mobile'])) {
+                $return = [
+                    'status' => 1
+                ];
+                return $return;
+            } else {
+                return 'Please check your email to reset your password! Thank you.';
+            }
         } else {
-            session()->flash('email', 'Email does not match in our records. Try again');
-            return redirect('/forgot');
+            if(isset($params['is_mobile'])) {
+                $return  = [
+                    'status' => 0
+                ];
+
+                return $return;
+            } else {
+                session()->flash('email', 'Email does not match in our records. Try again');
+                return redirect('/forgot');
+            }
+            
         }
     }
 
