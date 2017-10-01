@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
 						@foreach($serviceRequests as $serviceRequest)
-							{{ $serviceRequest }}
+							{{ $serviceRequest['pet']['name'] }}
 						@endforeach
 					</tbody>
 				</table>
