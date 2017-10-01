@@ -35,10 +35,9 @@
 					</thead>
 					<tbody>
 						@foreach($serviceRequests as $serviceRequest)
-							@if(!empty($serviceRequest))
 							<tr>
 								<td><img src="{{ asset('/images/' . $serviceRequest->pet->image)}}" width="50" height="auto"></td>
-								<td><a href="{{ url('/dashboard/pets/'. $serviceRequest->pet->id) }}">{{ $serviceRequest->pet->name }}</a></td>
+								
 								<td>{{ $serviceRequest->pet->breed }}</td>
 								<td>{{ $serviceRequest->pet->type->name }}</td>
 								<td>{{ $serviceRequest->pet->user->first_name }}</td>
@@ -53,7 +52,6 @@
                             
                                 <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
 							</tr>
-							@endif
 						@endforeach
 					</tbody>
 				</table>
