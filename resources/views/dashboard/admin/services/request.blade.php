@@ -36,9 +36,7 @@
 					<tbody>
 						@foreach($serviceRequests as $serviceRequest)
 							<tr>
-								<td><img src="{{ asset('/images/' . $serviceRequest->pet->image)}}" width="50" height="auto"></td>
 								
-								<td>{{ $serviceRequest->pet->breed }}</td>
 								<td>{{ $serviceRequest->pet->type->name }}</td>
 								<td>{{ $serviceRequest->pet->user->first_name }}</td>
 								<td>{{ $serviceRequest->service->name }}</td>
