@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
 						@foreach($serviceRequests as $serviceRequest)
-							@if($serviceRequest)
+							@if(!empty($serviceRequest))
 							<tr>
 								<td><img src="{{ asset('/images/' . $serviceRequest->pet->image)}}" width="50" height="auto"></td>
 								<td><a href="{{ url('/dashboard/pets/'. $serviceRequest->pet->id) }}">{{ $serviceRequest->pet->name }}</a></td>
