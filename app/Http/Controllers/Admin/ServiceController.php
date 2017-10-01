@@ -14,7 +14,7 @@ class ServiceController extends Controller
     public function request()
     {
         $serviceRequests = PetService::where('status', 'Request')->first();
-        echo $serviceRequests->pet->image;
+        echo $serviceRequests->pet->id;
         exit;
         return view('dashboard.admin.services.request', compact('serviceRequests'));
     }
