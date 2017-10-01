@@ -57,6 +57,7 @@
 								
 									<td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest->id }}">Save</button></td>
 								</tr>
+							@endif
 						@endforeach
 					</tbody>
 				</table>
