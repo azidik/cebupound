@@ -29,12 +29,14 @@
 							<th>Type</th>
                             <th>Service Name</th>
                             <th>Schedule</th>
-							<th>Action</th>
+							<th>Action</th><img src="data:image/png;base64, /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAzACZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQE==" alt="Red dot" />
 						</tr>
 					</thead>
+                    
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
+                            
 							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
 							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
 							<td>{{ $pet->breed }}</td>

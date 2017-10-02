@@ -8,14 +8,11 @@
         Pet
         <small>Registration</small>
 	</h1>
-<<<<<<< HEAD
-=======
     <ol class="breadcrumb">
         <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
         <li class="active">Pets</li>
     </ol>
->>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
     </section>	
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -50,21 +47,12 @@
                             <input type="text" name="name" class="form-control">
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
-                            <label for="exampleInputPassword1">Birhtdate</label>
-                            <input id="schedule" type="date" name="birthdate" class="form-control">
-                            </div>
-                            <div class="form-group">
-                            <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age" class="form-control">
-=======
                             <label for="exampleInputPassword1">Birth Date</label>
                             <input type="date" name="birth_date" id="birth_date" class="form-control">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
                             <input type="number" name="age" id="age" readonly class="form-control">
->>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
