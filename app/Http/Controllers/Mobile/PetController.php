@@ -69,7 +69,7 @@ class PetController extends Controller
             'gender' => 'required',
             'breed' => 'required',
             'color' => 'required',
-            // 'image' => 'required'
+            'image' => 'required'
         ]);
 
         if($validator->fails()) {
