@@ -30,9 +30,9 @@ class ServiceController extends Controller
             'status' => 'Confirmed'
         ]);
         if($serviceSchedule){
-            // if($serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != 'undefined'){
-            //     $this->sendNotification($serviceSchedule);
-            // }
+            if($serviceSchedule['pet']['user']['device_token'] != NULL || $serviceSchedule['pet']['user']['device_token'] != "" || $serviceSchedule['pet']['user']['device_token'] != 'undefined'){
+                $this->sendNotification($serviceSchedule);
+            }
                 
             $response = [
                 'status' => 1
