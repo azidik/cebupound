@@ -30,7 +30,7 @@ class ServiceController extends Controller
         $serviceSchedule->schedule = date('Y-m-d H:i:s', strtotime($params['scheduleDate']));
         $serviceSchedule->status = 'Confirmed';
         $serviceSchedule->save();
-        return $serviceSchedule;
+        // return $serviceSchedule;
         if($serviceSchedule){    
             $notification = new Notification;
             $notification->user_id = 81;
