@@ -56,7 +56,6 @@ class ServiceController extends Controller
                 
                 $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
-                return $downstreamResponse;
             }
                 
             $response = [
