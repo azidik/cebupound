@@ -53,24 +53,24 @@ class ServiceController extends Controller
         $notification->is_read = 0;
         $notification->save();
 
-        if($notification) {
-            $optionBuilder = new OptionsBuilder();
-            $optionBuilder->setTimeToLive(60*20);
+        // if($notification) {
+        //     $optionBuilder = new OptionsBuilder();
+        //     $optionBuilder->setTimeToLive(60*20);
             
-            $notificationBuilder = new PayloadNotificationBuilder('Service Scheduled');
-            $notificationBuilder->setBody("Hi! Your pet scheduled for services on". date('F j, Y', strtotime($serviceSchedule->schedule)))
-                                ->setSound('default');
+        //     $notificationBuilder = new PayloadNotificationBuilder('Service Scheduled');
+        //     $notificationBuilder->setBody("Hi! Your pet scheduled for services on". date('F j, Y', strtotime($serviceSchedule->schedule)))
+        //                         ->setSound('default');
                                 
-            $dataBuilder = new PayloadDataBuilder();
-            $dataBuilder->addData(['a_data' => 'my_data']);
+        //     $dataBuilder = new PayloadDataBuilder();
+        //     $dataBuilder->addData(['a_data' => 'my_data']);
             
-            $option = $optionBuilder->build();
-            $notification = $notificationBuilder->build();
-            $data = $dataBuilder->build();
+        //     $option = $optionBuilder->build();
+        //     $notification = $notificationBuilder->build();
+        //     $data = $dataBuilder->build();
             
-            $token = $serviceSchedule->pet->user->device_token;
+        //     $token = $serviceSchedule->pet->user->device_token;
             
-            $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-        }
+        //     $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+        // }
     }
 }
