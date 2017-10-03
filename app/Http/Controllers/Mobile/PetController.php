@@ -9,6 +9,7 @@ use Validator;
 use Auth;
 use App\Service;
 use App\PetService;
+use App\Notification;
 
 class PetController extends Controller
 {
@@ -142,5 +143,12 @@ class PetController extends Controller
             ];
         }
         return $response;
+    }
+
+    public function notifications($id)
+    {
+        $notifications = Notification::where('user_id', $id)->get();
+
+        return $notifications;
     }
 }
