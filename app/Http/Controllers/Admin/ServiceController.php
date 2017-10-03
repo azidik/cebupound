@@ -29,6 +29,10 @@ class ServiceController extends Controller
             'schedule' => date('Y-m-d H:i:s', strtotime($params['scheduleDate'])), 
             'status' => 'Confirmed'
         ]);
+        echo $serviceSchedule->pet->user->id;
+        echo $serviceSchedule->schedule;
+        echo $serviceSchedule->pet->user->device_token;
+        exit;
         if($serviceSchedule){
 
             $notification = new Notification;
