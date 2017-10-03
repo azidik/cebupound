@@ -34,7 +34,7 @@ class ServiceController extends Controller
         if($serviceSchedule){    
             $notification = new Notification;
             $notification->user_id = 81;
-            $notification->mesage = asasd;
+            $notification->mesage = 'asasd';
             $notification->is_read = 0;
             $notification->save();
 
