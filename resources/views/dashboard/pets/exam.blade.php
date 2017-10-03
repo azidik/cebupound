@@ -92,16 +92,18 @@
                 } else {
 
                     if(mins > 1){
-
+                        alert('aw');
                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                    setTimeout(function () { countdown(mins - 1); }, 1000);
-
+                    setTimeout(function () { 
+                        countdown(mins - 1); 
+                        alert('ew');
+                    }, 1000);
                     }
                 }
             }
             tick();
         }
-
-        countdown('{{$passing->minutes}}');
+        // countdown('{{$passing->minutes}}');
+        countdown(2);
 	</script>
 @stop
