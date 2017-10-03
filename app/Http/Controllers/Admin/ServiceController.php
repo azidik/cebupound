@@ -3,6 +3,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\PetService;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
+
 class ServiceController extends Controller
 {
     public function index()
@@ -28,6 +33,9 @@ class ServiceController extends Controller
             'status' => 'Confirmed'
         ]);
         if($serviceSchedule){
+            if($serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != 'undefined')
+                $this->sendNotification($serviceSchedule);
+
             $response = [
                 'status' => 1
             ];
@@ -37,5 +45,26 @@ class ServiceController extends Controller
             ];
         }
         return $response;
+    }
+
+    public function sendNotification($serviceSchedule)
+    {
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*20);
+        
+        $notificationBuilder = new PayloadNotificationBuilder('Service Scheduled');
+        $notificationBuilder->setBody("Hi! Your pet scheduled for services on". date('F j, Y', strtotime($serviceSchedule->schedule)))
+                            ->setSound('default');
+                            
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['a_data' => 'my_data']);
+        
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+        
+        $token = $serviceSchedule->pet->user->device_token;
+        
+        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
     }
 }
