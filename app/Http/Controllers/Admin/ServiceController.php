@@ -25,10 +25,11 @@ class ServiceController extends Controller
     public function setDateSchedule(Request $request)
     {
         $params = $request->all();
-        $serviceSchedule = PetService::find($params['id'])->update([
-            'schedule' => date('Y-m-d H:i:s', strtotime($params['scheduleDate'])), 
-            'status' => 'Confirmed'
-        ]);
+
+        $serviceSchedule = PetService::where('id', $params['id']);
+        $serviceSchedule->schedule = date('Y-m-d H:i:s', strtotime($params['scheduleDate']));
+        $serviceSchedule->status = 'Confirmed';
+        $serviceSchedule->save();
 
         return $serviceSchedule;
 
