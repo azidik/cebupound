@@ -26,7 +26,7 @@ class ServiceController extends Controller
     {
         $params = $request->all();
 
-        $serviceSchedule = PetService::where('id', $params['id']);
+        $serviceSchedule = PetService::where('id', $params['id'])->first();
         $serviceSchedule->schedule = date('Y-m-d H:i:s', strtotime($params['scheduleDate']));
         $serviceSchedule->status = 'Confirmed';
         $serviceSchedule->save();
