@@ -18,12 +18,12 @@ class QuestionAndAnswerController extends Controller
     {
         $questions = Question::all();
         $passing_rate = PassingRate::find(1);
-        $count_question = $passing_rate->count_question;
+        $minutes = $passing_rate->minutes;
         if($passing_rate)
             $passing_rate = $passing_rate->percent;
         else 
             $passing_rate = '';
-        return view('dashboard.admin.QandA.index', compact('questions', 'passing_rate', 'count_question'));
+        return view('dashboard.admin.QandA.index', compact('questions', 'passing_rate', 'minutes'));
     }
 
     /**
@@ -108,12 +108,12 @@ class QuestionAndAnswerController extends Controller
         $passing_rate = PassingRate::find(1);
         if($passing_rate) {
             $passing_rate->percent = $params['passing_rate'];
-            $passing_rate->count_question = $params['count_question'];
+            $passing_rate->minutes = $params['minutes'];
             $passing_rate->save();
         } else {
             $passing_rate = new PassingRate;
             $passing_rate->percent = $params['passing_rate'];
-            $passing_rate->count_question = $params['count_question'];
+            $passing_rate->minutes = $params['minutes'];
             $passing_rate->save();
         }
 

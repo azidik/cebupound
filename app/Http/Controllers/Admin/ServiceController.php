@@ -55,6 +55,8 @@ class ServiceController extends Controller
                 $token = $serviceSchedule->pet->user->device_token;
                 
                 $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+
+                return $downstreamResponse;
             }
                 
             $response = [
