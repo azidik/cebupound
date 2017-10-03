@@ -25,18 +25,15 @@ class ServiceController extends Controller
     public function setDateSchedule(Request $request)
     {
         $params = $request->all();
-        // return date('Y-m-d  ', strtotime($params['scheduleDate']));   
-        // $date = strtr($params['scheduleDate'], '/', '-');
-        // return date('Y-m-d H:i:s', strtotime($date));
-        // return DateTime::createFromFormat('d/m/Y', $date1);
         $serviceSchedule = PetService::find($params['id'])->update([
             'schedule' => date('Y-m-d H:i:s', strtotime($params['scheduleDate'])), 
             'status' => 'Confirmed'
         ]);
         if($serviceSchedule){
-            if($serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != 'undefined')
+            if($serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != 'undefined'){
                 $this->sendNotification($serviceSchedule);
-
+            }
+                
             $response = [
                 'status' => 1
             ];
@@ -50,7 +47,7 @@ class ServiceController extends Controller
 
     public function sendNotification($serviceSchedule)
     {   
-        $notification = new  Notification;
+        $notification = new Notification;
         $notification->user_id = $serviceSchedule->pet->user->id;
         $notification->mesage = 'Your pet has been scheduled for service on'. date('F j, Y', strtotime($serviceSchedule->schedule));
         $notification->is_read = 0;
