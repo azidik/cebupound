@@ -98,6 +98,7 @@ Route::post('/password/email', 'Auth\PasswordController@email');
 // For Mobile Route APi only
 Route::group(['prefix' => 'mobile'], function () {
     Route::post('/login', 'Mobile\AuthController@login');
+    Route::get('/notifications/{id}', 'Mobile\PetController@notifications');
     Route::get('/mypets/{userId}', 'Mobile\PetController@mypets');
     Route::post('/mypets/create', 'Mobile\PetController@store');
     Route::get('/mypets/details/{id}', 'Mobile\PetController@show');
