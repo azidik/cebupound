@@ -10,6 +10,7 @@ use Auth;
 use App\Service;
 use App\PetService;
 use App\Notification;
+use App\History;
 
 class PetController extends Controller
 {
@@ -150,5 +151,11 @@ class PetController extends Controller
         $notifications = Notification::where('user_id', $id)->get();
 
         return $notifications;
+    }
+    public function histories($id)
+    {
+        $histories = History::where('user_id', $id)->get();
+
+        return $histories;
     }
 }
