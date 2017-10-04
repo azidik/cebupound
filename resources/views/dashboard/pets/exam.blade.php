@@ -38,7 +38,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/exams/submit') }}" method="post" >
+            <form role="form" action="{{ url('dashboard/pets/exams/submit') }}" method="post" id="postSubmit">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
@@ -73,6 +73,7 @@
 @section('javascript')
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 	<script>
+        
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
@@ -91,19 +92,21 @@
                     timeoutHandle=setTimeout(tick, 1000);
                 } else {
 
-                    if(mins > 1){
-                        alert('aw');
+                    if(mins > 0){
+                        alert('Sorry! Time is up.');
+                        $('#postSubmit').submit();
+                        // alert('aw');
                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                    setTimeout(function () { 
-                        countdown(mins - 1); 
-                        alert('ew');
-                    }, 1000);
+                    // setTimeout(function () { 
+                    //     countdown(mins - 1); 
+                    //     alert('ew');
+                    // }, 1000);
                     }
                 }
             }
             tick();
         }
-        // countdown('{{$passing->minutes}}');
-        countdown(2);
+        countdown('{{$passing->minutes}}');
+        // countdown(2);
 	</script>
 @stop

@@ -65,7 +65,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label>Type</label>
-                            <select class="form-control" name="pet_type_id">
+                            <select class="form-control" name="pet_type_id" id="pet_type_id">
                                 @foreach($types as $type)
                                 <option value="{{$type->id}}">{{$type->name}}</option>
                                 @endforeach
@@ -73,7 +73,8 @@
                             </div>
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control">
+                            <select class="form-control" name="breed_id" id="breed">
+                            </select>
                             </div>
                             <div class="form-group">
                             <label >Color</label>
@@ -111,6 +112,44 @@
 
                 var age = calculate_age(month, day, year);
                 $('#age').val(age);
+            });
+
+            $('#pet_type_id').change(function(){
+                var pet_type_id = $('#pet_type_id').val();
+                $.ajax({
+                    method: "GET",
+                    url: "/dashboard/pets/type/"+ pet_type_id,
+                    success: function(response) {
+                        document.getElementById('breed').options.length = 0;
+                        for(var i in response) {
+                            
+                            $('#breed').append(
+                                '<option value="'+response[i].id+'">'+response[i].name+'</option>'
+                            );
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error)
+                    }
+                });
+            });
+            
+            var pet_type_id = $('#pet_type_id').val();
+            $.ajax({
+                method: "GET",
+                url: "/dashboard/pets/type/"+ pet_type_id,
+                success: function(response) {
+                    document.getElementById('breed').options.length = 0;
+                    for(var i in response) {
+                        
+                        $('#breed').append(
+                            '<option value="'+response[i].id+'">'+response[i].name+'</option>'
+                        );
+                    }
+                },
+                error: function(error) {
+                    console.log(error)
+                }
             });
 		});
         function calculate_age(birth_month,birth_day,birth_year)

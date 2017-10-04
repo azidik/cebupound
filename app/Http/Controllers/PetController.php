@@ -16,6 +16,7 @@ use App\Adopt;
 use App\PetService;
 use App\UserExam;
 use App\Service;
+use App\Breed;
 
 class PetController extends Controller
 {
@@ -65,7 +66,7 @@ class PetController extends Controller
             'name' => 'required',
             'age' => 'required|numeric',
             'gender' => 'required',
-            'breed' => 'required',
+            'breed_id' => 'required',
             'color' => 'required',
             'image' => 'required',
             'birth_date' => 'required'
@@ -266,6 +267,13 @@ class PetController extends Controller
             ];
         }
         return $response;
+    }
+
+    public function breed($id)
+    {
+        $breeds = Breed::where('pet_type_id', $id)->get();
+
+        return $breeds;
     }
 
 }
