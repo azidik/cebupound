@@ -44,6 +44,10 @@ class PetController extends Controller
             $params['user_id'] = $params['user_id'];
             $pet = Pet::create($params);
             if($pet) {
+                History::create([
+                    'user_id' => $pet->user_id,
+                    'description' => 'You have been created pet @'. $pet->name . '' .$pet->gender
+                ]);
                 $response = [
                     'status' => 1
                 ];
@@ -91,6 +95,10 @@ class PetController extends Controller
             $params['user_id'] = $params['user_id'];
             $pet = Pet::find($id)->update($params);
             if($pet) {
+                History::create([
+                    'user_id' => $pet->user_id,
+                    'description' => 'You have been updated pet @'. $pet->name . '' .$pet->gender
+                ]);
                 $response = [
                     'status' => 1
                 ];
@@ -134,6 +142,10 @@ class PetController extends Controller
         ]);
 
         if($pet_service) {
+            History::create([
+                'user_id' => $pet_service->pet->user->id,
+                'description' => 'You have been requested service '.$pet_service->service->name.'for pet @'. $pet->name . '' .$pet->gender
+            ]);
             $response = [
                 'status' => 1,
                 'pet_service' => $pet_service 
