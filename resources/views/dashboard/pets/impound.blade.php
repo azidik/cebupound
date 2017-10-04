@@ -48,7 +48,7 @@
 							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
 							<td>{{ $pet->age }}</td>
 							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed }}</td>
+							<td>{{ $pet->breed->name }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>		
 							<td>

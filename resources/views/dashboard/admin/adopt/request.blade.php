@@ -40,7 +40,7 @@
 									<td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
 									<td>{{ $adopt->impound->pet->age }}</td>
 									<td>{{ $adopt->impound->pet->gender }}</td>
-									<td>{{ $adopt->impound->pet->breed }}</td>
+									<td>{{ $adopt->impound->pet->breed->name }}</td>
 									<td>{{ $adopt->impound->pet->color }}</td>
 									<td>{{ $adopt->impound->pet->type->name }}</td>
 									<td>{{ $adopt->impound->pet->user->first_name }}</td>

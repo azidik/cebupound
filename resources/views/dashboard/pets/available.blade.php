@@ -28,7 +28,7 @@
 
 							<h3 class="profile-username text-center">{{ $available_adoption->pet->name }}</h3>
 
-							<p class="text-muted text-center">{{ $available_adoption->pet->breed }}</p>
+							<p class="text-muted text-center">{{ $available_adoption->pet->breed->name }}</p>
 
 							<ul class="list-group list-group-unbordered">
 								<li class="list-group-item">

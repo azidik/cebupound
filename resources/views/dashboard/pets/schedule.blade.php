@@ -39,7 +39,7 @@
                             
 							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
 							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->breed }}</td>
+							<td>{{ $pet->breed->name }}</td>
 							<td>{{ $pet->type->name }}</td>
                             <td>
                                 @foreach($pet->service as $service)
