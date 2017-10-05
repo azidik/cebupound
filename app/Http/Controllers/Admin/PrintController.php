@@ -15,41 +15,41 @@ class PrintController extends Controller
     {
         $impound = Impound::find($impound);
         $pdf = PDF::loadView('dashboard.admin.pdf.impound', compact('impound'));
-        return $pdf->download('impound-information.pdf');
+        return $pdf->stream('impound-information.pdf');
     }
 
     public function printAdopt($adopt)
     {
         $adopt = Adopt::find($adopt);
         $pdf = PDF::loadView('dashboard.admin.pdf.adopt', compact('adopt'));
-        return $pdf->download('adopt-information.pdf');
+        return $pdf->stream('adopt-information.pdf');
     }
 
     public function printRegistered($registered)
     {
         $registered = Pet::find($registered);
         $pdf = PDF::loadView('dashboard.admin.pdf.registered', compact('registered'));
-        return $pdf->download('registered-information.pdf');
+        return $pdf->stream('registered-information.pdf');
     }
 
     public function printRegisteredAll()
     {
         $pets = Pet::all();
         $pdf = PDF::loadView('dashboard.admin.pdf.registeredAll', compact('pets'));
-        return $pdf->download('registered-information.pdf');
+        return $pdf->stream('registered-information.pdf');
     }
 
     public function printImpoundAll()
     {
         $impounds = Impound::all();
         $pdf = PDF::loadView('dashboard.admin.pdf.impoundAll', compact('impounds'));
-        return $pdf->download('impound-information.pdf');
+        return $pdf->stream('impound-information.pdf');
     } 
     
     public function printAdoptAll()
     {
         $adopts = Adopt::all();
         $pdf = PDF::loadView('dashboard.admin.pdf.adoptAll', compact('adopts'));
-        return $pdf->download('adopt-information.pdf');
+        return $pdf->stream('adopt-information.pdf');
     }
 }
