@@ -32,12 +32,10 @@ class ServiceController extends Controller
         $serviceSchedule->save();
         // return $serviceSchedule;
         if($serviceSchedule){    
-            $notification = new Notification;
-            $notification->user_id = $serviceSchedule->pet->user->id;
-            $notification->message = 'Your pet has been scheduled for service on'. date('F j, Y', strtotime($serviceSchedule->schedule));
-            $notification->is_read = 0;
-            $notification->save();
-
+            if($serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != 'undefined') {
+                $this->sendNotification($serviceSchedule);
+            }
+            
             $response = [
                 'status' => 1
             ];
@@ -53,7 +51,7 @@ class ServiceController extends Controller
     {   
         $notification = new Notification;
         $notification->user_id = $serviceSchedule->pet->user->id;
-        $notification->mesage = 'Your pet has been scheduled for service on'. date('F j, Y', strtotime($serviceSchedule->schedule));
+        $notification->message = 'Your pet has been scheduled for service on'. date('F j, Y', strtotime($serviceSchedule->schedule));
         $notification->is_read = 0;
         $notification->save();
 

@@ -76,7 +76,7 @@
                 var id = $(this).data("id");
 				$.ajax({
                     type: "POST",
-                    url: '/dashboard/admin/serviceSchedule/setDate',
+                    url: '/serviceSchedule/setDate',
 					data: {
 						_token: '{{ csrf_token() }}',
 						id: id,

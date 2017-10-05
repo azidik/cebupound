@@ -45,8 +45,12 @@
                             <input type="text" name="name" class="form-control" value="{{ $pet->name }}">
                             </div>
                             <div class="form-group">
+                            <label for="exampleInputPassword1">Birth Date</label>
+                            <input type="date" name="birth_date" id="birth_date" class="form-control">
+                            </div>
+                            <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age" class="form-control" value="{{ $pet->age }}">
+                            <input type="number" name="age" class="form-control" value="{{ $pet->age }}" readonly>
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
@@ -65,7 +69,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed }}">
+                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}">
                             </div>
                             <div class="form-group">
                             <label >Color</label>
@@ -98,6 +102,16 @@
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
+            $('#birth_date').change(function () {
+                var birt_date = $('#birth_date').val();
+                var d = new Date( birt_date );
+                year = d.getFullYear();
+                month = d.getMonth();
+                day = d.getDate();
+
+                var age = calculate_age(month, day, year);
+                $('#age').val(age);
+            });
 		});
 	</script>
 @stop

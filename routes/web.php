@@ -68,7 +68,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('adoptDecline/{id}', 'Admin\AdoptController@adoptDecline');
         Route::get('serviceSchedules', 'Admin\ServiceController@index');
         Route::get('serviceSchedules/request', 'Admin\ServiceController@request');
-        Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
         Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
         Route::get('inventory/reports', 'Admin\ReportController@index');
@@ -91,7 +90,7 @@ Route::get('/forgot', 'Auth\PasswordController@forgot');
 Route::get('/reset', 'Auth\PasswordController@reset');
 Route::post('/reset', 'Auth\PasswordController@postReset');
 Route::post('/password/email', 'Auth\PasswordController@email');
-
+Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
 
 // For Mobile Route APi only
 Route::group(['prefix' => 'mobile'], function () {
