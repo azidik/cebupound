@@ -11,4 +11,9 @@ class Barangay extends Model
     protected $fillable = [
         'id', 'psgc_code', 'description',  'city_id'
     ];
+
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
 }

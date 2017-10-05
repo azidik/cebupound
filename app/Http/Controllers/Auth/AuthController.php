@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Barangay;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,9 @@ class AuthController extends Controller
 
     public function getRegister() 
     {
-        return view('auth.register');
+        $barangays = Barangay::where('city_id', 72217)->get();
+
+        return view('auth.register', compact('barangays'));
     }
 
     public function postRegister(Request $request)
@@ -32,6 +35,7 @@ class AuthController extends Controller
             'contact_no' => 'required|min:11|max:13',
             'username' => 'required|min:5|unique:users',
             'email' => 'required|email',
+            'barangay_id' => 'required',
             'password' => 'required|min:5|confirmed',
             'password_confirmation' => 'required|min:5'
         ]);

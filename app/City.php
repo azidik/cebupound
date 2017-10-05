@@ -11,4 +11,9 @@ class City extends Model
     protected $fillable = [
         'id', 'psgc_code', 'description'
     ];
+
+    public function barangays()
+    {
+        return $this->hasMany('App\Barangay');
+    }
 }

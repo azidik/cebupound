@@ -11,6 +11,7 @@ use App\Service;
 use App\PetService;
 use App\Notification;
 use App\History;
+use App\Breed;
 
 class PetController extends Controller
 {
@@ -22,7 +23,7 @@ class PetController extends Controller
             'name' => 'required',
             'age' => 'required|numeric',
             'gender' => 'required',
-            'breed' => 'required',
+            'breed_id' => 'required',
             'color' => 'required',
             'image' => 'required'
         ]);
@@ -169,5 +170,12 @@ class PetController extends Controller
         $histories = History::where('user_id', $id)->get();
 
         return $histories;
+    }
+
+    public function breed($id)
+    {
+        $breeds = Breed::where('pet_type_id', $id)->get();
+
+        return $breeds;
     }
 }
