@@ -25,6 +25,7 @@ class PetController extends Controller
             'gender' => 'required',
             'breed_id' => 'required',
             'color' => 'required',
+            'birth_date' => 'required',
             'image' => 'required'
         ]);
 
@@ -43,6 +44,8 @@ class PetController extends Controller
             }
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
+            $params['is_accepted'] = 0;
+            $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
             $pet = Pet::create($params);
             if($pet) {
                 History::create([
