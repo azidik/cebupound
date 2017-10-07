@@ -53,7 +53,7 @@
 									<td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
 									<td>{{ $impound->pet->age }}</td>
 									<td>{{ $impound->pet->gender }}</td>
-									<td>{{ $impound->pet->breed }}</td>
+									<td>{{ $impound->pet->breed->name }}</td>
 									<td>{{ $impound->pet->color }}</td>
 									<td>{{ $impound->pet->type->name }}</td>
 									<td>{{ $impound->pet->user->first_name }}</td>

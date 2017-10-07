@@ -29,15 +29,17 @@
 							<th>Type</th>
                             <th>Service Name</th>
                             <th>Schedule</th>
-							<th>Action</th>
+							<th>Action</th><img src="data:image/png;base64, /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAzACZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQE==" alt="Red dot" />
 						</tr>
 					</thead>
+                    
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
+                            
 							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
 							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->breed }}</td>
+							<td>{{ $pet->breed->name }}</td>
 							<td>{{ $pet->type->name }}</td>
                             <td>
                                 @foreach($pet->service as $service)
@@ -121,7 +123,7 @@
                     },
                     success: function(response) {
                         if(response.status){
-                            toastr.success('Reqested for service schedule. Thank you!');
+                            toastr.success('Requested for service schedule. Thank you!');
                             location.reload();
                         } else {
                             toastr.error('Something went wrong!');
@@ -134,24 +136,5 @@
                 })
             });
 		});
-
-		function impound (id) {
-			$.ajax({
-				type: "GET",
-				url: '/dashboard/pets/impound/' + id,
-				success: function(response) {
-					if(response.status){
-						toastr.success('Your pet was successfully impounded. Thank you!');
-						location.reload();
-					} else {
-						toastr.error('Something went wrong!');
-						location.reload();
-					}
-				},
-				error: function(error) {
-					console.log(error)
-				}
-			});
-		}
 	</script>
 @stop

@@ -8,7 +8,6 @@
 		Pets
 		<small>List</small>
 	</h1>
-	
     <ol class="breadcrumb">
         <li><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Dashboard</li>
@@ -30,7 +29,6 @@
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
-							<th>Schedule</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -41,46 +39,20 @@
 							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
 							<td>{{ $pet->age }}</td>
 							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed }}</td>
+							<td>{{ $pet->breed->name }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>
-							<td>
-								@if(isset($pet->impound->surrendered_at)  && $pet->impound->surrendered_at != NULL) 
-									{{ $pet->impound->surrendered_at }}
-								@else
-									N/A
-								@endif
-							</td>
-							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
+							@if($pet->is_accepted == 1)
 								<td>
-									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
-								<td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>
 								</td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
-								<td>
-									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined</small>
-								<td>
-							@else 
-								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
-							@endif		
-							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
-								<td>
-									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
-								</td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
-								<td>
 							@elseif($pet->is_accepted == 0)
 								<td>
 									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
 								</td>
 							@else
 								<td>
-									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Registered</small>
+									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined</small>
 								</td>
 							@endif
 						</tr>
@@ -89,6 +61,9 @@
 				</table>
 			</div>
 		</div>
+		<div class="box-footer">
+            <a href="{{ url('dashboard/pets/create') }}" type="submit" class="btn btn-primary pull-right">Register a New Pet</a>
+        </div>
 		<div class="modal fade" id="modal-default">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -116,6 +91,7 @@
 			<!-- /.modal-dialog -->
 		</div>
     </section>
+
     <!-- /.content -->
 @endsection
 

@@ -3,6 +3,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\PetService;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
+use App\Notification;
+
 class ServiceController extends Controller
 {
     public function index()
@@ -19,15 +25,17 @@ class ServiceController extends Controller
     public function setDateSchedule(Request $request)
     {
         $params = $request->all();
-        // return date('Y-m-d  ', strtotime($params['scheduleDate']));   
-        // $date = strtr($params['scheduleDate'], '/', '-');
-        // return date('Y-m-d H:i:s', strtotime($date));
-        // return DateTime::createFromFormat('d/m/Y', $date1);
-        $serviceSchedule = PetService::find($params['id'])->update([
-            'schedule' => date('Y-m-d H:i:s', strtotime($params['scheduleDate'])), 
-            'status' => 'Confirmed'
-        ]);
-        if($serviceSchedule){
+
+        $serviceSchedule = PetService::where('id', $params['id'])->first();
+        $serviceSchedule->schedule = date('Y-m-d H:i:s', strtotime($params['scheduleDate']));
+        $serviceSchedule->status = 'Confirmed';
+        $serviceSchedule->save();
+        // return $serviceSchedule;
+        if($serviceSchedule){    
+            if($serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != 'undefined') {
+                $this->sendNotification($serviceSchedule);
+            }
+            
             $response = [
                 'status' => 1
             ];
@@ -37,5 +45,34 @@ class ServiceController extends Controller
             ];
         }
         return $response;
+    }
+
+    public function sendNotification($serviceSchedule)
+    {   
+        $notification = new Notification;
+        $notification->user_id = $serviceSchedule->pet->user->id;
+        $notification->message = 'Your pet has been scheduled for service on'. date('F j, Y', strtotime($serviceSchedule->schedule));
+        $notification->is_read = 0;
+        $notification->save();
+
+        if($notification) {
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+            
+            $notificationBuilder = new PayloadNotificationBuilder('Service Scheduled');
+            $notificationBuilder->setBody("Hi! Your pet scheduled for services on". date('F j, Y', strtotime($serviceSchedule->schedule)))
+                                ->setSound('default');
+                                
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+            
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
+            
+            $token = $serviceSchedule->pet->user->device_token;
+            
+            $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+        }
     }
 }

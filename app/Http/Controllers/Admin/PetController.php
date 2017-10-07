@@ -8,6 +8,7 @@ use App\Pet;
 use App\PetType;
 use Validator;
 use Auth;
+use Illuminate\Support\Facades\File;
 
 class PetController extends Controller
 {
@@ -33,7 +34,7 @@ class PetController extends Controller
         return view('dashboard.admin.pets.create', compact('types'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $params = $request->all();
         
@@ -41,7 +42,7 @@ class PetController extends Controller
             'name' => 'required',
             'age' => 'required|numeric',
             'gender' => 'required',
-            'breed' => 'required',
+            'breed_id' => 'required',
             'color' => 'required',
             // 'image' => 'required'
         ]);
@@ -61,11 +62,12 @@ class PetController extends Controller
                 $file->move($destinationPath, $image);
                 $params['image'] = $image;
             }
-            $params['pet_category_id'] = 1;
+            $params['pet_category_id'] = 2;
             $params['user_id'] = Auth::user()->id;
+            $params['is_accepted'] = 1;
             $pet = Pet::create($params);
             if($pet) {
-                session()->flash('message', 'Pet updated...');
+                session()->flash('message', 'Pet Created...');
                 return redirect('/dashboard/admin/pets');
             } else {
                 return redirect('/dashboard/admin/pets/create');

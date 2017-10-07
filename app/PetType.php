@@ -12,8 +12,13 @@ class PetType extends Model
      *
      * @var array
      */
-     protected $fillable = [
+    protected $fillable = [
         'name'
     ];
+
+    public function breed()
+    {
+        return $this->hasOne('App\Breed');
+    }
     
 }

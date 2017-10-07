@@ -13,7 +13,7 @@ class Pet extends Model
      * @var array
      */
      protected $fillable = [
-        'name', 'age', 'gender', 'image', 'pet_type_id', 'breed', 'pet_category_id', 'color', 'user_id', 'is_accepted', 'birth_date'
+        'name', 'age', 'gender', 'image', 'pet_type_id', 'breed_id', 'pet_category_id', 'color', 'user_id', 'is_accepted', 'birth_date'
     ];
 
     public function type ()
@@ -44,5 +44,10 @@ class Pet extends Model
     public function service()
     {
         return $this->belongsToMany('App\Service', 'pet_services', 'pet_id', 'service_id')->withPivot('schedule', 'status');
+    }
+
+    public function breed()
+    {
+        return $this->belongsTo('App\Breed', 'breed_id');
     }
 }

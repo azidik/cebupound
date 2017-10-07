@@ -35,7 +35,7 @@ tr:nth-child(even) {
             <td>{{ $adopt->impound->pet->name }}</td>
             <td>{{ $adopt->impound->pet->age }}</td>
             <td>{{ $adopt->impound->pet->gender }}</td>
-            <td>{{ $adopt->impound->pet->breed }}</td>
+            <td>{{ $adopt->impound->pet->breed->name }}</td>
             <td>{{ $adopt->impound->pet->color }}</td>
             <td>{{ $adopt->impound->pet->birth_date }}</td>
             <td>{{ $adopt->impound->pet->type->name }}</td>

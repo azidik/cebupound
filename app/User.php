@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'address', 'contact_no', 'username', 'email', 'password', 'reset_token', 'device_token'
+        'first_name', 'last_name', 'address', 'contact_no', 'username', 'email', 'password', 'reset_token', 'device_token','barangay_id'
     ];
 
     /**
@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function barangay()
+    {
+        return $this->belongsTo('App\Barangay');
+    }
 }

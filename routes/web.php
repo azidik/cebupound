@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('pets/exams/{pet_id}', 'ExamController@index');
     Route::post('pets/exams/submit', 'ExamController@submit');
     Route::get('pets', 'PetController@index');
+
+    Route::get('pets/to-impound', 'PetController@impound');
+
     Route::get('pets/create', 'PetController@create');
     Route::post('pets/create', 'PetController@store');
     Route::get('pets/schedules', 'PetController@schedules');
@@ -47,6 +50,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('impoundDecline/{id}', 'Admin\ImpoundController@impoundDecline');
         Route::get('pets', 'Admin\PetController@list');
         Route::get('pets/create', 'Admin\PetController@create');
+        Route::post('pets/create', 'Admin\PetController@store');
         Route::get('pets/accept/{id}', 'Admin\PetController@accept');
         Route::get('pets/decline/{id}', 'Admin\PetController@decline');
         Route::get('pets/{id}', 'Admin\PetController@show');
@@ -64,7 +68,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('adoptDecline/{id}', 'Admin\AdoptController@adoptDecline');
         Route::get('serviceSchedules', 'Admin\ServiceController@index');
         Route::get('serviceSchedules/request', 'Admin\ServiceController@request');
-        Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
         Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
         Route::get('inventory/reports', 'Admin\ReportController@index');
@@ -87,14 +90,18 @@ Route::get('/forgot', 'Auth\PasswordController@forgot');
 Route::get('/reset', 'Auth\PasswordController@reset');
 Route::post('/reset', 'Auth\PasswordController@postReset');
 Route::post('/password/email', 'Auth\PasswordController@email');
-
+Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
 
 // For Mobile Route APi only
 Route::group(['prefix' => 'mobile'], function () {
     Route::post('/login', 'Mobile\AuthController@login');
+    Route::get('/notifications/{id}', 'Mobile\PetController@notifications');
+    Route::get('/histories/{id}', 'Mobile\PetController@histories');
     Route::get('/mypets/{userId}', 'Mobile\PetController@mypets');
     Route::post('/mypets/create', 'Mobile\PetController@store');
     Route::get('/mypets/details/{id}', 'Mobile\PetController@show');
     Route::post('/mypets/update/{id}', 'Mobile\PetController@update');
     Route::post('/mypets/service/create', 'Mobile\PetController@createPetService');
+    Route::get('/mypets/service/schedules/{id}', 'Mobile\PetController@schedules');
+    Route::get('/mypets/type/{id}', 'Mobile\PetController@breed');
 }); 

@@ -41,6 +41,12 @@ class ReportController extends Controller
         $foods = Inventory::where('inventory_type_id', 1)->get();
         $medicines = Inventory::where('inventory_type_id', 2)->get();
         return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines'));
+        $deworming = PetService::where('service_id', 1)->get();
+        $treatement = PetService::where('service_id', 2)->get();
+        $spray = PetService::where('service_id', 3)->get();
+        $rabies = PetService::where('service_id', 4)->get();
+        $medical = PetService::where('service_id', 5)->get();
+        return view('dashboard.admin.inventoryReports.reports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical'));
     }
 
     public function foodList()

@@ -194,8 +194,9 @@
               </span>
             </a>
             <ul class="treeview-menu" style="display: none;">
-              <li class="active"><a href="{{ url('/dashboard/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
-              <li><a href="{{ url('/dashboard/pets/create') }}"><i class="fa fa-circle-o"></i> Register</a></li>
+              <li class="active"><a href="{{ url('/dashboard/pets') }}"><i class="fa fa-circle-o"></i> Registered</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Adopted</a></li>
+              <li><a href="{{ url('/dashboard/pets/to-impound') }}"><i class="fa fa-circle-o"></i> Impound</a></li>
             </ul>
           </li>
           <li class="treeview">

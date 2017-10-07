@@ -28,7 +28,7 @@
 
 							<h3 class="profile-username text-center">{{ $available_adoption->pet->name }}</h3>
 
-							<p class="text-muted text-center">{{ $available_adoption->pet->breed }}</p>
+							<p class="text-muted text-center">{{ $available_adoption->pet->breed->name }}</p>
 
 							<ul class="list-group list-group-unbordered">
 								<li class="list-group-item">
@@ -81,7 +81,11 @@
 						toastr.success('You have successfully requested to adopt your chosen pet. Thank you!');
 						location.reload();
 					} else if(!response.status && !response.canAdopt && response.hasImpound){
+<<<<<<< HEAD
+						toastr.error("You're not able to adopt the pet.");
+=======
 						toastr.error("Sorry. You are no longer able to adopt any pets.");
+>>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
 					} else if(!response.status && !response.canAdopt) {
 						if(confirm('You need to take the exam before proceeding to adopt!')){
 							window.location.href = '/dashboard/pets/exams/'+pet_id;
