@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
 <style>
 table {
     font-family: arial, sans-serif;
@@ -24,9 +15,9 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-<body>
-<h1 align="center">Cebu Pound Animal</h1>
-<!-- <h3>Pet Registered</h3> -->
+@extends('layouts.pdf')
+   
+@section('content')
 <table>
     <tr>
         <th>Name</th>
@@ -52,5 +43,4 @@ tr:nth-child(even) {
         </tr>
     @endforeach
 </table>
-</body>
-</html>
+@endsection

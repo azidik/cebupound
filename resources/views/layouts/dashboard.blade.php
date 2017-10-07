@@ -151,13 +151,13 @@
         </li>
         <li class="treeview">
           <a href="">
-            <i class="fa fa-history"></i> <span>Inventory Report</span>
+            <i class="fa fa-history"></i> <span>Reports</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li class="active"><a href="{{ url('/dashboard/admin/inventory/reports')}}"><i class="fa fa-circle-o"></i> Reports</a></li>
+            <li class="active"><a href="{{ url('/dashboard/admin/inventory/reports')}}"><i class="fa fa-circle-o"></i> Inventory Report</a></li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-history"></i> <span>Food</span>

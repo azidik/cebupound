@@ -40,21 +40,21 @@ class ReportController extends Controller
         $questions = Question::all();
         $foods = Inventory::where('inventory_type_id', 1)->get();
         $medicines = Inventory::where('inventory_type_id', 2)->get();
-        return view('dashboard.admin.inventoryReports.reports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines'));
+        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines'));
     }
 
     public function foodList()
     {   
         $inventories = Inventory::all();
 
-        return view('dashboard.admin.inventoryReports.food.list', compact('inventories'));
+        return view('dashboard.admin.reports.food.list', compact('inventories'));
     }
 
     public function medicineList()
     {   
         $inventories = Inventory::all();
 
-        return view('dashboard.admin.inventoryReports.medicine.list', compact('inventories'));
+        return view('dashboard.admin.reports.medicine.list', compact('inventories'));
     }
 
     public function createFood(Request $request)
@@ -62,7 +62,7 @@ class ReportController extends Controller
         $types = PetType::all();
         $categories = FoodCategory::all();
 
-        return view('dashboard.admin.inventoryReports.food.create', compact('types', 'categories'));
+        return view('dashboard.admin.reports.food.create', compact('types', 'categories'));
     }
 
     public function createMedicine(Request $request)
@@ -70,7 +70,7 @@ class ReportController extends Controller
         $types = PetType::all();
         $categories = MedicineCategory::all();
 
-        return view('dashboard.admin.inventoryReports.medicine.create', compact('types', 'categories'));
+        return view('dashboard.admin.reports.medicine.create', compact('types', 'categories'));
     }
     
     public function storeFood(Request $request)
@@ -95,9 +95,9 @@ class ReportController extends Controller
             $inventory = Inventory::create($params);
             if($inventory) {
                 session()->flash('message', 'Invetory food created...');
-                return redirect('/dashboard/admin/inventoryReports/food');
+                return redirect('/dashboard/admin/reports/food');
             } else {
-                return redirect('/dashboard/admin/inventoryReports/food/create');
+                return redirect('/dashboard/admin/reports/food/create');
             }
         }   
     }
@@ -112,7 +112,7 @@ class ReportController extends Controller
         ]);
 
         if($validator->fails()) {
-            return redirect('/dashboard/admin/inventory/createMedicine')
+            return redirect('/dashboard/admin/reports/createMedicine')
                 ->withErrors($validator)
                 ->withInput();
         } else {
@@ -123,9 +123,9 @@ class ReportController extends Controller
             $inventory = Inventory::create($params);
             if($inventory) {
                 session()->flash('message', 'Invetory medicine created...');
-                return redirect('/dashboard/admin/inventory/medicineList');
+                return redirect('/dashboard/admin/reports/medicineList');
             } else {
-                return redirect('/dashboard/admin/inventory/createFood');
+                return redirect('/dashboard/admin/reports/createFood');
             }
         }   
     }

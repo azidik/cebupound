@@ -9,7 +9,7 @@ class Inventory extends Model
     public $tables = 'inventories';
 
     protected $fillable = [
-        'pet_type_id', 'inventory_type_id','name','description', 'stock_in', 'stock_out', 'expiry_date', 'food_category_id'
+        'pet_type_id', 'inventory_type_id','name','description', 'stock_in', 'stock_out', 'expiry_date', 'food_category_id', 'medicine_category_id'
     ];
 
     public function pettype()
