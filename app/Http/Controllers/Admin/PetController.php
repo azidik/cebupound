@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\File;
 
 class PetController extends Controller
 {
+    // public function search($data)
+    // {
+    //     $daa = Pet::where('name', 'like', '%' . $data . '%')->get();
+
+    //     return view('dashboard.admin.pets.list', compact('daa'));
+    // }
     public function list()
     {
         $pets = Pet::all();
@@ -73,7 +79,6 @@ class PetController extends Controller
                 return redirect('/dashboard/admin/pets/create');
             }
         }
-
     }
     public function update(Request $request, $id)
     {

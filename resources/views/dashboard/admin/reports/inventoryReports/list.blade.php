@@ -144,7 +144,7 @@
             <div class="inner">
               <h3>{{ $treatement->count() }}</h3>
 
-              <p>Manage Treatment</p>
+              <p>Mange Treatment</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>

@@ -29,7 +29,7 @@
 							<th>Type</th>
                             <th>Service Name</th>
                             <th>Schedule</th>
-							<th>Action</th><img src="data:image/png;base64, /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAzACZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQE==" alt="Red dot" />
+							<th>Action</th>
 						</tr>
 					</thead>
                     
@@ -51,7 +51,7 @@
                                     {{ $service->pivot->schedule }}
                                 @endforeach
                             </td>
-                            @if(empty($pet->service))
+                            @if($pet->service)
                                 <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
                             @else
                                 <td><small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> You have been requested.</small></td>

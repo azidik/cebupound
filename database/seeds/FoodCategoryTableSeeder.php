@@ -14,7 +14,7 @@ class FoodCategoryTableSeeder extends Seeder
     {
         $categories = ['Dry', 'Canned', 'Semi-Moist'];
 
-        foreach ($categories as $key => $category) {
+        foreach ($categories as $category) {
         	FoodCategory::create([
         		'name' => $category
         	]);

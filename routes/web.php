@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('dashboard.index');
     });
+
     Route::get('profile', 'ProfileController@show');
     Route::post('profile/update/{id}', 'ProfileController@update');
     Route::get('pets/exams/{pet_id}', 'ExamController@index');
@@ -41,10 +42,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::post('pets/impound', 'PetController@proceedToImpound');
     Route::get('pets/adopt/{id}/{pet_id}', 'PetController@proceedToAdopt');
     Route::get('pets/adoption/available', 'PetController@availableAdoption');
-
+    Route::get('/pets/type/{id}', 'Mobile\PetController@breed');
 
     // Admin
-    Route::group(['prefix' => 'admin'], function () { 
+    Route::group(['prefix' => 'admin'], function () {
         Route::get('impoundRequest', 'Admin\ImpoundController@impoudRequest');
         Route::get('impoundAccept/{id}', 'Admin\ImpoundController@impoundAccept');
         Route::get('impoundDecline/{id}', 'Admin\ImpoundController@impoundDecline');
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::post('pets/create', 'Admin\PetController@store');
         Route::get('pets/accept/{id}', 'Admin\PetController@accept');
         Route::get('pets/decline/{id}', 'Admin\PetController@decline');
+        // Route::get('pets/search/{data}', 'Admin\PetController@search');
         Route::get('pets/{id}', 'Admin\PetController@show');
         Route::post('pets/update/{id}', 'Admin\PetController@update');
         Route::get('pets/pdf/impound/{id}', 'Admin\PrintController@printImpound');

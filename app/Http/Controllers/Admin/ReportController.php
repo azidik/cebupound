@@ -22,17 +22,6 @@ class ReportController extends Controller
 {
     public function index()
     {
-        // $pets = Pet::all();
-        // $impoundings = Impound::with('pet')->get();
-        // $pet_shelter = [];
-
-        // foreach($impoundings as $impounding) {
-                
-        //     $pet_shelter[] = $impounding->pet->where('pet_category_id', 1)->first();
-        //     $pet_stray[] = $impounding->pet->where('pet_category_id', 2)->first();
-        // }
-
-        // $pet_services = PetService::where('status', 'Confirmed')->get();
         $clients = User::all();
         $pets = Pet::all();
         $impound_pets = Impound::all();
@@ -40,13 +29,12 @@ class ReportController extends Controller
         $questions = Question::all();
         $foods = Inventory::where('inventory_type_id', 1)->get();
         $medicines = Inventory::where('inventory_type_id', 2)->get();
-        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines'));
         $deworming = PetService::where('service_id', 1)->get();
         $treatement = PetService::where('service_id', 2)->get();
         $spray = PetService::where('service_id', 3)->get();
         $rabies = PetService::where('service_id', 4)->get();
         $medical = PetService::where('service_id', 5)->get();
-        return view('dashboard.admin.inventoryReports.reports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical'));
+        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical'));
     }
 
     public function foodList()

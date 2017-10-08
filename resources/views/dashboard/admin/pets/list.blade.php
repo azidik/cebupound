@@ -17,8 +17,7 @@
         <li>Dashboard</li>
         <li class="active">Pet List</li>
     </ol>
-	</section>
-	<br>
+	</section>	
     <!-- Main content -->
     <section class="content">
 	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
