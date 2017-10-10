@@ -45,7 +45,7 @@
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
-							<td><img src="{{ asset('/images/' . $pet['image])}}" width="50" height="auto"></td>
+							<td><img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto"></td>
 							<td><a href="{{ url('/dashboard/admin/pets/'. $pet['id'])}}">{{ $pet['name'] }}</td>
 							<td>{{ $pet['age'] }}</td>
 							<td>{{ $pet['gender'] }}</td>
