@@ -39,7 +39,7 @@ tr:nth-child(even) {
             <td>{{ $pet->color }}</td>
             <td>{{ $pet->birth_date }}</td>
             <td>{{ $pet->type->name }}</td>
-            <td>{{ $pet->user->first_name }} {{ $pet->user->last_name }}</td>
+            <td>{{ $pet->user['first_name'] }} {{ $pet->user['first_name'] }}</td>
         </tr>
     @endforeach
 </table>

@@ -20,7 +20,8 @@
 	</section>	
     <!-- Main content -->
     <section class="content">
-	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
+	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll/dogs') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Dogs</a>
+	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll/cats') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Cats</a>
 	<br>
 	<br>	
 		<div class="box box-primary">
@@ -51,8 +52,8 @@
 							<td>{{ $pet->breed->name }}</td>
 							<td>{{ $pet->color }}</td>
 							<td>{{ $pet->type->name }}</td>	
-							<td>{{ $pet->category->name}}</td>
-							<td>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</td>
+							<td>{{ $pet->category->name }}</td>
+							<td>{{ $pet->user['last_name'] }} {{ $pet->user['first_name'] }}</td>
 							@if($pet->is_accepted == 0) 
 							<td>
 								<button class="btn btn-info btn-xs" onclick="acceptPet('{{ $pet->id }}')">Accept</button>

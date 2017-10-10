@@ -16,7 +16,9 @@
 	<br>
     <!-- Main content -->
     <section class="content">
-        <a href="{{ url('dashboard/admin/pets/pdf/adoptAll') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All</a>
+        <a href="{{ url('dashboard/admin/pets/pdf/adoptAll/dogs') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Dogs</a>
+
+        <a href="{{ url('dashboard/admin/pets/pdf/adoptAll/cats') }}" target="_blank" class="btn btn-primary btn-sm pull-right" style="margin-right: 10px;">Print All Cats</a>
         <br>
         <br>
 		<div class="box box-primary">

@@ -60,10 +60,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('pets/pdf/impound/{id}', 'Admin\PrintController@printImpound');
         Route::get('pets/pdf/adopt/{id}', 'Admin\PrintController@printAdopt');
         Route::get('pets/pdf/registered/{id}', 'Admin\PrintController@printRegistered');
-        Route::get('pets/pdf/registeredAll', 'Admin\PrintController@printRegisteredAll');
+        Route::get('pets/pdf/registeredAll/dogs', 'Admin\PrintController@printRegisteredAllDogs');
+        Route::get('pets/pdf/registeredAll/cats', 'Admin\PrintController@printRegisteredAllCats');
         Route::get('pets/pdf/impoundAll/dogs', 'Admin\PrintController@printImpoundAllDogs');
         Route::get('pets/pdf/impoundAll/cats', 'Admin\PrintController@printImpoundAllCats');
-        Route::get('pets/pdf/adoptAll', 'Admin\PrintController@printAdoptAll');
+        Route::get('pets/pdf/adoptAll/dogs', 'Admin\PrintController@printAdoptAllDogs');
+        Route::get('pets/pdf/adoptAll/cats', 'Admin\PrintController@printAdoptAllCats');
         Route::get('impoundList', 'Admin\ImpoundController@list');
         Route::get('adoptList', 'Admin\AdoptController@list');
         Route::get('adoptRequest', 'Admin\AdoptController@adoptRequest');

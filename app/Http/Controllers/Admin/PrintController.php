@@ -32,9 +32,16 @@ class PrintController extends Controller
         return $pdf->stream('registered-information.pdf');
     }
 
-    public function printRegisteredAll()
+    public function printRegisteredAllDogs()
     {
-        $pets = Pet::all();
+        $pets = Pet::where('pet_type_id', 1)->get();
+        $pdf = PDF::loadView('dashboard.admin.pdf.registeredAll', compact('pets'));
+        return $pdf->stream('registered-information.pdf');
+    }
+
+    public function printRegisteredAllCats()
+    {
+        $pets = Pet::where('pet_type_id', 2)->get();
         $pdf = PDF::loadView('dashboard.admin.pdf.registeredAll', compact('pets'));
         return $pdf->stream('registered-information.pdf');
     }
@@ -57,9 +64,24 @@ class PrintController extends Controller
         return $pdf->stream('impound-information.pdf');
     } 
     
-    public function printAdoptAll()
+    public function printAdoptAllDogs()
     {
-        $adopts = Adopt::all();
+        $adopts = Adopt::whereHas('impound', function($query) {
+            $query->whereHas('pet', function($d) {
+                $d->where('pet_type_id', 1);
+            });
+        })->get();
+        $pdf = PDF::loadView('dashboard.admin.pdf.adoptAll', compact('adopts'));
+        return $pdf->stream('adopt-information.pdf');
+    }
+
+    public function printAdoptAllCats()
+    {
+        $adopts = Adopt::whereHas('impound', function($query) {
+            $query->whereHas('pet', function($d) {
+                $d->where('pet_type_id', 2);
+            });
+        })->get();
         $pdf = PDF::loadView('dashboard.admin.pdf.adoptAll', compact('adopts'));
         return $pdf->stream('adopt-information.pdf');
     }
