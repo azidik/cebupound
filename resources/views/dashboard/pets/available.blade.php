@@ -52,7 +52,7 @@
 									@endif
 								@endif
 							@else
-							<a href="#" class="btn btn-info btn-block" onclick="adopt('{{$available_adoption['id']}}', '{{ $available_adoption['pet']['id'] }}')"><b>Adopt</b></a>
+							<a href="#" class="btn btn-info btn-block" onclick="adopt('{{$available_adoption['id']}}', '{{ $available_adoption['adopt']['impound']['pet']['id'] }}')"><b>Adopt</b></a>
 							@endif
 						</div>
 					</div>
