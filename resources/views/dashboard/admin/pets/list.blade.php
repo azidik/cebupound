@@ -45,36 +45,36 @@
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
-							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td><a href="{{ url('/dashboard/admin/pets/'. $pet->id)}}">{{ $pet->name }}</td>
-							<td>{{ $pet->age }}</td>
-							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed->name }}</td>
-							<td>{{ $pet->color }}</td>
-							<td>{{ $pet->type->name }}</td>	
-							<td>{{ $pet->category->name }}</td>
-							<td>{{ $pet->user['last_name'] }} {{ $pet->user['first_name'] }}</td>
-							@if($pet->is_accepted == 0) 
+							<td><img src="{{ asset('/images/' . $pet['image])}}" width="50" height="auto"></td>
+							<td><a href="{{ url('/dashboard/admin/pets/'. $pet['id'])}}">{{ $pet['name'] }}</td>
+							<td>{{ $pet['age'] }}</td>
+							<td>{{ $pet['gender'] }}</td>
+							<td>{{ $pet['breed']['name'] }}</td>
+							<td>{{ $pet['color'] }}</td>
+							<td>{{ $pet['type']['name'] }}</td>	
+							<td>{{ $pet['category']['name'] }}</td>
+							<td>{{ $pet['user']['last_name'] }} {{ $pet['user']['first_name'] }}</td>
+							@if($pet['is_accepted'] == 0) 
 							<td>
-								<button class="btn btn-info btn-xs" onclick="acceptPet('{{ $pet->id }}')">Accept</button>
-								<button class="btn btn-danger btn-xs" onclick="declinePet('{{ $pet->id }}')">Decline</button>
+								<button class="btn btn-info btn-xs" onclick="acceptPet('{{ $pet['id'] }}')">Accept</button>
+								<button class="btn btn-danger btn-xs" onclick="declinePet('{{ $pet['id'] }}')">Decline</button>
 							</td>
-							@elseif($pet->is_accepted == 1)
+							@elseif($pet['is_accepted'] == 1)
 								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>  </td>
-							@elseif($pet->is_accepted == 2)
+							@elseif($pet['is_accepted'] == 2)
 								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
 							@endif
 							
-							@if(isset($pet->adopt) && $pet->adopt->is_accepted == 1)
+							@if(isset($pet['adopt']) && $pet['adopt']['is_accepted'] == 1)
 								<td>
 									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
 								</td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+							@elseif(isset($pet['impound']) && $pet['impound']['is_accepted'] == 1)
 								<td>
 									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
 								<td>
 							@endif
-							<td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
+							<td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
 						</tr>
 						@endforeach
 					</tbody>
