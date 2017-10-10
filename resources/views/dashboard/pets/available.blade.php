@@ -24,35 +24,35 @@
 					@foreach($available_adoptions as $available_adoption)
 					<div class="col-md-3">
 						<div class="box-body box-profile" style="border: 1px solid #eee">
-							<img class="profile-user-img img-responsive img-circle" src="{{ asset('images/'. $available_adoption->pet->image) }}" alt="User profile picture">
+							<img class="profile-user-img img-responsive img-circle" src="{{ asset('images/'. $available_adoption['pet']['image']) }}" alt="User profile picture">
 
-							<h3 class="profile-username text-center">{{ $available_adoption->pet->name }}</h3>
+							<h3 class="profile-username text-center">{{ $available_adoption['pet']['name'] }}</h3>
 
-							<p class="text-muted text-center">{{ $available_adoption->pet->breed->name }}</p>
+							<p class="text-muted text-center">{{ $available_adoption['pet']['breed']['name'] }}</p>
 
 							<ul class="list-group list-group-unbordered">
 								<li class="list-group-item">
-								<b>Age</b> <a class="pull-right">{{ $available_adoption->pet->age }}</a>
+								<b>Age</b> <a class="pull-right">{{ $available_adoption['pet']['age'] }}</a>
 								</li>
 								<li class="list-group-item">
-								<b>Gender</b> <a class="pull-right">{{ $available_adoption->pet->gender }}</a>
+								<b>Gender</b> <a class="pull-right">{{ $available_adoption['pet']['gender'] }}</a>
 								</li>
 								<li class="list-group-item">
-								<b>Color</b> <a class="pull-right">{{ $available_adoption->pet->color }}</a>
+								<b>Color</b> <a class="pull-right">{{ $available_adoption['pet']['color'] }}</a>
 								</li>
 							</ul>
-							@if(count($available_adoption->adopt) > 0)
-								@if(Auth::user()->id == $available_adoption->adopt->adopted_by)
-									@if($available_adoption->adopt->is_accepted == 0)
+							@if(count($available_adoption['adopt']) > 0)
+								@if(Auth::user()->id == $available_adoption['adopt']['adopted_by'])
+									@if($available_adoption['adopt']['is_accepted'] == 0)
 										<a href="#" class="btn btn-warning btn-block" disabled="true"><b>Pending</b></a>
-									@elseif($available_adoption->adopt->is_accepted == 1)
+									@elseif($available_adoption['adopt']['is_accepted'] == 1)
 										<a href="#" class="btn btn-primary btn-block" disabled="true"><b>Accepted</b></a>
 									@else
 										<a href="#" class="btn btn-danger btn-block" disabled="true"><b>Declined</b></a>
 									@endif
 								@endif
 							@else
-							<a href="#" class="btn btn-info btn-block" onclick="adopt('{{$available_adoption->id}}', '{{ $available_adoption->pet->id }}')"><b>Adopt</b></a>
+							<a href="#" class="btn btn-info btn-block" onclick="adopt('{{$available_adoption['id']}}', '{{ $available_adoption['pet']['id'] }}')"><b>Adopt</b></a>
 							@endif
 						</div>
 					</div>
@@ -81,11 +81,7 @@
 						toastr.success('You have successfully requested to adopt your chosen pet. Thank you!');
 						location.reload();
 					} else if(!response.status && !response.canAdopt && response.hasImpound){
-<<<<<<< HEAD
-						toastr.error("You're not able to adopt the pet.");
-=======
 						toastr.error("Sorry. You are no longer able to adopt any pets.");
->>>>>>> ce7f7cd02de061bb612014caf0730a588da88fd9
 					} else if(!response.status && !response.canAdopt) {
 						if(confirm('You need to take the exam before proceeding to adopt!')){
 							window.location.href = '/dashboard/pets/exams/'+pet_id;
