@@ -42,22 +42,22 @@
 					<tbody>
 						@foreach($impounds as $impound)
                             <tr>
-                                <td><img src="{{ asset('/images/' . $impound->pet->image)}}" width="50" height="auto"></td>
-                                <td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
-                                <td>{{ $impound->pet->age }}</td>
-                                <td>{{ $impound->pet->gender }}</td>
-                                <td>{{ $impound->pet->breed->name }}</td>
-                                <td>{{ $impound->pet->color }}</td>
-                                <td>{{ $impound->pet->type->name }}</td>
-                                <td>{{ $impound->pet->user->first_name }}</td>
-                                @if($impound->is_accepted == 0) 
+                                <td><img src="{{ asset('/images/' . $impound['pet']['image'])}}" width="50" height="auto"></td>
+                                <td><a href="{{ url('/dashboard/pets/'. $impound['pet']['id']) }}">{{ $impound['pet']['name'] }}</a></td>
+                                <td>{{ $impound['pet']['age'] }}</td>
+                                <td>{{ $impound['pet']['gender'] }}</td>
+                                <td>{{ $impound['pet']['breed']['name'] }}</td>
+                                <td>{{ $impound['pet']['color'] }}</td>
+                                <td>{{ $impound['pet']['type']['name'] }}</td>
+                                <td>{{ $impound['pet']['user']['first_name'] }}</td>
+                                @if($impound['is_accepted'] == 0) 
                                     <td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
-                                @elseif($impound->is_accepted == 1)
+                                @elseif($impound['is_accepted'] == 1)
                                     <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small></td>
-                                @elseif($impound->is_accepted == 2)
+                                @elseif($impound['is_accepted'] == 2)
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @endif		
-                                <td><a href="{{ url('dashboard/admin/pets/pdf/impound/'. $impound->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
+                                <td><a href="{{ url('dashboard/admin/pets/pdf/impound/'. $impound['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
                             </tr>
 						@endforeach
 					</tbody>
