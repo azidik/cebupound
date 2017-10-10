@@ -57,7 +57,7 @@
                                 @elseif($impound->is_accepted == 2)
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @endif		
-                                <td><a href="{{ url('dashboard/admin/pets/pdf/impound'. $impound->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
+                                <td><a href="{{ url('dashboard/admin/pets/pdf/impound/'. $impound->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
                             </tr>
 						@endforeach
 					</tbody>
