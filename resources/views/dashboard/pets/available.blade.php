@@ -72,6 +72,7 @@
 		});
 
 		function adopt (id, pet_id) {
+			console.log(id + '' + pet_id);
 			$.ajax({
 				type: "GET",
 				url: '/dashboard/pets/adopt/' + id + '/'+ pet_id,
