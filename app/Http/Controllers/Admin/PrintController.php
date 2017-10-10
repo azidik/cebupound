@@ -39,9 +39,20 @@ class PrintController extends Controller
         return $pdf->stream('registered-information.pdf');
     }
 
-    public function printImpoundAll()
+    public function printImpoundAllDogs()
     {
-        $impounds = Impound::all();
+        $impounds = Impound::whereHas('pet', function($query) {
+            $query->where('pet_type_id', 1);
+        })->get();
+        $pdf = PDF::loadView('dashboard.admin.pdf.impoundAll', compact('impounds'));
+        return $pdf->stream('impound-information.pdf');
+    }
+
+    public function printImpoundAllCats()
+    {
+        $impounds = Impound::whereHas('pet', function($query) {
+            $query->where('pet_type_id', 2);
+        })->get();
         $pdf = PDF::loadView('dashboard.admin.pdf.impoundAll', compact('impounds'));
         return $pdf->stream('impound-information.pdf');
     } 
