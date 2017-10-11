@@ -30,7 +30,7 @@ tr:nth-child(even) {
     </tr>
  
     <tr>
-        <td><img src="{{ asset('/images/'. $adopt->impound->pet->image) }}"/></td>
+        <td><img src="{{ asset('/images/'. $adopt->impound->pet->image) }}" width="100" height="100"/></td>
         <td>{{ $adopt->impound->pet->name }}</td>
         <td>{{ $adopt->impound->pet->age }}</td>
         <td>{{ $adopt->impound->pet->gender }}</td>
