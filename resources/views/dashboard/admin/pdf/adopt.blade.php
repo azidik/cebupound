@@ -1,11 +1,41 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
 @extends('layouts.pdf')
    
 @section('content')
-    <h3>Pet Information - Adopt</h3>
-    <p>Name: {{ $adopt->impound->pet->name }}</p>   
-    <p>Age: {{ $adopt->impound->pet->age }}</p>
-    <p>Birth Date: {{ $adopt->impound->pet->birth_date }}</p>
-    <p>Breed: {{ $adopt->impound->pet->breed->name }}</p>
-    <p>Color: {{ $adopt->impound->pet->color }}</p>
-    <p>Adopted By: {{ $adopt->user->first_name }} {{ $adopt->user->last_name }}</</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Breed</th>
+        <th>Color</th>
+        <th>Adopted By</th>
+    </tr>
+ 
+    <tr>
+        <td><img src="{{ asset('/images/'. $adopt->impound->pet->image) }}"/></td>
+        <td>{{ $adopt->impound->pet->name }}</td>
+        <td>{{ $adopt->impound->pet->age }}</td>
+        <td>{{ $adopt->impound->pet->gender }}</td>
+        <td>{{ $adopt->impound->pet->breed->name }}</td>
+        <td>{{ $adopt->impound->pet->color }}</td>
+        <td>{{ $adopt->impound->pet->user->first_name }} {{ $adopt->impound->pet->user->last_name }}</td>
+    </tr>
+</table>
 @endsection

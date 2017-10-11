@@ -1,12 +1,43 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
 @extends('layouts.pdf')
    
 @section('content')
-    <h3>Pet Information - Impound</h3>
-    <p>Name: {{ $impound->pet->name }}</p>   
-    <p>Age: {{ $impound->pet->age }}</p>
-    <p>Birth Date: {{ $impound->pet->birth_date }}</p>
-    <p>Breed: {{ $impound->pet->breed->name }}</p>
-    <p>Color: {{ $impound->pet->color }}</p>
-    <p>Impounded By: {{ $impound->pet->user->first_name }} {{ $impound->pet->user->last_name }}</</p>
-    <p>Reason: {{ $impound->reason }}</</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Birth Date</th>
+        <th>Breed</th>
+        <th>Color</th>
+        <th>mpounded By</th>
+        <th>Reason</th>
+    </tr>
+ 
+    <tr>
+        <td><img src="{{ asset('/images/'. $impound->pet->image) }}"/></td>
+        <td>{{ $impound->pet->name }}</td>
+        <td>{{ $impound->pet->age }}</td>
+        <td>{{ $impound->pet->birth_date }}</td>
+        <td>{{ $impound->pet->breed->name }}</td>
+        <td>{{ $impound->pet->color }}</td>
+        <td>{{ $impound->pet->user->first_name }} {{ $impound->pet->user->last_name }}</td>
+        <td>{{ $impound->reason }}</td>
+    </tr>
+</table>
 @endsection
