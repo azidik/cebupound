@@ -16,10 +16,11 @@ tr:nth-child(even) {
 }
 </style>
 @extends('layouts.pdf')
-   
+   registered
 @section('content')
 <table>
     <tr>
+        <th>Image</th>
         <th>Name</th>
         <th>Age</th>
         <th>Birth Date</th>

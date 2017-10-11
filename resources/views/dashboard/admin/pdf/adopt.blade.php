@@ -20,6 +20,7 @@ tr:nth-child(even) {
 @section('content')
 <table>
     <tr>
+        <th>Image</th>
         <th>Name</th>
         <th>Age</th>
         <th>Gender</th>
