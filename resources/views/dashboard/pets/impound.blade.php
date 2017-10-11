@@ -89,10 +89,10 @@
 				</div>
 				<div class="modal-body">
                             <label for="exampleInputPassword1">Reason:</label>
-                            <textarea name="address" id="" cols="3" rows="3" class="form-control" value="reason"></textarea><br>
+                            <textarea name="address" id="reason" cols="3" rows="3" class="form-control" value="reason"></textarea><br>
 					
 					<label for="exampleInputPassword1">Set Schedule:</label><br>
-					<input id="schedule" type="datetime-local">
+					<input id="schedule" type="date">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -103,6 +103,7 @@
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
+		<input type="hidden" id="pet_id" value="">
     </section>
     <!-- /.content -->
 @endsection
@@ -117,12 +118,27 @@
 			var pet_id = $(this).data('id');
 			$('#pet_id').val(pet_id);
 		});
+
+		var dtToday = new Date();
+    
+		var month = dtToday.getMonth() + 1;
+		var day = dtToday.getDate();
+		var year = dtToday.getFullYear();
+		if(month < 10)
+			month = '0' + month.toString();
+		if(day < 10)
+			day = '0' + day.toString();
+		
+		var maxDate = year + '-' + month + '-' + day;
+		$('#schedule').attr('min', maxDate);
+
 		$('#submitRequest').click(function() {
 			$.ajax({
 				type: "POST",
 				url: '/dashboard/pets/impound',
 				data: {
 					_token: "{{ csrf_token() }}",
+					reason: $('#reason').val(),
 					pet_id: $('#pet_id').val(),
 					schedule: $('#schedule').val()
 				},

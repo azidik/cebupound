@@ -48,7 +48,7 @@
 								</td>
 								<td>
                                     {{ $serviceRequest['schedule'] }}
-                                    <input id="schedule" type="datetime-local" value="{{$serviceRequest['schedule']}}">
+                                    <input id="schedule" type="date" value="{{$serviceRequest['schedule']}}">
 								</td>
                                 <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest['id'] }}">Save</button></td>
 							</tr>
@@ -81,6 +81,19 @@
 			$('#datetimepicker1').datepicker(function(){
 				console.log('aw');
 			});
+
+			var dtToday = new Date();
+    
+			var month = dtToday.getMonth() + 1;
+			var day = dtToday.getDate();
+			var year = dtToday.getFullYear();
+			if(month < 10)
+				month = '0' + month.toString();
+			if(day < 10)
+				day = '0' + day.toString();
+			
+			var maxDate = year + '-' + month + '-' + day;
+			$('#schedule').attr('min', maxDate);
 
 			$('#submit').click(function(e) {
                 e.preventDefault();
