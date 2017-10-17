@@ -20,6 +20,7 @@ tr:nth-child(even) {
 @section('content')
 <table>
     <tr>
+        <th>Image</th>
         <th>Name</th>
         <th>Age</th>
         <th>Gender</th>
@@ -32,6 +33,7 @@ tr:nth-child(even) {
     </tr>
     @foreach($pets as $pet)
         <tr>
+            <td><img src="{{ asset('/images/'. $pet->image) }}" width="50" height="50"/></td>
             <td>{{ $pet->name }}</td>
             <td>{{ $pet->age }}</td>
             <td>{{ $pet->gender }}</td>
