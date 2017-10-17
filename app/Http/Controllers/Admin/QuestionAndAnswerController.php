@@ -19,11 +19,12 @@ class QuestionAndAnswerController extends Controller
         $questions = Question::all();
         $passing_rate = PassingRate::find(1);
         $minutes = $passing_rate->minutes;
+        $allow = $passing_rate->allow;
         if($passing_rate)
             $passing_rate = $passing_rate->percent;
         else 
             $passing_rate = '';
-        return view('dashboard.admin.QandA.index', compact('questions', 'passing_rate', 'minutes'));
+        return view('dashboard.admin.QandA.index', compact('questions', 'passing_rate', 'minutes', 'allow'));
     }
 
     /**
@@ -45,19 +46,29 @@ class QuestionAndAnswerController extends Controller
     public function store(Request $request)
     {
         $params = $request->all();
-        $question = new Question;
-        $question->name = $params['question'];
-        $question->save();
-        if($question) {
-            foreach ($params['answer'] as $key => $value) {
-                $answwer = new Answer;
-                $answwer->name = $value;
-                $answwer->question_id = $question->id;
-                $answwer->save();
+        $passing_rate = PassingRate::find(1);
+        if($passing_rate) {
+            $questions = Question::all()->count();
+            if($passing_rate->allow > $questions) {
+                $question = new Question;
+                $question->name = $params['question'];
+                $question->save();
+                if($question) {
+                    foreach ($params['answer'] as $key => $value) {
+                        $answwer = new Answer;
+                        $answwer->name = $value;
+                        $answwer->question_id = $question->id;
+                        $answwer->save();
+                    }
+                    session()->flash('message', 'Question successfully added!');
+                    return redirect('/dashboard/admin/questionsAndAnswers/create');
+                }
+            } else {
+                session()->flash('message', 'Opps! Question limit to '. $passing_rate->allow);
+                return redirect('/dashboard/admin/questionsAndAnswers/create');
             }
-            session()->flash('message', 'Question successfully added!');
-            return redirect('/dashboard/admin/questionsAndAnswers/create');
         }
+        
     }
 
     /**
@@ -109,11 +120,13 @@ class QuestionAndAnswerController extends Controller
         if($passing_rate) {
             $passing_rate->percent = $params['passing_rate'];
             $passing_rate->minutes = $params['minutes'];
+            $passing_rate->allow = $params['allow'];
             $passing_rate->save();
         } else {
             $passing_rate = new PassingRate;
             $passing_rate->percent = $params['passing_rate'];
             $passing_rate->minutes = $params['minutes'];
+            $passing_rate->allow = $params['allow'];
             $passing_rate->save();
         }
 

@@ -45,6 +45,7 @@
                         <div class="col-md-12">
                             <div>Passing Rate Percentage: <input type="text" class="form-control" name="passing_rate" placeholder="Passing percentage" value="{{ $passing_rate }}" style="width: 10%"></div>
                             <div>Minutes: <input type="text" class="form-control" name="minutes" placeholder="Minutes" value="{{ $minutes }}" style="width: 10%"></div>
+                            <div>Allow question to create: <input type="text" class="form-control" name="allow" placeholder="Allow questions to create" value="{{ $allow }}" style="width: 10%"></div>
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
                                     </div>
