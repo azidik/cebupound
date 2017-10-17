@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('pets', 'PetController@index');
 
     Route::get('pets/to-impound', 'PetController@impound');
+    Route::get('pets/to-adopt', 'PetController@adopt');
 
     Route::get('pets/create', 'PetController@create');
     Route::post('pets/create', 'PetController@store');

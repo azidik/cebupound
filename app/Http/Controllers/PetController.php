@@ -276,4 +276,11 @@ class PetController extends Controller
         return $breeds;
     }
 
+    public function adopt()
+    {
+        $adopts = Adopt::where('adopted_by', Auth::user()->id)->get();
+
+        return view('dashboard.pets.adopt', compact('adopts'));
+    }
+
 }
