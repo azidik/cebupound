@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('inventory/createMedicine', 'Admin\ReportController@createMedicine');
         Route::post('inventory/food/create', 'Admin\ReportController@storeFood');
         Route::post('inventory/medicine/create', 'Admin\ReportController@storeMedicine');
+        Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
     });
 });
 
