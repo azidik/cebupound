@@ -92,6 +92,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{ url('/dashboard/admin/pets') }}"><i class="fa fa-circle-o"></i> List</a></li>
+             <li><a href="{{ url('/dashboard/admin/pets/request') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\Pet::where('is_accepted', 0)->count() }}</small></a></li>
             <li><a href="{{ url('/dashboard/admin/pets/create') }}"><i class="fa fa-circle-o"></i> Register</a></li>
           </ul>
         </li>

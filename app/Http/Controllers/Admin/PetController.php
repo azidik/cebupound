@@ -25,6 +25,13 @@ class PetController extends Controller
         return view('dashboard.admin.pets.list', compact('pets'));
     }
 
+        public function request()
+    {
+        $pets = Pet::all();
+
+        return view('dashboard.admin.pets.request', compact('pets'));
+    }
+
     public function show($id)
     {
         $pet = Pet::find($id);

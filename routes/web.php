@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::post('pets/create', 'Admin\PetController@store');
         Route::get('pets/accept/{id}', 'Admin\PetController@accept');
         Route::get('pets/decline/{id}', 'Admin\PetController@decline');
+        Route::get('pets/request', 'Admin\PetController@request');
         // Route::get('pets/search/{data}', 'Admin\PetController@search');
         Route::get('pets/{id}', 'Admin\PetController@show');
         Route::post('pets/update/{id}', 'Admin\PetController@update');
@@ -82,7 +83,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('inventory/createFood', 'Admin\ReportController@createFood');
         Route::get('inventory/createMedicine', 'Admin\ReportController@createMedicine');
         Route::post('inventory/food/create', 'Admin\ReportController@storeFood');
+        Route::get('inventory/foodList', 'Admin\ReportController@foodList');
         Route::post('inventory/medicine/create', 'Admin\ReportController@storeMedicine');
+         Route::get('inventory/medicineList', 'Admin\ReportController@medicineList');
         Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
     });
 });

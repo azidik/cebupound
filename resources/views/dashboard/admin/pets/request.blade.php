@@ -5,12 +5,12 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Adoption Request
+        Registration Request
         <small>List</small>
 	</h1>	
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Adoption Request</li>
+        <li class="active">Registration Request</li>
     </ol>
 	</section>	
 	<br>
@@ -28,30 +28,32 @@
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
-                            <th>Requested By</th>
+							<th>Category</th>
+							<th>Requested By</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($adopts as $adopt)
-							@if($adopt->is_accepted == 0)
+						@foreach($pets as $pet)
+							@if($pet->is_accepted == 0)
 								<tr>
-									<td><img src="{{ asset('/images/' . $adopt->impound->pet->image)}}" width="50" height="auto"></td>
-									<td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
-									<td>{{ $adopt->impound->pet->age }}</td>
-									<td>{{ $adopt->impound->pet->gender }}</td>
-									<td>{{ $adopt->impound->pet->breed->name }}</td>
-									<td>{{ $adopt->impound->pet->color }}</td>
-									<td>{{ $adopt->impound->pet->type->name }}</td>
-									<td>{{ $adopt->user->first_name }}</td>
-									@if($adopt->is_accepted == 1)
-										<td><button class="btn btn-info btn-xs" disabled="true">Adopted</button></td>
-									@elseif($adopt->is_accepted == 2)
+									<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
+									<td><a href="{{ url('/dashboard/admin/pets/'. $pet->id)}}">{{ $pet->name }}</td>
+									<td>{{ $pet->age }}</td>
+									<td>{{ $pet->gender }}</td>
+									<td>{{ $pet->breed->name }}</td>
+									<td>{{ $pet->color }}</td>
+									<td>{{ $pet->type->name }}</td>	
+									<td>{{ $pet->category->name}}</td>
+									<td>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</td>
+									@if($pet->is_accepted == 1)
+										<td><button class="btn btn-info btn-xs" disabled="true">Registered</button></td>
+									@elseif($pet->is_accepted == 2)
 										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
 									@else
 										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $adopt->id }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $adopt->id }}')">Decline</button>
+											<button class="btn btn-info btn-xs" onclick="accept('{{ $pet->id }}')">Accept</button>
+											<button class="btn btn-danger btn-xs" onclick="decline('{{ $pet->id }}')">Decline</button>
 										</td>  
 									@endif		
 								</tr>
@@ -76,10 +78,10 @@
             if(confirm('Are you sure you want to accept this pet?')){
                 $.ajax({
                     type: "GET",
-                    url: '/dashboard/admin/adoptAccept/' + id,
+                    url: '/dashboard/admin/pets/accept/' + id,
                     success: function(response) {
                         if(response.status){
-                            toastr.success('Pet successfully adopted. Thank you!');
+                            toastr.success('Pet successfully registered. Thank you!');
                             setTimeout(function() {
                                 location.reload();    
                             }, 3000);
@@ -101,7 +103,7 @@
             if(confirm('Are you sure you want to decline this pet?')){
                 $.ajax({
                     type: "GET",
-                    url: '/dashboard/admin/adoptDecline/' + id,
+                    url: '/dashboard/admin/pets/decline/' + id,
                     success: function(response) {
                         if(response.status){
                             toastr.success('Pet successfully declined. Thank you!');

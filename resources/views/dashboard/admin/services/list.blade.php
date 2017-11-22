@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Schedule Request
+        Pets' Schedule 
         <small>List</small>
 	</h1>	
     <ol class="breadcrumb">
