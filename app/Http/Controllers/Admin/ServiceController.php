@@ -27,12 +27,12 @@ class ServiceController extends Controller
         $params = $request->all();
 
         $serviceSchedule = PetService::where('id', $params['id'])->first();
-        $serviceSchedule->schedule = date('Y-m-d H:i:s', strtotime($params['scheduleDate']));
+        $serviceSchedule->schedule = date('Y-m-d', strtotime($params['scheduleDate']));
         $serviceSchedule->status = 'Confirmed';
         $serviceSchedule->save();
         // return $serviceSchedule;
         if($serviceSchedule){    
-            if($serviceSchedule->pet->user->device_token != "" || $serviceSchedule->pet->user->device_token != NULL || $serviceSchedule->pet->user->device_token != 'undefined') {
+            if(isset($serviceSchedule->pet->user->device_token) != NULL) {
                 $this->sendNotification($serviceSchedule);
             }
             
