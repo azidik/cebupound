@@ -43,37 +43,39 @@
 					</thead>
 					<tbody>
 						@foreach($pets as $pet)
-						<tr>
-							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->age }}</td>
-							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed->name }}</td>
-							<td>{{ $pet->color }}</td>
-							<td>{{ $pet->type->name }}</td>		
-							<td>
-								@if(isset($pet->impound->surrendered_at)  && $pet->impound->surrendered_at != NULL) 
-									{{ $pet->impound->surrendered_at }}
-								@else
-									N/A
-								@endif
-							</td>
-							@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
+						@if($pet->is_accepted == 1)
+							<tr>
+								<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
+								<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
+								<td>{{ $pet->age }}</td>
+								<td>{{ $pet->gender }}</td>
+								<td>{{ $pet->breed->name }}</td>
+								<td>{{ $pet->color }}</td>
+								<td>{{ $pet->type->name }}</td>		
 								<td>
-									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
-								<td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
-								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+									@if(isset($pet->impound->surrendered_at)  && $pet->impound->surrendered_at != NULL) 
+										{{ $pet->impound->surrendered_at }}
+									@else
+										N/A
+									@endif
 								</td>
-							@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
-								<td>
-									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined</small>
-								<td>
-							@else 
-								<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
-							@endif		
-						</tr>
+								@if(isset($pet->impound) && $pet->impound->is_accepted == 0) 
+									<td>
+										<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending for impound</small>
+									<td>
+								@elseif(isset($pet->impound) && $pet->impound->is_accepted == 1)
+									<td>
+										<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small>
+									</td>
+								@elseif(isset($pet->impound) && $pet->impound->is_accepted == 2)
+									<td>
+										<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined for impound</small>
+									<td>
+								@else 
+									<td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Proceed to impound</button>
+								@endif		
+							</tr>
+						@endif
 						@endforeach
 					</tbody>
 				</table>

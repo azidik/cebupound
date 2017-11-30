@@ -34,28 +34,30 @@
 					</thead>
 					<tbody>
 						@foreach($pets as $pet)
-						<tr>
-							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->age }}</td>
-							<td>{{ $pet->gender }}</td>
-							<td>{{ $pet->breed->name }}</td>
-							<td>{{ $pet->color }}</td>
-							<td>{{ $pet->type->name }}</td>
-							@if($pet->is_accepted == 1)
-								<td>
-									<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>
-								</td>
-							@elseif($pet->is_accepted == 0)
-								<td>
-									<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending</small>
-								</td>
-							@else
-								<td>
-									<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined</small>
-								</td>
+							@if(count($pet->impound) == 0)
+								<tr>
+									<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
+									<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
+									<td>{{ $pet->age }}</td>
+									<td>{{ $pet->gender }}</td>
+									<td>{{ $pet->breed->name }}</td>
+									<td>{{ $pet->color }}</td>
+									<td>{{ $pet->type->name }}</td>
+									@if($pet->is_accepted == 1)
+										<td>
+											<small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small>
+										</td>
+									@elseif($pet->is_accepted == 0)
+										<td>
+											<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending for registration</small>
+										</td>
+									@else
+										<td>
+											<small class="label label-danger"><i class="fa fa-thumbs-o-up"></i> Declined for registration</small>
+										</td>
+									@endif
+								</tr>
 							@endif
-						</tr>
 						@endforeach
 					</tbody>
 				</table>

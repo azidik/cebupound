@@ -44,19 +44,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" required>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Birth Date</label>
-                            <input type="date" name="birth_date" id="birth_date" class="form-control">
+                            <input type="date" name="birth_date" id="birth_date" class="form-control" required>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="text" name="age" id="age" readonly class="form-control">
+                            <input type="text" name="age" id="age" readonly class="form-control" required>
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
-                            <select class="form-control" name="gender">
+                            <select class="form-control" name="gender" required>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -65,7 +65,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label>Type</label>
-                            <select class="form-control" name="pet_type_id" id="pet_type_id">
+                            <select class="form-control" name="pet_type_id" id="pet_type_id" required>
                                 @foreach($types as $type)
                                 <option value="{{$type->id}}">{{$type->name}}</option>
                                 @endforeach
@@ -73,16 +73,16 @@
                             </div>
                             <div class="form-group">
                             <label >Breed</label>
-                            <select class="form-control" name="breed_id" id="breed">
+                            <select class="form-control" name="breed_id" id="breed" required>
                             </select>
                             </div>
                             <div class="form-group">
                             <label >Color</label>
-                            <input type="text" name="color" class="form-control">
+                            <input type="text" name="color" class="form-control" required>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputFile">Pet Image</label>
-                            <input type="file" name="image">
+                            <input type="file" name="image" required>
                             </div>
                         </div>
                     </div>
