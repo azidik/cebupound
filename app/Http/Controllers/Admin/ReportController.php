@@ -15,6 +15,7 @@ use App\MedicineCategory;
 use App\User;
 use App\Adopt;
 use App\Question;
+use App\Barangay;
 use Validator;
 
 
@@ -33,8 +34,14 @@ class ReportController extends Controller
         $treatement = PetService::where('service_id', 2)->get();
         $spray = PetService::where('service_id', 3)->get();
         $rabies = PetService::where('service_id', 4)->get();
+
+        // foreach ($rabies as $key => $rab) {
+        //     echo $rab->pet->user->barangay->description;
+        // }
+        // return;
+        $barangays = Barangay::where('city_id', 72217)->get();
         $medical = PetService::where('service_id', 5)->get();
-        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical'));
+        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical', 'barangays'));
     }
 
     public function foodList()
@@ -122,5 +129,39 @@ class ReportController extends Controller
                 return redirect('/dashboard/admin/reports/createFood');
             }
         }   
+    }
+
+    public function checkReport($barangayId, $report_name)
+    {   
+        switch ($report_name) {
+            case 'deworming':
+                $service_id = 1;
+                break;
+            case 'mange_treatment':
+                $service_id = 2;
+                break;
+            case 'spay_neuter':
+                $service_id = 3;
+                break;
+            case 'rabies_vaccination':
+                $service_id = 4;
+                break;
+            case 'basic_medical_consultation':
+                $service_id = 5;
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        $reports = PetService::where('service_id', $service_id)->get();
+        $count = 0;
+        foreach ($reports as $report) {
+            if($report->pet->user->barangay->id == $barangayId) {
+                $count++;
+            }
+        }
+        return $count;
+
     }
 }

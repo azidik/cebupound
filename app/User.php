@@ -29,6 +29,6 @@ class User extends Authenticatable
     
     public function barangay()
     {
-        return $this->belongsTo('App\Barangay');
+        return $this->belongsTo('App\Barangay', 'barangay_id');
     }
 }

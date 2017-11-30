@@ -128,9 +128,15 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{ $deworming->count() }}</h3>
+              <h3 id="deworming-count"></h3>
 
               <p>Deworming</p>
+              Select barangay:
+              <select class="form-control" name="barangay_id" id="report_select_barangay_deworming">
+                  @foreach($barangays as $barangay)
+                    <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+                  @endforeach
+              </select>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -142,9 +148,15 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>{{ $treatement->count() }}</h3>
+              <h3 id="treatment-count"></h3>
 
               <p>Mange Treatment</p>
+              Select barangay:
+              <select class="form-control" name="barangay_id" id="report_select_barangay_treatment">
+                  @foreach($barangays as $barangay)
+                    <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+                  @endforeach
+              </select>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -156,9 +168,15 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{ $spray->count() }}</h3>
+              <h3 id="spay-count"></h3>
 
               <p>Spay and Neuter</p>
+              Select barangay:
+              <select class="form-control" name="barangay_id" id="report_select_barangay_spay">
+                  @foreach($barangays as $barangay)
+                    <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+                  @endforeach
+              </select>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -170,9 +188,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{ $rabies->count() }}</h3>
-
+              <h3 id="rabbies-count"></h3>
               <p>Rabies Vaccination</p>
+              Select barangay:
+              <select class="form-control" name="barangay_id" id="report_select_barangay_rabbies">
+                  @foreach($barangays as $barangay)
+                    <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+                  @endforeach
+              </select>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -184,9 +207,15 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{ $medical->count() }}</h3>
+              <h3 id="medical-count"></h3>
 
               <p>Basic Medical Consultation</p>
+              Select barangay:
+              <select class="form-control" name="barangay_id" id="report_select_barangay_medical">
+                  @foreach($barangays as $barangay)
+                    <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+                  @endforeach
+              </select>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -200,3 +229,58 @@
     </section>
     <!-- /.content -->
 @endsection
+
+@section('javascript')
+	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+	<script>
+    $('#report_select_barangay_deworming').change(function () {
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/inventory/report/ '+ $(this).val() + ' /deworming',
+				success: function(response) {
+          $('#deworming-count').text(response);
+				}
+			});
+    });
+
+    $('#report_select_barangay_treatment').change(function () {
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/inventory/report/ '+ $(this).val() + ' /mange_treatment',
+				success: function(response) {
+          $('#treatment-count').text(response);
+				}
+			});
+    });
+
+    $('#report_select_barangay_spay').change(function () {
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/inventory/report/ '+ $(this).val() + ' /spay_neuter',
+				success: function(response) {
+          $('#spay-count').text(response);
+				}
+			});
+    });
+
+    $('#report_select_barangay_rabbies').change(function () {
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/inventory/report/ '+ $(this).val() + ' /rabies_vaccination',
+				success: function(response) {
+          $('#rabbies-count').text(response);
+				}
+			});
+    });
+
+    $('#report_select_barangay_medical').change(function () {
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/inventory/report/ '+ $(this).val() + ' /basic_medical_consultation',
+				success: function(response) {
+          $('#medical-count').text(response);
+				}
+			});
+    });
+	</script>
+@stop
