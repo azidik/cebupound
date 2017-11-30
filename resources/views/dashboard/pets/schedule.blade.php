@@ -51,7 +51,7 @@
                                     {{ $service->pivot->schedule }}
                                 @endforeach
                             </td>
-                            @if($pet->service)
+                            @if(isset($pet->service))
                                 <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
                             @else
                                 <td><small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> You have been requested.</small></td>
