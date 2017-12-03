@@ -67,7 +67,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed }}">
+                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}">
                             </div>
                             <div class="form-group">
                             <label >Color</label>
