@@ -28,8 +28,10 @@ class PrintController extends Controller
     public function printRegistered($registered)
     {
         $registered = Pet::find($registered);
+        // return $registered;
         $pdf = PDF::loadView('dashboard.admin.pdf.registered', compact('registered'));
-        return $pdf->stream('registered-information.pdf');
+        // return $pdf;
+        return $pdf->stream('registered-information.pdf', array("Attachment" => false));
     }
 
     public function printRegisteredAllDogs()
