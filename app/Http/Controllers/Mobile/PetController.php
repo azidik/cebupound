@@ -32,20 +32,21 @@ class PetController extends Controller
         if($validator->fails()) {
             return $validator->errors();
         } else {
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $destinationPath = public_path('images');
-                if (!File::exists($destinationPath)) {
-                    $fileDir = File::makeDirectory('images');
-                }
-                $image = $file->getClientOriginalName();
-                $file->move($destinationPath, $image);
-                $params['image'] = $image;
-            }
+            // if ($request->hasFile('image')) {
+            //     $file = $request->file('image');
+            //     $destinationPath = public_path('images');
+            //     if (!File::exists($destinationPath)) {
+            //         $fileDir = File::makeDirectory('images');
+            //     }
+            //     $image = $file->getClientOriginalName();
+            //     $file->move($destinationPath, $image);
+            //     $params['image'] = $image;
+            // }
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
             $params['is_accepted'] = 0;
             $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
+            $params['image'] = $image;
             $pet = Pet::create($params);
             if($pet) {
                 History::create([
