@@ -46,7 +46,7 @@ class PetController extends Controller
             $params['user_id'] = $params['user_id'];
             $params['is_accepted'] = 0;
             $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
-            $params['image'] = $image;
+            $params['image'] = $params['image'];
             $pet = Pet::create($params);
             if($pet) {
                 History::create([
