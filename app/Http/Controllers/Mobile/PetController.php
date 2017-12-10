@@ -22,7 +22,7 @@ class PetController extends Controller
     
         $validator = Validator::make($params, [
             'name' => 'required',
-            'age' => 'required|numeric',
+            'age' => 'required',
             'gender' => 'required',
             'breed_id' => 'required',
             'color' => 'required',
