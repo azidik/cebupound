@@ -20,7 +20,7 @@ Route::get('/FAQs', 'HomeController@faqs');
 Route::post('/deviceToken', function() {
     
 });
-
+// For authenticared user route only
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('dashboard.index');
