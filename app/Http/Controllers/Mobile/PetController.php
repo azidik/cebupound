@@ -12,6 +12,7 @@ use App\PetService;
 use App\Notification;
 use App\History;
 use App\Breed;
+use Log;
 
 class PetController extends Controller
 {
@@ -46,7 +47,7 @@ class PetController extends Controller
             $params['user_id'] = $params['user_id'];
             $params['is_accepted'] = 0;
             $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
-            $params['image'] = $params['image'];
+            // $params['image'] = $params['image'];
             $pet = Pet::create($params);
             if($pet) {
                 History::create([
@@ -86,6 +87,7 @@ class PetController extends Controller
         if($validator->fails()) {
             return $validator->errors();
         } else {
+            Log::info($params);
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $destinationPath = public_path('images');
