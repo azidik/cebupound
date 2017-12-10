@@ -19,26 +19,26 @@ class AuthController extends Controller
         if (Auth::attempt(['username' => $params['username'], 'password' => $params['password']])) {
             $user = User::where('id', Auth::user()->id)->first();
             // if($user) {
-            // $user->device_token = $params['device_token'];
-            // $user->save();
+            $user->device_token = $params['device_token'];
+            $user->save();
 
-            // $optionBuilder = new OptionsBuilder();
-            // $optionBuilder->setTimeToLive(60*20);
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
             
-            // $notificationBuilder = new PayloadNotificationBuilder('Welcome to cebu pound animal');
-            // $notificationBuilder->setBody('Hi! This is test auto notification for cebu pound animal')
-            //                     ->setSound('default');
+            $notificationBuilder = new PayloadNotificationBuilder('Welcome to cebu pound animal');
+            $notificationBuilder->setBody('Hi! This is test auto notification for cebu pound animal')
+                                ->setSound('default');
                                 
-            // $dataBuilder = new PayloadDataBuilder();
-            // $dataBuilder->addData(['a_data' => 'my_data']);
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
             
-            // $option = $optionBuilder->build();
-            // $notification = $notificationBuilder->build();
-            // $data = $dataBuilder->build();
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
             
-            // $token = $user->device_token;
+            $token = $user->device_token;
             
-            // $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+            $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
             // }
             // Authentication passed...
             $response = [
