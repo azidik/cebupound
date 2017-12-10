@@ -33,6 +33,7 @@ class PetController extends Controller
         if($validator->fails()) {
             return $validator->errors();
         } else {
+            Log::info($params);
             // if ($request->hasFile('image')) {
             //     $file = $request->file('image');
             //     $destinationPath = public_path('images');
