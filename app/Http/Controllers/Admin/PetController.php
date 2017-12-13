@@ -61,7 +61,7 @@ class PetController extends Controller
         ]);
 
         if($validator->fails()) {
-            return redirect('/dashboard/admin/create')
+            return redirect('/dashboard/admin/pets/create')
                 ->withErrors($validator)
                 ->withInput();
         } else {
