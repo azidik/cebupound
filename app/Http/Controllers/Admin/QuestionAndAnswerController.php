@@ -104,15 +104,17 @@ class QuestionAndAnswerController extends Controller
     {
         $params = $request->all();
         foreach ($params as $key => $val) {
-            $answer = Answer::where('id', $val)->first();
-            if($answer) {
-                $answer->is_correct = 1;
-                $answer->save();
-            }
-            foreach($params['answer'] as $key => $data) {
-                $init = Answer::find($key);
-                $init->name = $data;
-                $init->save();
+            if(isset($val)){
+                $answer = Answer::where('id', $val)->first();
+                if($answer) {
+                    $answer->is_correct = 1;
+                    $answer->save();
+                }
+                foreach($params['answer'] as $key => $data) {
+                    $init = Answer::find($key);
+                    $init->name = $data;
+                    $init->save();
+                }
             }
         }
 
