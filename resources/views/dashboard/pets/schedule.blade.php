@@ -110,15 +110,16 @@
                     data: { 
                         _token: "{{ csrf_token() }}",
                         pet_id: pet_id, 
-                        service_id: service_id 
+                        service_id: service_id,
+                        user_id: "{{ Auth::user()->id }}"
                     },
                     success: function(response) {
-                        if(response.status){
+                        if(response.status == 1){
                             toastr.success('Requested for service schedule. Thank you!');
-                            location.reload();
+                            // location.reload();
                         } else {
-                            toastr.error('Something went wrong!');
-                            location.reload();
+                            toastr.error('Pet has already scheduled for this service!');
+                            // location.reload();
                         }
                     },
                     error: function(error) {

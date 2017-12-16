@@ -250,21 +250,31 @@ class PetController extends Controller
     {
         $params = $request->all();
 
-        $pet_service  = PetService::create([
-            'pet_id' => $params['pet_id'],
-            'service_id' => $params['service_id'],
-            'status' => 'Request'
-        ]);
-
-        if($pet_service) {
+        $checkService = PetService::where('pet_id', $params['pet_id'])
+                       ->where('service_id', $params['service_id'])
+                       ->where('user_id', $params['user_id'])
+                       ->first();
+        if($checkService) {
             $response = [
-                'status' => 1,
-                'pet_service' => $pet_service 
+                'status' => 2   
             ];
         } else {
-            $response = [
-                'status' => 0   
-            ];
+            $pet_service  = PetService::create([
+                'pet_id' => (int) $params['pet_id'],
+                'service_id' => (int) $params['service_id'],
+                'status' => 'Request',
+                'user_id' => (int) $params['user_id']
+            ]);
+            if($pet_service) {
+                $response = [
+                    'status' => 1,
+                    'pet_service' => $pet_service 
+                ];
+            } else {
+                $response = [
+                    'status' => 0   
+                ];
+            }
         }
         return $response;
     }

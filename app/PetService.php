@@ -9,7 +9,7 @@ class PetService extends Model
     public $table = 'pet_services';
 
      protected $fillable = [
-        'pet_id', 'service_id', 'status', 'schedule',
+        'pet_id', 'service_id', 'status', 'schedule', 'user_id'
     ];
 
     public function pet ()
