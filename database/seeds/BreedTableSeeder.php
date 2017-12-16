@@ -12,7 +12,7 @@ class BreedTableSeeder extends Seeder
      */
     public function run()
     {
-        $breeds = ['Yorkshire Terrier', 'West Highland White Terrier', 'Staffordshire Bull Terrier', 'Shih Tzu', 'Shetland Sheepdog','Rottweiler Pug','Poodle ','Miniature Schnauzer','Maltese','Labrador Retriever','Great Dane', 'Golden Retriever','German Spitz (all sizes)','German Shorthaired Pointer','German Shepherd', 'French Bulldog', 'English Springer Spaniel', 'English Setter', 'English Cocker Spaniel', 'Doberman', 'Dachshund'];
+        $breeds = ['Yorkshire Terrier', 'West Highland White Terrier', 'Staffordshire Bull Terrier', 'Shih Tzu', 'Shetland Sheepdog','Rottweiler Pug','Poodle ','Miniature Schnauzer','Maltese','Labrador Retriever','Great Dane', 'Golden Retriever','German Spitz (all sizes)','German Shorthaired Pointer','German Shepherd', 'French Bulldog', 'English Springer Spaniel', 'English Setter', 'English Cocker Spaniel', 'Doberman', 'Dachshund', 'Askal', '--Others--'];
         foreach ($breeds as $value) {
             Breed::create([
                 'pet_type_id' => 1,
@@ -20,7 +20,7 @@ class BreedTableSeeder extends Seeder
             ]);
         } 
         
-        $breeds = ['Abyssinian', 'Aegean', 'American Curl', 'American Bobtail', 'American Shorthair','American Wirehair','Arabian Mau ','Australian Mist','Asian Semi-longhair','Balinese','Bambino', 'Toyger','Sokoke','Siamese','Serengeti'];
+        $breeds = ['Abyssinian', 'Aegean', 'American Curl', 'American Bobtail', 'American Shorthair','American Wirehair','Arabian Mau ','Australian Mist','Asian Semi-longhair','Balinese','Bambino', 'Toyger','Sokoke','Siamese','Serengeti', 'Pusakal', '--Others--'];
         foreach ($breeds as $value) {
             Breed::create([
                 'pet_type_id' => 2,
