@@ -35,26 +35,28 @@
                     
 					<tbody>
 						@foreach($pets as $pet)
-						<tr>
-                            
-							<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
-							<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-							<td>{{ $pet->breed->name }}</td>
-							<td>{{ $pet->type->name }}</td>
-                            <td>
-                                @foreach($pet->service as $service)
-                                    {{ $service->name }}
-                                    <br>
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach($pet->service as $service)
-                                    {{ $service->pivot->schedule }}
-                                    <br>
-                                @endforeach
-                            </td>
-                            <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
-						</tr>
+                            @if(count($pet->impound) == 0) 
+                            <tr>
+                                
+                                <td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
+                                <td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
+                                <td>{{ $pet->breed->name }}</td>
+                                <td>{{ $pet->type->name }}</td>
+                                <td>
+                                    @foreach($pet->service as $service)
+                                        {{ $service->name }}
+                                        <br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($pet->service as $service)
+                                        {{ $service->pivot->schedule }}
+                                        <br>
+                                    @endforeach
+                                </td>
+                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
+                            </tr>
+                            @endif
 						@endforeach
 					</tbody>
 				</table>
