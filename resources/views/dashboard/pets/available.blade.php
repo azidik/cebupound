@@ -22,7 +22,6 @@
             <div class="box-header">
 				<dic class="row">
 					@foreach($available_adoptions as $available_adoption)
-						@if(count($available_adoption['adopt']) > 0 && $available_adoption['adopt']['adopted_by'] == 0)
 							<div class="col-md-3">
 								<div class="box-body box-profile" style="border: 1px solid #eee">
 									<img class="profile-user-img img-responsive img-circle" src="{{ asset('images/'. $available_adoption['pet']['image']) }}" alt="User profile picture">
@@ -46,7 +45,7 @@
 										@if(Auth::user()->id == $available_adoption['adopt']['adopted_by'])
 											@if($available_adoption['adopt']['is_accepted'] == 0)
 												<a href="#" class="btn btn-warning btn-block" disabled="true"><b>Pending for adoption</b></a>
-											@elseif($available_adoption['adopt']['is_accepted'] == 1)
+											@elseif($available_adoption['adopt	']['is_accepted'] == 1)
 												<a href="#" class="btn btn-primary btn-block" disabled="true"><b>Accepted for adoption</b></a>
 											@else
 												<a href="#" class="btn btn-danger btn-block" disabled="true"><b>Declined for adoption</b></a>
@@ -57,7 +56,6 @@
 									
 								</div>
 							</div>
-						@endif
 					@endforeach
 				</div>
 			</div>
