@@ -57,13 +57,29 @@ class PrintController extends Controller
                 $query->where('pet_type_id', $request->type);
             } else if($request->type == 'all') {  
                 $query->where('pet_category_id', $request->category);
-            } else {
-                // $pets = Pet::where('pet_category_id', $request->category)->where('pet_type_id', $request->type)->get();
+            } else if($request->category != 'all' && $request->type != 'all'){
                 $query->where('pet_category_id', $request->category)->where('pet_type_id', $request->type);
             }
         })->get();
         $pdf = PDF::loadView('dashboard.admin.pdf.impoundAll', compact('impounds'));
         return $pdf->stream('impound-information.pdf');
+    }
+
+    public function printAdoptPet(Request $request)
+    {
+        $adopts = Adopt::whereHas('impound', function($query) use ($request) {
+            $query->whereHas('pet', function($d) use ($request) {
+                if ($request->category == 'all') {
+                    $d->where('pet_type_id', $request->type);
+                } else if($request->type == 'all') {  
+                    $d->where('pet_category_id', $request->category);
+                } else if($request->category != 'all' && $request->type != 'all'){
+                    $d->where('pet_category_id', $request->category)->where('pet_type_id', $request->type);
+                }
+            });
+        })->get();
+        $pdf = PDF::loadView('dashboard.admin.pdf.adoptAll', compact('adopts'));
+        return $pdf->stream('adopt-information.pdf');
     }
 
     public function printRegisteredAllCats()

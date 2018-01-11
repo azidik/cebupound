@@ -108,6 +108,23 @@
               <h3>{{ $adopted_pets->count() }}</h3>
 
               <p>Adopted Pets</p>
+              <form action="{{ url('/dashboard/admin/pets/pdf/adopt') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                    <option value="all">All</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                    <option value="all">All</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary">Print</button>
+                </form>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
