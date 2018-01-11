@@ -43,18 +43,21 @@
               <h3>{{ $pets->count() }}</h3>
             
               <p>Pet's Registration</p>
-                Select Category:
-                <select class="form-control" name="barangay_id" id="pet_registration_category">
-                  <option value="1">Sheltered</option>
-                  <option value="2">Stray</option>
-                </select>
-                Select Type:
-                <select class="form-control" name="barangay_id" id="pet_registration_type">
-                  <option value="1">Dog</option>
-                  <option value="2">Cats</option>
-                </select>
-                <br>
-                <button class="btn btn-primary" id="pet_registration_print">Print</button>
+                <form action="{{ url('/dashboard/admin/pets/pdf/registered') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary" id="pet_registration_print">Print</button>
+                </form>
             </div>
             
             <div class="icon">
