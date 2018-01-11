@@ -34,9 +34,9 @@ class PrintController extends Controller
         return $pdf->stream('registered-information.pdf', array("Attachment" => false));
     }
 
-    public function printRegisteredAllDogs()
+    public function printRegisteredDogs($category, $type)
     {
-        $pets = Pet::where('pet_type_id', 1)->get();
+        $pets = Pet::where('pet_category_id', $category)->where('pet_type_id', $type)->get();
         $pdf = PDF::loadView('dashboard.admin.pdf.registeredAll', compact('pets'));
         return $pdf->stream('registered-information.pdf');
     }

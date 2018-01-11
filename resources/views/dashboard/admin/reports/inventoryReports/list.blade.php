@@ -41,9 +41,22 @@
           <div class="small-box bg-red">
             <div class="inner">
               <h3>{{ $pets->count() }}</h3>
-
+            
               <p>Pet's Registration</p>
+                Select Category:
+                <select class="form-control" name="barangay_id" id="pet_registration_category">
+                  <option value="1">Sheltered</option>
+                  <option value="2">Stray</option>
+                </select>
+                Select Type:
+                <select class="form-control" name="barangay_id" id="pet_registration_type">
+                  <option value="1">Dog</option>
+                  <option value="2">Cats</option>
+                </select>
+                <br>
+                <button class="btn btn-primary" id="pet_registration_print">Print</button>
             </div>
+            
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
@@ -279,6 +292,18 @@
 				url: '/dashboard/admin/inventory/report/ '+ $(this).val() + ' /basic_medical_consultation',
 				success: function(response) {
           $('#medical-count').text(response);
+				}
+			});
+    });
+
+    $('#pet_registration_print').click(function () {
+      var pet_category_id = $('#pet_registration_category').val();
+      var pet_type_id = $('#pet_registration_type').val();
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/pets/pdf/registered/'+pet_category_id+'/'+pet_type_id,
+				success: function(response) {
+          console.log(response);
 				}
 			});
     });

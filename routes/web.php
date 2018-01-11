@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('pets/pdf/impound/{id}', 'Admin\PrintController@printImpound');
         Route::get('pets/pdf/adopt/{id}', 'Admin\PrintController@printAdopt');
         Route::get('pets/pdf/registered/{id}', 'Admin\PrintController@printRegistered');
+
+        // revised 
+        Route::get('pets/pdf/registered/{category}/{type}', 'Admin\PrintController@printRegistered');
+
         Route::get('pets/pdf/registeredAll/dogs', 'Admin\PrintController@printRegisteredAllDogs');
         Route::get('pets/pdf/registeredAll/cats', 'Admin\PrintController@printRegisteredAllCats');
         Route::get('pets/pdf/impoundAll/dogs', 'Admin\PrintController@printImpoundAllDogs');
