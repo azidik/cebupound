@@ -20,9 +20,9 @@
 	</section>	
     <!-- Main content -->
     <section class="content">
-	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll/dogs') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Dogs</a>
+	<!-- <a href="{{ url('dashboard/admin/pets/pdf/registeredAll/dogs') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Dogs</a>
 	<a href="{{ url('dashboard/admin/pets/pdf/registeredAll/cats') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Cats</a>
-	<br>
+	<br> -->
 	<br>	
 		<div class="box box-primary">
             <div class="box-header">
