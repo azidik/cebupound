@@ -34,11 +34,20 @@ class PrintController extends Controller
         return $pdf->stream('registered-information.pdf', array("Attachment" => false));
     }
 
-    public function printRegisteredDogs(Request $request)
+    public function printRegisteredPet(Request $request)
     {
-        $pets = Pet::where('pet_category_id', $request->category)->where('pet_type_id', $request->type)->get();
+        if($request->category == 'all' && $request->type == 'all') {
+            $pets = Pet::all();
+        } else if ($request->category == 'all') {
+            $pets = Pet::where('pet_type_id', $request->type)->get();
+        } else if($request->type == 'all') {
+            $pets = Pet::where('pet_category_id', $request->category)->get();   
+        } else {
+            $pets = Pet::where('pet_category_id', $request->category)->where('pet_type_id', $request->type)->get();
+        }
         $pdf = PDF::loadView('dashboard.admin.pdf.registeredAll', compact('pets'));
-        return $pdf->stream('registered-information.pdf');
+        return $pdf->stream('registered-information.pdf', array("Attachment" => false));
+        
     }
 
     public function printRegisteredAllCats()

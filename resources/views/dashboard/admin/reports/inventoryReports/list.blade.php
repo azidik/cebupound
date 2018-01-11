@@ -49,11 +49,13 @@
                   <select class="form-control" name="category">
                     <option value="1">Sheltered</option>
                     <option value="2">Stray</option>
+                    <option value="all">All</option>
                   </select>
                   Select Type:
                   <select class="form-control" name="type">
                     <option value="1">Dog</option>
                     <option value="2">Cats</option>
+                    <option value="all">All</option>
                   </select>
                   <br>
                   <button class="btn btn-primary" id="pet_registration_print">Print</button>

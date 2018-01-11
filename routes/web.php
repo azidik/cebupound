@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('pets/pdf/registered/{id}', 'Admin\PrintController@printRegistered');
 
         // revised 
-        Route::post('pets/pdf/registered', 'Admin\PrintController@printRegisteredDogs');
+        Route::post('pets/pdf/registered', 'Admin\PrintController@printRegisteredPet');
 
         Route::get('pets/pdf/registeredAll/dogs', 'Admin\PrintController@printRegisteredAllDogs');
         Route::get('pets/pdf/registeredAll/cats', 'Admin\PrintController@printRegisteredAllCats');
