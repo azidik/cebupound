@@ -50,6 +50,24 @@ class PrintController extends Controller
         
     }
 
+    public function printImpoundPet(Request $request)
+    {
+        $impounds = Impound::whereHas('pet', function($query) use ($request) {
+            if($request->category == 'all' && $request->type == 'all') {
+                $query->all();
+            } else if ($request->category == 'all') {
+                $query->where('pet_type_id', $request->type);
+            } else if($request->type == 'all') {  
+                $query->where('pet_category_id', $request->category);
+            } else {
+                // $pets = Pet::where('pet_category_id', $request->category)->where('pet_type_id', $request->type)->get();
+                $query->where('pet_category_id', $request->category)->where('pet_type_id', $request->type);
+            }
+        })->get();
+        $pdf = PDF::loadView('dashboard.admin.pdf.impoundAll', compact('impounds'));
+        return $pdf->stream('impound-information.pdf');
+    }
+
     public function printRegisteredAllCats()
     {
         $pets = Pet::where('pet_type_id', 2)->get();
