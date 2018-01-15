@@ -45,7 +45,14 @@
 					<tbody>
 						@foreach($pets as $pet)
 						<tr>
-							<td><img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto"></td>
+							<td>
+							    @if ( base64_encode(base64_decode($pet['image'], true)) === $pet['image'])
+								    <img src="{{ $pet['image']) }}" width="50" height="auto">
+                                @else
+								    <img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto">
+								@endif
+							    
+							</td>
 							<td><a href="{{ url('/dashboard/admin/pets/'. $pet['id'])}}">{{ $pet['name'] }}</td>
 							<td>{{ $pet['age'] }}</td>
 							<td>{{ $pet['gender'] }}</td>
