@@ -104,8 +104,8 @@ class PetController extends Controller
             $pet = Pet::find($id)->update($params);
             if($pet) {
                 History::create([
-                    'user_id' => $pet->user_id,
-                    'description' => 'You have been updated pet @'. $pet->name . '' .$pet->gender
+                    'user_id' => $pet['user_id'],
+                    'description' => 'You have been updated pet @'. $pet['name'] . '' .$pet['gender']
                 ]);
                 $response = [
                     'status' => 1
