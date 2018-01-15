@@ -101,11 +101,19 @@ class PetController extends Controller
             // }
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
-            $pet = Pet::find($id)->update($params);
+            $pet = Pet::find($id);
+            $pet->name     = $params['name'];
+            $pet->age      = $params['age'];
+            $pet->gender   = $params['gender'];
+            $pet->breed_id = $params['breed_id'];
+            $pet->color    = $params['color'];
+            $pet->image    = $params['image'];
+            $pet->save();
+            
             if($pet) {
                 History::create([
-                    'user_id' => $pet['user_id'],
-                    'description' => 'You have been updated pet @'. $pet['name'] . '' .$pet['gender']
+                    'user_id' => $pet->user_id,
+                    'description' => 'You have been updated pet @'. $pet->name . '' .$pet->gender
                 ]);
                 $response = [
                     'status' => 1
