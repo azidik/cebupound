@@ -80,7 +80,7 @@ class PetController extends Controller
             'name' => 'required',
             'age' => 'required',
             'gender' => 'required',
-            'breed' => 'required',
+            'breed_id' => 'required',
             'color' => 'required',
             'image' => 'required'
         ]);
@@ -89,16 +89,16 @@ class PetController extends Controller
             return $validator->errors();
         } else {
             Log::info($params);
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $destinationPath = public_path('images');
-                if (!File::exists($destinationPath)) {
-                    $fileDir = File::makeDirectory('images');
-                }
-                $image = $file->getClientOriginalName();
-                $file->move($destinationPath, $image);
-                $params['image'] = $image;
-            }
+            // if ($request->hasFile('image')) {
+            //     $file = $request->file('image');
+            //     $destinationPath = public_path('images');
+            //     if (!File::exists($destinationPath)) {
+            //         $fileDir = File::makeDirectory('images');
+            //     }
+            //     $image = $file->getClientOriginalName();
+            //     $file->move($destinationPath, $image);
+            //     $params['image'] = $image;
+            // }
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
             $pet = Pet::find($id)->update($params);
