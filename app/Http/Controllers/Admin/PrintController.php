@@ -148,6 +148,8 @@ class PrintController extends Controller
             })->where('service_id', $request->service_id)->get();
         }
 
+        return $pets;
+
         $pdf = PDF::loadView('dashboard.admin.pdf.services', compact('pets'));
 
         return $pdf->stream('registered-information.pdf', array("Attachment" => false)); 
