@@ -133,24 +133,22 @@ class PrintController extends Controller
     public function printService(Request $request)
     {
         if($request->category == 'all' && $request->type == 'all') {
-            $pets = PetService::with(['pet'])->where('service_id', $request->service_id)->get();
+            $service_pets = PetService::with(['pet'])->where('service_id', $request->service_id)->get();
         } else if ($request->category == 'all') {
-            $pets   = PetService::whereHas('pet', function($query) use ($request) {
+            $service_pets   = PetService::whereHas('pet', function($query) use ($request) {
                         $query->where('pet_type_id', $request->type);
                     })->where('service_id', $request->service_id)->get();
         } else if($request->type == 'all') {
-            $pets   = PetService::whereHas('pet', function($query) use ($request) {
+            $service_pets   = PetService::whereHas('pet', function($query) use ($request) {
                         $query->where('pet_category_id', $request->category);
                     })->where('service_id', $request->service_id)->get();
         } else {
-            $pets = PetService::whereHas('pet', function($query) use ($request) {
+            $service_pets = PetService::whereHas('pet', function($query) use ($request) {
                 $query->where('pet_category_id', $request->category)->where('pet_type_id', $request->type);
             })->where('service_id', $request->service_id)->get();
         }
 
-        return $pets;
-
-        $pdf = PDF::loadView('dashboard.admin.pdf.services', compact('pets'));
+        $pdf = PDF::loadView('dashboard.admin.pdf.services', compact('service_pets'));
 
         return $pdf->stream('registered-information.pdf', array("Attachment" => false)); 
     }
