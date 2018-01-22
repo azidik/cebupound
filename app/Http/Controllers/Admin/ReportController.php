@@ -26,6 +26,18 @@ class ReportController extends Controller
         $clients = User::all();
         $pets = Pet::all();
         $impound_pets = Impound::all();
+        $impound_pets_count_sheltered = Impound::whereHas('pet', function($pet) {
+            $pet->whereHas('category', function ($query) {
+                $query->where('id', 1);
+            });
+        })->get();
+
+        // return $impound_pets_count_sheltered;
+        $impound_pets_count_stray = Impound::whereHas('pet', function($pet) {
+            $pet->whereHas('category', function ($query) {
+                $query->where('id', 2);
+            });
+        })->get();
         $adopted_pets = Adopt::all();
         $questions = Question::all();
         $foods = Inventory::where('inventory_type_id', 1)->get();
@@ -41,7 +53,7 @@ class ReportController extends Controller
         // return;
         $barangays = Barangay::where('city_id', 72217)->get();
         $medical = PetService::where('service_id', 5)->get();
-        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical', 'barangays'));
+        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical', 'barangays', 'impound_pets_count_sheltered', 'impound_pets_count_stray'));
     }
 
     public function foodList()

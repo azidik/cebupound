@@ -74,7 +74,8 @@
           <div class="small-box bg-green">
             <div class="inner">
               <h3>{{ $impound_pets->count() }}</h3>
-
+              <small>Sheltered: {{ $impound_pets_count_sheltered->count() }}</small><br>
+              <small>Stray: {{ $impound_pets_count_stray->count() }}</small>
               <p>Impounded Pets</p>
               <form action="{{ url('/dashboard/admin/pets/pdf/impound') }}" method="post">
                 {{ csrf_field() }}
