@@ -33,7 +33,7 @@ tr:nth-child(even) {
     </tr>
     @foreach($service_pets as $service)
         <tr>
-            <td><img src="{{ asset('/images/'. $pet->image) }}" width="50" height="50"/></td>
+            <td><img src="{{ asset('/images/'. $service->pet->image) }}" width="50" height="50"/></td>
             <td>{{ $service->pet->name }}</td>
             <td>{{ $service->pet->age }}</td>
             <td>{{ $service->pet->gender }}</td>
