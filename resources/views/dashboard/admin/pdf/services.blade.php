@@ -33,15 +33,15 @@ tr:nth-child(even) {
     </tr>
     @foreach($pets as $pet)
         <tr>
-            <td><img src="{{ asset('/images/'. $pet['image']) }}" width="50" height="50"/></td>
-            <td>{{ $pet['name'] }}</td>
-            <td>{{ $pet['age'] }}</td>
-            <td>{{ $pet['gender'] }}</td>
-            <td>{{ $pet['breed']['name'] }}</td>
-            <td>{{ $pet['color'] }}</td>
-            <td>{{ $pet['birth_date'] }}</td>
-            <td>{{ $pet['type']['name'] }}</td>
-            <td>{{ $pet['user']['first_name'] }} {{ $pet['user']['first_name'] }}</td>
+            <td><img src="{{ asset('/images/'. $pet->image) }}" width="50" height="50"/></td>
+            <td>{{ $pet->name }}</td>
+            <td>{{ $pet->age }}</td>
+            <td>{{ $pet->gender }}</td>
+            <td>{{ $pet->breed->name }}</td>
+            <td>{{ $pet->color }}</td>
+            <td>{{ $pet->birth_date }}</td>
+            <td>{{ $pet->type->name }}</td>
+            <td>{{ $pet->user['first_name'] }} {{ $pet->user['first_name'] }}</td>
         </tr>
     @endforeach
 </table>
