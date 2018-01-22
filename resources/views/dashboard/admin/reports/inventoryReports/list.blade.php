@@ -124,7 +124,7 @@
                   </select>
                   <br>
                   <button class="btn btn-primary">Print</button>
-                </form>
+              </form>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -189,6 +189,26 @@
                     <option value="{{$barangay->id}}">{{$barangay->description}}</option>
                   @endforeach
               </select>
+              <!-- <p>Adopted Pets</p> -->
+              <br>
+              <form action="{{ url('/dashboard/admin/pets/pdf/service') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <input type="hidden" name="service_id" value="1">
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                    <option value="all">All</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                    <option value="all">All</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary">Print</button>
+              </form>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -209,6 +229,25 @@
                     <option value="{{$barangay->id}}">{{$barangay->description}}</option>
                   @endforeach
               </select>
+              <br>
+              <form action="{{ url('/dashboard/admin/pets/pdf/service') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <input type="hidden" name="service_id" value="2">
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                    <option value="all">All</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                    <option value="all">All</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary">Print</button>
+              </form>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -229,6 +268,25 @@
                     <option value="{{$barangay->id}}">{{$barangay->description}}</option>
                   @endforeach
               </select>
+              <br>
+              <form action="{{ url('/dashboard/admin/pets/pdf/service') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <input type="hidden" name="service_id" value="3">
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                    <option value="all">All</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                    <option value="all">All</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary">Print</button>
+              </form>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -248,6 +306,25 @@
                     <option value="{{$barangay->id}}">{{$barangay->description}}</option>
                   @endforeach
               </select>
+              <br>
+              <form action="{{ url('/dashboard/admin/pets/pdf/service') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <input type="hidden" name="service_id" value="4">
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                    <option value="all">All</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                    <option value="all">All</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary">Print</button>
+              </form>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -268,6 +345,25 @@
                     <option value="{{$barangay->id}}">{{$barangay->description}}</option>
                   @endforeach
               </select>
+              <br>
+              <form action="{{ url('/dashboard/admin/pets/pdf/service') }}" method="post">
+                {{ csrf_field() }}
+                  Select Category:
+                  <input type="hidden" name="service_id" value="5">
+                  <select class="form-control" name="category">
+                    <option value="1">Sheltered</option>
+                    <option value="2">Stray</option>
+                    <option value="all">All</option>
+                  </select>
+                  Select Type:
+                  <select class="form-control" name="type">
+                    <option value="1">Dog</option>
+                    <option value="2">Cats</option>
+                    <option value="all">All</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary">Print</button>
+              </form>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>

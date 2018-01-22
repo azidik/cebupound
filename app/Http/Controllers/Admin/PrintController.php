@@ -8,6 +8,7 @@ use App\Pet;
 use App\Impound;
 use PDF;
 use App\Adopt;
+use App\PetService;
 
 class PrintController extends Controller
 {
@@ -46,8 +47,8 @@ class PrintController extends Controller
             $pets = Pet::where('pet_category_id', $request->category)->where('pet_type_id', $request->type)->get();
         }
         $pdf = PDF::loadView('dashboard.admin.pdf.registeredAll', compact('pets'));
-        return $pdf->stream('registered-information.pdf', array("Attachment" => false));
-        
+
+        return $pdf->stream('registered-information.pdf', array("Attachment" => false));       
     }
 
     public function printImpoundPet(Request $request)
@@ -127,5 +128,28 @@ class PrintController extends Controller
         })->get();
         $pdf = PDF::loadView('dashboard.admin.pdf.adoptAll', compact('adopts'));
         return $pdf->stream('adopt-information.pdf');
+    }
+
+    public function printService(Request $request)
+    {
+        if($request->category == 'all' && $request->type == 'all') {
+            $pets = PetService::with(['pet'])->where('service_id', $request->service_id)->get();
+        } else if ($request->category == 'all') {
+            $pets   = PetService::whereHas('pet', function($query) use ($request) {
+                        $query->where('pet_type_id', $request->type);
+                    })->where('service_id', $request->service_id)->get();
+        } else if($request->type == 'all') {
+            $pets   = PetService::whereHas('pet', function($query) use ($request) {
+                        $query->where('pet_category_id', $request->category);
+                    })->where('service_id', $request->service_id)->get();
+        } else {
+            $pets = PetService::whereHas('pet', function($query) use ($request) {
+                $query->where('pet_category_id', $request->category)->where('pet_type_id', $request->type);
+            })->where('service_id', $request->service_id)->get();
+        }
+
+        $pdf = PDF::loadView('dashboard.admin.pdf.services', compact('pets'));
+
+        return $pdf->stream('registered-information.pdf', array("Attachment" => false)); 
     }
 }
