@@ -45,7 +45,7 @@
 									<td>{{ $pet->color }}</td>
 									<td>{{ $pet->type->name }}</td>	
 									<td>{{ $pet->category->name}}</td>
-									<td>{{ $pet->user->last_name . ', ' . $pet->user->first_name}}</td>
+									<td>{{ $pet->user['last_name'] . ', ' . $pet->user['first_name'] }}</td>
 									@if($pet->is_accepted == 1)
 										<td><button class="btn btn-info btn-xs" disabled="true">Registered</button></td>
 									@elseif($pet->is_accepted == 2)
