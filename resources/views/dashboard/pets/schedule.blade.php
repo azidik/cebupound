@@ -35,7 +35,7 @@
                     
 					<tbody>
 						@foreach($pets as $pet)
-                            @if(count($pet->impound) == 0) 
+                            @if(!isset($pet->impound)) 
                             <tr>
                                 
                                 <td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
