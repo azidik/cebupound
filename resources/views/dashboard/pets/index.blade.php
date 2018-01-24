@@ -34,7 +34,7 @@
 					</thead>
 					<tbody>
 						@foreach($pets as $pet)
-							@if(!isset($pet->impound) && count($pet->impound) == 0)
+							@if(!isset($pet->impound) && count($pet->impound) < 0)
 								<tr>
 									<td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
 									<td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
