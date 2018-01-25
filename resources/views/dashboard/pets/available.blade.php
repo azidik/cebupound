@@ -24,8 +24,11 @@
 					@foreach($available_adoptions as $available_adoption)
 							<div class="col-md-3">
 								<div class="box-body box-profile" style="border: 1px solid #eee">
-									<img class="profile-user-img img-responsive img-circle" src="{{ asset('images/'. $available_adoption['pet']['image']) }}" alt="User profile picture">
-
+									@if(isset($available_adoption['pet']['image_mobile']) != NULL)
+										<img class="profile-user-img img-responsive img-circle" src="{{ $available_adoption['pet']['image_mobile'] }}" alt="User profile picture">
+                                    @else
+										<img class="profile-user-img img-responsive img-circle" src="{{ asset('images/'. $available_adoption['pet']['image']) }}" alt="User profile picture">
+                                    @endif
 									<h3 class="profile-username text-center">{{ $available_adoption['pet']['name'] }}</h3>
 
 									<p class="text-muted text-center">{{ $available_adoption['pet']['breed']['name'] }}</p>

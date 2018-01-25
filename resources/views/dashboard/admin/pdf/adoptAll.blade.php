@@ -33,7 +33,13 @@ tr:nth-child(even) {
     </tr>
     @foreach($adopts as $adopt)
         <tr>
-            <td><img src="{{ asset('/images/'. $adopt->impound->pet->image) }}" width="50" height="50"/></td>
+            <td>
+                @if(isset($adopt->impound->pet->image_mobile) != NULL)
+                    <img src="{{ $adopt->impound->pet->image_mobile }}" width="50" height="50"/>
+                @else
+                    <img src="{{ asset('/images/'. $adopt->impound->pet->image) }}" width="50" height="50"/>
+                @endif
+            </td>
             <td>{{ $adopt->impound->pet->name }}</td>
             <td>{{ $adopt->impound->pet->age }}</td>
             <td>{{ $adopt->impound->pet->gender }}</td>

@@ -46,7 +46,11 @@
 						@foreach($pets as $pet)
 						<tr>
 							<td>
-								<img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto">
+								@if(isset($pet['image_mobile']) != NULL)
+									<img src="{{ $pet['image_mobile'] }}" width="50" height="auto">
+								@else
+									<img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto">
+								@endif
 							</td>
 							<td><a href="{{ url('/dashboard/admin/pets/'. $pet['id'])}}">{{ $pet['name'] }}</td>
 							<td>{{ $pet['age'] }}</td>

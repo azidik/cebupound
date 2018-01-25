@@ -49,7 +49,13 @@
 						@foreach($impounds as $impound)
 							@if($impound->is_accepted == 0)
 								<tr>
-									<td><img src="{{ asset('/images/' . $impound->pet->image)}}" width="50" height="auto"></td>
+									<td>
+										@if(isset($impound->pet->image_mobile) != NULL)
+											<img src="{{ $impound->pet->image_mobile }}" width="50" height="auto">
+										@else
+											<img src="{{ asset('/images/' . $impound->pet->image) }}" width="50" height="auto">
+										@endif
+									</td>
 									<td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
 									<td>{{ $impound->pet->age }}</td>
 									<td>{{ $impound->pet->gender }}</td>

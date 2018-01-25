@@ -60,8 +60,12 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">
                                     <img src="{{ asset('/images/'. $pet->image)}}" width="200">
-                                </label>
-                                <input type="file" name="image" value="{{$pet->image}}">
+                                </label> 
+                                @if(isset($pet->image_mobile) != NULL)
+                                    <input type="file" name="image" value="{{$pet->image_mobile}}">
+								@else
+                                    <input type="file" name="image" value="{{$pet->image}}">
+								@endif
                             </div>
                         </div>
                         <div class="col-md-6">
