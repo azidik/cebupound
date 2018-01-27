@@ -38,7 +38,7 @@ class PrintController extends Controller
     public function printRegisteredPet(Request $request)
     {
         if($request->category == 'all' && $request->type == 'all') {
-            $pets = Pet::all();
+            $pets = Pet::orderBy('pet_type_id', 'asc')->get();
         } else if ($request->category == 'all') {
             $pets = Pet::where('pet_type_id', $request->type)->get();
         } else if($request->type == 'all') {

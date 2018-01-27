@@ -46,7 +46,11 @@
 						@foreach($pets as $pet)
 						<tr>
 							<td>
-								<img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto">
+								@if(isset($pet['image_mobile']) != NULL)
+									<img src="{{ $pet['image_mobile'] }}" width="50" height="auto">
+								@else
+									<img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto">
+								@endif
 							</td>
 							<td><a href="{{ url('/dashboard/admin/pets/'. $pet['id'])}}">{{ $pet['name'] }}</td>
 							<td>{{ $pet['age'] }}</td>
@@ -55,7 +59,7 @@
 							<td>{{ $pet['color'] }}</td>
 							<td>{{ $pet['type']['name'] }}</td>	
 							<td>{{ $pet['category']['name'] }}</td>
-							<td>{{ isset($pet['user']['last_name']) ? $pet['user']['last_name'] : '' }} {{ isset($pet['user']['first_name']) ? $pet['user']['first_name'] : ''}}</td>
+							<td>{{ $pet['user']['last_name'] }} {{ $pet['user']['first_name'] }}</td>
 							@if($pet['is_accepted'] == 1)
 								@if(isset($pet['impound']) && $pet['impound']['is_accepted'] == 1)
 								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small><td>

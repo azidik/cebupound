@@ -13,7 +13,7 @@ class Pet extends Model
      * @var array
      */
      protected $fillable = [
-        'name', 'age', 'gender', 'image', 'pet_type_id', 'breed_id', 'pet_category_id', 'color', 'user_id', 'is_accepted', 'birth_date'
+        'name', 'age', 'gender', 'image', 'pet_type_id', 'breed_id', 'pet_category_id', 'color', 'user_id', 'is_accepted', 'birth_date', 'image_mobile'
     ];
 
     public function type ()

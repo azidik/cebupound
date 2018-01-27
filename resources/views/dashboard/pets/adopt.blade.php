@@ -43,7 +43,13 @@
 					<tbody>
 						@foreach($adopts as $adopt)
 						<tr>
-							<td><img src="{{ asset('/images/' . $adopt->impound->pet->image)}}" width="50" height="auto"></td>
+							<td>
+								@if(isset($adopt->impound->pet->image_mobile) != NULL)
+									<img src="{{ $adopt->impound->pet->image_mobile }}" width="50" height="auto">
+								@else
+									<img src="{{ asset('/images/' . $adopt->impound->pet->image)}}" width="50" height="auto">
+								@endif
+							</td>
 							<td><a href="{{ url('/dashboard/pets/'. $adopt->impound->id) }}">{{ $adopt->impound->pet->name }}</a></td>
 							<td>{{ $adopt->impound->pet->age }}</td>
 							<td>{{ $adopt->impound->pet->gender }}</td>
