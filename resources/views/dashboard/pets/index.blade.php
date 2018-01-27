@@ -72,32 +72,6 @@
 		<div class="box-footer">
             <a href="{{ url('dashboard/pets/create') }}" type="submit" class="btn btn-primary pull-right">Register a New Pet</a>
         </div>
-		<div class="modal fade" id="modal-default">
-			<div class="modal-dialog">
-				<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Services List</h4>
-				</div>
-				<div class="modal-body">
-					<input type="hidden" name="pet_id" id="pet_id" value="">
-					<p>Select service</p>
-					<input id="schedule" type="datetime-local">
-					<div class="form-group">
-					<label for="exampleInputFile">Reason</label>
-					<textarea name="reason" id="reason" cols="10" rows="10" class="form-control"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="submitRequest">Request</button>
-				</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
     </section>
 
     <!-- /.content -->
@@ -108,38 +82,6 @@
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
-		});
-		$(document).on("click", ".click-modal", function () {
-			var pet_id = $(this).data('id');
-			$('#pet_id').val(pet_id);
-		});
-		$('#submitRequest').click(function() {
-			$.ajax({
-				type: "POST",
-				url: '/dashboard/pets/impound',
-				data: {
-					_token: "{{ csrf_token() }}",
-					pet_id: $('#pet_id').val(),
-					schedule: $('#schedule').val(),
-					reason: $('#reason').val()
-				},
-				success: function(response) {
-					console.log(response);
-					if(response.status == 2) {
-						toastr.error('Schedule date is empty. Please input schedule date...');
-					}
-					else if(response.status == 1){
-						toastr.success('Your pet was successfully impounded. Thank you!');
-						location.reload();
-					} 	else {
-						toastr.error('Something went wrong!');
-						location.reload();
-					}
-				},
-				error: function(error) {
-					console.log(error)
-				}
-			});
 		});
 	</script>
 @stop
