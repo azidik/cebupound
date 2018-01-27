@@ -69,7 +69,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="modal fade" id="modal-default">
+	<!-- 	<div class="modal fade" id="modal-default">
 			<div class="modal-dialog">
 				<div class="modal-content">
 				<div class="modal-header">
@@ -89,11 +89,9 @@
 					<button type="button" class="btn btn-primary" id="submitRequest">Request</button>
 				</div>
 				</div>
-				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-dialog -->
 		</div>
-		<input type="hidden" id="pet_id" value="">
+		<input type="hidden" id="pet_id" value=""> -->
     </section>
     <!-- /.content -->
 @endsection
@@ -104,51 +102,51 @@
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
-		$(document).on("click", ".click-modal", function () {
-			var pet_id = $(this).data('id');
-			$('#pet_id').val(pet_id);
-		});
+		// $(document).on("click", ".click-modal", function () {
+		// 	var pet_id = $(this).data('id');
+		// 	$('#pet_id').val(pet_id);
+		// });
 
-		var dtToday = new Date();
+		// var dtToday = new Date();
     
-		var month = dtToday.getMonth() + 1;
-		var day = dtToday.getDate();
-		var year = dtToday.getFullYear();
-		if(month < 10)
-			month = '0' + month.toString();
-		if(day < 10)
-			day = '0' + day.toString();
+		// var month = dtToday.getMonth() + 1;
+		// var day = dtToday.getDate();
+		// var year = dtToday.getFullYear();
+		// if(month < 10)
+		// 	month = '0' + month.toString();
+		// if(day < 10)
+		// 	day = '0' + day.toString();
 		
-		var maxDate = year + '-' + month + '-' + day;
-		$('#schedule').attr('min', maxDate);
+		// var maxDate = year + '-' + month + '-' + day;
+		// $('#schedule').attr('min', maxDate);
 
-		$('#submitRequest').click(function() {
-			$.ajax({
-				type: "POST",
-				url: '/dashboard/pets/impound',
-				data: {
-					_token: "{{ csrf_token() }}",
-					reason: $('#reason').val(),
-					pet_id: $('#pet_id').val(),
-					schedule: $('#schedule').val()
-				},
-				success: function(response) {
-					console.log(response);
-					if(response.status == 2) {
-						toastr.error('Schedule date is empty. Please input schedule date...');
-					}
-					else if(response.status == 1){
-						toastr.success('Your pet was successfully impounded. Thank you!');
-						location.reload();
-					} 	else {
-						toastr.error('Something went wrong!');
-						location.reload();
-					}
-				},
-				error: function(error) {
-					console.log(error)
-				}
-			});
-		});
+		// $('#submitRequest').click(function() {
+		// 	$.ajax({
+		// 		type: "POST",
+		// 		url: '/dashboard/pets/impound',
+		// 		data: {
+		// 			_token: "{{ csrf_token() }}",
+		// 			reason: $('#reason').val(),
+		// 			pet_id: $('#pet_id').val(),
+		// 			schedule: $('#schedule').val()
+		// 		},
+		// 		success: function(response) {
+		// 			console.log(response);
+		// 			if(response.status == 2) {
+		// 				toastr.error('Schedule date is empty. Please input schedule date...');
+		// 			}
+		// 			else if(response.status == 1){
+		// 				toastr.success('Your pet was successfully impounded. Thank you!');
+		// 				location.reload();
+		// 			} 	else {
+		// 				toastr.error('Something went wrong!');
+		// 				location.reload();
+		// 			}
+		// 		},
+		// 		error: function(error) {
+		// 			console.log(error)
+		// 		}
+		// 	});
+		// });
 	</script>
 @stop

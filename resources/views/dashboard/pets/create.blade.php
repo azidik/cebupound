@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Birth Date</label>
-                            <input type="date" name="birth_date" id="birth_date" class="form-control" required>
+                            <input type="date" name="birth_date" id="birth_date" onkeydown="return false" class="form-control" required>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
@@ -117,12 +117,12 @@
                 MyDate.setDate(MyDate.getDate());
 
                 MyDateString = ('0' + (MyDate.getMonth()+1)).slice(-2) + '/' + ('0' + MyDate.getDate()).slice(-2) + '/' + MyDate.getFullYear();
-                console.log(MyDateString)
                 var age = getAge(MyDateString);
                 $('#age').val(age);
                 
             });
 
+            // disabled future date
             var dtToday = new Date();
         
             var month = dtToday.getMonth() + 1;
@@ -136,7 +136,7 @@
         
             var maxDate = year + '-' + month + '-' + day;    
             $('#birth_date').attr('max', maxDate);
-
+            
             $('#pet_type_id').change(function(){
                 var pet_type_id = $('#pet_type_id').val();
                 $.ajax({

@@ -75,12 +75,10 @@
 		});
 
 		function adopt (id, pet_id) {
-			console.log(id + '' + pet_id);
 			$.ajax({
 				type: "GET",
 				url: '/dashboard/pets/adopt/' + id + '/'+ pet_id,
 				success: function(response) {
-					console.log(response);
 					if(response.status && response.canAdopt){
 						toastr.success('You have successfully requested to adopt your chosen pet. Thank you!');
 						location.reload();

@@ -48,11 +48,11 @@
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age"class="form-control" value="{{ $pet->age }}">
+                            <input type="number" name="age"class="form-control" value="{{ $pet->age }}" disabled="true">
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
-                            <select class="form-control" name="gender">
+                            <select class="form-control" name="gender" disabled="true">
                                 <option value="Male" {{$pet->gender == 'Male'}} ?? 'selected' : ''>Male</option>
                                 <option value="Female" {{$pet->gender == 'Female'}} ?? 'selected' : ''>Female</option>
                             </select>
@@ -71,15 +71,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}">
+                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}" disabled="true">
                             </div>
                             <div class="form-group">
                             <label >Color</label>
-                            <input type="text" name="color" class="form-control" value="{{ $pet->color }}">
+                            <input type="text" name="color" class="form-control" value="{{ $pet->color }}" disabled="true">
                             </div>
                             <div class="form-group">
                             <label>Type</label>
-                            <select class="form-control" name="pet_type_id">
+                            <select class="form-control" name="pet_type_id" disabled="true">
                                 @foreach($types as $type)
                                 <option value="{{$type->id}}" {{$pet->pet_type_id == $type->id}} ?? 'selected' : ''>{{$type->name}}</option>
                                 @endforeach

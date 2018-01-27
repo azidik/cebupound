@@ -93,7 +93,7 @@ class PetController extends Controller
         
         $validator = Validator::make($params, [
             'name' => 'required',
-            'age' => 'required|numeric',
+            'age' => 'required',
             'gender' => 'required',
             'breed' => 'required',
             'color' => 'required',
@@ -115,7 +115,7 @@ class PetController extends Controller
                 $file->move($destinationPath, $image);
                 $params['image'] = $image;
             }
-            $params['pet_category_id'] = 1;
+            $params['pet_category_id'] = 2;
             $params['user_id'] = Auth::user()->id;
             $pet = Pet::find($id)->update($params);
             if($pet) {

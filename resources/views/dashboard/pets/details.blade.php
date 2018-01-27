@@ -35,7 +35,7 @@
             
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/create') }}" method="post">
+            <form role="form" action="{{ url('dashboard/pets/update/'. $pet->id) }}" method="post">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
@@ -46,11 +46,11 @@
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Birth Date</label>
-                            <input type="date" name="birth_date" id="birth_date" class="form-control">
+                            <input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $pet->birth_date }}">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age" class="form-control" value="{{ $pet->age }}" readonly>
+                            <input type="text" name="age" class="form-control" value="{{ $pet->age }}" readonly>
                             </div>
                             <div class="form-group">
                             <label>Gender</label>

@@ -135,8 +135,44 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $params = $request->all();
+        
+        $validator = Validator::make($params, [
+            'name' => 'required',
+            'age' => 'required',
+            'gender' => 'required',
+            'breed' => 'required',
+            'color' => 'required',
+            // 'image' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/dashboard/pets/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $destinationPath = public_path('images');
+                if (!File::exists($destinationPath)) {
+                    $fileDir = File::makeDirectory('images');
+                }
+                $image = $file->getClientOriginalName();
+                $file->move($destinationPath, $image);
+                $params['image'] = $image;
+            }
+            $params['pet_category_id'] = 1;
+            $params['user_id'] = Auth::user()->id;
+            $pet = Pet::find($id)->update($params);
+            if($pet) {
+                session()->flash('message', 'Pet updated...');
+                return redirect('/dashboard/pets');
+            } else {
+                return redirect('/dashboard/pets/' .$id);
+            }
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
 
     Route::get('pets/create', 'PetController@create');
     Route::post('pets/create', 'PetController@store');
+    Route::post('pets/update/{id}', 'PetController@update');
     Route::get('pets/schedules', 'PetController@schedules');
     Route::post('pets/schedules/create', 'PetController@createPetService');
     Route::get('pets/{id}', 'PetController@show');
