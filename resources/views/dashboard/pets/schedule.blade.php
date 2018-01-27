@@ -35,9 +35,8 @@
                     
 					<tbody>
 						@foreach($pets as $pet)
-                            @if(!isset($pet->impound)) 
+                            @if(!isset($pet->impound) && $pet->is_accepted == 1)
                             <tr>
-                                
                                 <td><img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto"></td>
                                 <td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
                                 <td>{{ $pet->breed->name }}</td>
