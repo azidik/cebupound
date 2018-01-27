@@ -111,7 +111,7 @@
 					if(response.status){
 						toastr.success('Pet was successfully impounded. Thank you!');
 						location.reload();
-					} else {
+					} else {	
 						toastr.error('Something went wrong!');
 						location.reload();
 					}
