@@ -135,7 +135,7 @@ class PetController extends Controller
 
     public function schedules($id)
     {
-        $pets = Pet::with('service')->where('user_id', $id)->get();
+        $pets = Pet::with('service', 'impound')->where('user_id', $id)->get();
         // return $pets;
         $services = Service::all();
 
