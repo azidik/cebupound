@@ -32,9 +32,9 @@ class ServiceController extends Controller
         $serviceSchedule->save();
         // return $serviceSchedule;
         if($serviceSchedule){    
-            if(isset($serviceSchedule->pet->user->device_token) != NULL) {
-                $this->sendNotification($serviceSchedule);
-            }
+            // if(isset($serviceSchedule->pet->user->device_token) != NULL) {
+            //     $this->sendNotification($serviceSchedule);
+            // }
             
             $response = [
                 'status' => 1
