@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Pet;
 use App\PetType;
 use Validator;
+use App\Impound;
 use Auth;
 use Illuminate\Support\Facades\File;
 
@@ -80,6 +81,11 @@ class PetController extends Controller
             $params['is_accepted'] = 1;
             $pet = Pet::create($params);
             if($pet) {
+                $params['pet_id'] = $pet->id;
+                $params['surrendered_at'] = date('Y-m-d H:i:s');
+                $params['is_accepted'] = 1;
+                $params['reason'] = '';
+                $impoundings = Impound::create($params);
                 session()->flash('message', 'Pet Created...');
                 return redirect('/dashboard/admin/pets');
             } else {

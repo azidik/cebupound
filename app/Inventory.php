@@ -14,16 +14,16 @@ class Inventory extends Model
 
     public function pettype()
     {
-    	return $this->belongsTo('App/PetType', 'pet_type_id');
+    	return $this->belongsTo('App\PetType', 'pet_type_id');
     }
 
     public function inventorytype()
     {
-    	return $this->belongsTo('App/InventoryType', 'inventory_type_id');
+    	return $this->belongsTo('App\InventoryType', 'inventory_type_id');
     }
 
     public function categorytype()
     {
-        return $this->belongsTo('App/FoodCategory', 'food_category_id');
+        return $this->belongsTo('App\FoodCategory', 'food_category_id');
     }
 }

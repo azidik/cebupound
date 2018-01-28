@@ -58,14 +58,16 @@ class ReportController extends Controller
 
     public function foodList()
     {   
-        $inventories = Inventory::all();
+        $inventories = Inventory::where('inventory_type_id', 1)->get();
+
+        // return $inventories;
 
         return view('dashboard.admin.reports.food.list', compact('inventories'));
     }
 
     public function medicineList()
     {   
-        $inventories = Inventory::all();
+        $inventories = Inventory::where('inventory_type_id', 2)->get();
 
         return view('dashboard.admin.reports.medicine.list', compact('inventories'));
     }
@@ -108,7 +110,7 @@ class ReportController extends Controller
             $inventory = Inventory::create($params);
             if($inventory) {
                 session()->flash('message', 'Invetory food created...');
-                return redirect('/dashboard/admin/reports/food');
+                return redirect('/dashboard/admin/inventory/foodList');
             } else {
                 return redirect('/dashboard/admin/reports/food/create');
             }
@@ -136,7 +138,7 @@ class ReportController extends Controller
             $inventory = Inventory::create($params);
             if($inventory) {
                 session()->flash('message', 'Invetory medicine created...');
-                return redirect('/dashboard/admin/reports/medicineList');
+                return redirect('/dashboard/admin/inventory/medicineList');
             } else {
                 return redirect('/dashboard/admin/reports/createFood');
             }

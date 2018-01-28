@@ -33,9 +33,10 @@
 							<th>Breed</th>
 							<th>Color</th>
 							<th>Type</th>
+                            <th>Category</th>
                             <th>Impounded By</th>
 							<th>Status</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -54,6 +55,7 @@
                                 <td>{{ $impound['pet']['breed']['name'] }}</td>
                                 <td>{{ $impound['pet']['color'] }}</td>
                                 <td>{{ $impound['pet']['type']['name'] }}</td>
+                                <td>{{ $impound['pet']['category']['name'] }}</td>
                                 <td>{{ $impound['pet']['user']['first_name'] }}</td>
                                 @if($impound['is_accepted'] == 0) 
                                     <td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
@@ -62,7 +64,7 @@
                                 @elseif($impound['is_accepted'] == 2)
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @endif		
-                                <td><a href="{{ url('dashboard/admin/pets/pdf/impound/'. $impound['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
+                                <!-- <td><a href="{{ url('dashboard/admin/pets/pdf/impound/'. $impound['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td> -->
                             </tr>
 						@endforeach
 					</tbody>

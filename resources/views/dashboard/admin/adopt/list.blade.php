@@ -35,7 +35,7 @@
 							<th>Type</th>
                             <th>Adopted By</th>
 							<th>Status</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -62,7 +62,7 @@
                                 @else
                                     <td><small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small></td>
                                 @endif		
-                                <td><a href="{{ url('dashboard/admin/pets/pdf/adopt/'. $adopt->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
+                                <!-- <td><a href="{{ url('dashboard/admin/pets/pdf/adopt/'. $adopt->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td> -->
                             </tr>
 						@endforeach
 					</tbody>

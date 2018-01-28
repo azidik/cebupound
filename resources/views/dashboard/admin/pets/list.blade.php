@@ -38,7 +38,7 @@
 							<th>Type</th>
 							<th>Category</th>
 							<th>Owner</th>
-							<th>Action</th>
+							<!-- <th>Action</th> -->
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -85,7 +85,7 @@
 								<td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
 								@endif
 							@endif
-							<td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td>
+							<!-- <td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td> -->
 						</tr>
 						@endforeach
 					</tbody>
