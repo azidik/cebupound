@@ -138,10 +138,16 @@ class PetController extends Controller
         $pets = Pet::with('service', 'impound')->where('user_id', $id)->get();
         // return $pets;
         $services = Service::all();
+        $data = [];
+        foreach ($pets as $key => $pet) {
+            if(!isset($pet->impound)) {
+                $data[] = $pet;
+            }
+        }
 
         $response = [
             'services' => $services,
-            'pets' => $pets
+            'pets' => $data
         ];
 
         return $response;
