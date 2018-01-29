@@ -50,7 +50,7 @@
 									<img src="{{ asset('/images/' . $adopt->impound->pet->image)}}" width="50" height="auto">
 								@endif
 							</td>
-							<td><a href="{{ url('/dashboard/pets/'. $adopt->impound->id) }}">{{ $adopt->impound->pet->name }}</a></td>
+							<td>{{ $adopt->impound->pet->name }}</td>
 							<td>{{ $adopt->impound->pet->age }}</td>
 							<td>{{ $adopt->impound->pet->gender }}</td>
 							<td>{{ $adopt->impound->pet->breed->name }}</td>
@@ -59,6 +59,8 @@
 							<td>
                                 @if($adopt->is_accepted == 1)
                                     <small class="label label-success"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
+                                @elseif($adopt->is_accepted == 0)
+                                	<small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small>
                                 @else
                                     <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>
                                 @endif
