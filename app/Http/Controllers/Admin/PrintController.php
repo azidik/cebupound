@@ -76,6 +76,8 @@ class PrintController extends Controller
                     $d->where('pet_category_id', $request->category);
                 } else if($request->category != 'all' && $request->type != 'all'){
                     $d->where('pet_category_id', $request->category)->where('pet_type_id', $request->type);
+                } else {
+                    $d->all();
                 }
             });
         })->get();
