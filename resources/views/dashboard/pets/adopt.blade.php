@@ -57,7 +57,7 @@
 							<td>{{ $adopt->impound->pet->color }}</td>
 							<td>{{ $adopt->impound->pet->type->name }}</td>		
 							<td>
-                                @if($adopt->is_accepted) 
+                                @if($adopt->is_accepted == 1)
                                     <small class="label label-success"><i class="fa fa-thumbs-o-up"></i> Adopted</small>
                                 @else
                                     <small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small>

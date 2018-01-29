@@ -144,7 +144,7 @@ class PetController extends Controller
                 $data[] = $pet;
             }
         }
-
+        
         $response = [
             'services' => $services,
             'pets' => $data
