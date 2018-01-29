@@ -22,6 +22,7 @@
             <div class="box-header">
 				<dic class="row">
 					@foreach($available_adoptions as $available_adoption)
+						@if(!isset($available_adoption->adopt))
 							<div class="col-md-3">
 								<div class="box-body box-profile" style="border: 1px solid #eee">
 									@if(isset($available_adoption['pet']['image_mobile']) != NULL)
@@ -59,6 +60,7 @@
 									
 								</div>
 							</div>
+						@endif
 					@endforeach
 				</div>
 			</div>
