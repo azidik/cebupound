@@ -33,7 +33,7 @@ class ReportController extends Controller
             });
         })->get();
 
-        // return $impound_pets_count_sheltered;
+        // return $impound_pets_count_stray;
         $impound_pets_count_stray = Impound::whereHas('pet', function($pet) {
             $pet->whereHas('category', function ($query) {
                 $query->where('id', 2);
@@ -94,7 +94,7 @@ class ReportController extends Controller
     public function createDonor(Request $request)
     {
         $donors = Donor::all();
-        return view('dashboard.admin.reports.donor.create');
+        return view('dashboard.admin.reports.donor.create', compact('donors'));
     }
 
     public function storeFood(Request $request)
@@ -179,6 +179,63 @@ class ReportController extends Controller
         }   
     }
 
+    public function updateFood(Request $request, $id)
+    {
+        $params = $request->all();
+        
+        $validator = Validator::make($params, [
+            'name' => 'required',
+            'stock_in' => 'required|numeric',
+            'expiry_date' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/dashboard/admin/inventory/foodList/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+            $params['pet_type_id'] = 1;
+            $params['stock_out'] = 0;
+            $params['inventory_type_id'] = 1;
+            $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
+            $inventory = Inventory::find($id)->update($params);
+            if($inventory) {
+                session()->flash('message', 'Food updated...');
+                return redirect('/dashboard/admin/inventory/foodList');
+            } else {
+                return redirect('/dashboard/admin/inventory/foodList/' .$id);
+            }
+        }
+
+     public function updateMedicine(Request $request, $id)
+    {
+        $params = $request->all();
+        
+        $validator = Validator::make($params, [
+            'name' => 'required',
+            'stock_in' => 'required|numeric',
+            'expiry_date' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/dashboard/admin/inventory/medicineList/'.$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+            $params['pet_type_id'] = 1;
+            $params['stock_out'] = 0;
+            $params['inventory_type_id'] = 1;
+            $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
+            $inventory = Inventory::find($id)->update($params);
+            if($inventory) {
+                session()->flash('message', 'Medicine updated...');
+                return redirect('/dashboard/admin/inventory/medicineList');
+            } else {
+                return redirect('/dashboard/admin/inventory/medicineList/' .$id);
+            }
+        }
+
+        
     public function checkReport($barangayId, $report_name)
     {   
         switch ($report_name) {

@@ -35,13 +35,13 @@
 							<th>Expiry Date</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody> 
 						@foreach($inventories as $inventory)
 						<tr>
-							<td>{{ $inventory->mcategorytype->name }}</td>
+							<td>{{ $inventory['mcategorytype']['name'] }}</td>
 							<td>{{ $inventory->name }}</td>
 							<td>{{ $inventory->description }}</td>
-							<td>{{ $inventory->stock_in }}</td>	
+							<td><a href="{{ url('/dashboard/admin/inventory/medicineList/'. $inventory->id) }}">{{ $inventory->stock_in }}</a></td>
 							<td>{{ $inventory->expiry_date}}</td>
 						@endforeach
 					</tbody>
