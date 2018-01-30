@@ -190,7 +190,7 @@ class PetController extends Controller
             $data[] = $data;
         }
 
-        return $notifications;
+        return $data;
     }
     public function histories($id)
     {
