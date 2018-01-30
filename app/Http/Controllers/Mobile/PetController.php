@@ -141,6 +141,7 @@ class PetController extends Controller
         $data = [];
         foreach ($pets as $key => $pet) {
             if(!isset($pet->impound)) {
+                $data['created_at'] = date('Y-m-d', strtotime($pet->created_at)) . '9AM - 4PM';
                 $data[] = $pet;
             }
         }
