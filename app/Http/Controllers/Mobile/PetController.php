@@ -185,9 +185,9 @@ class PetController extends Controller
         $notifications = Notification::where('user_id', $id)->get();
         $data = [];
         foreach ($notifications as $key => $notification) {
-            $data['created_at'] = date('Y-m-d', strtotime($notification->created_at)) . ' 9AM - 4PM';
-            $data['message'] = $notification->message;
-            $data[] = $data;
+            $arr['created_at'] = date('Y-m-d', strtotime($notification->created_at)) . ' 9AM - 4PM';
+            $arr['message'] = $notification->message;
+            $data[] = $arr;
         }
 
         return $data;
