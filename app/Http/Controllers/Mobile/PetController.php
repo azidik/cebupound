@@ -130,7 +130,18 @@ class PetController extends Controller
     public function mypets($userId)
     {
         $pets = Pet::with('type')->where('user_id', $userId)->get();
-        return $pets;
+
+        $data = [];
+
+        foreach ($pets as $key => $pet) {
+            if(isset($pet->impound))
+                $pet['is_impound'] = 1;
+            else
+                $pet['is_impound'] = 0;
+            
+            $data[] = $pet;
+        }
+        return $data;
     }
 
     public function schedules($id)
