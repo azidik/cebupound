@@ -16,6 +16,7 @@ use App\User;
 use App\Adopt;
 use App\Question;
 use App\Barangay;
+use App\Donor;
 use Validator;
 
 
@@ -59,17 +60,19 @@ class ReportController extends Controller
     public function foodList()
     {   
         $inventories = Inventory::where('inventory_type_id', 1)->get();
-
-        // return $inventories;
-
         return view('dashboard.admin.reports.food.list', compact('inventories'));
     }
 
     public function medicineList()
     {   
         $inventories = Inventory::where('inventory_type_id', 2)->get();
-
         return view('dashboard.admin.reports.medicine.list', compact('inventories'));
+    }
+
+    public function donorList()
+    {   
+        $donors = Donor::all();
+        return view('dashboard.admin.reports.donor.list', compact('donors'));
     }
 
     public function createFood(Request $request)
@@ -88,6 +91,12 @@ class ReportController extends Controller
         return view('dashboard.admin.reports.medicine.create', compact('types', 'categories'));
     }
     
+    public function createDonor(Request $request)
+    {
+        $donors = Donor::all();
+        return view('dashboard.admin.reports.donor.create');
+    }
+
     public function storeFood(Request $request)
     {
         $params = $request->all();
@@ -109,7 +118,7 @@ class ReportController extends Controller
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
             $inventory = Inventory::create($params);
             if($inventory) {
-                session()->flash('message', 'Invetory food created...');
+                session()->flash('message', 'Inventory food created...');
                 return redirect('/dashboard/admin/inventory/foodList');
             } else {
                 return redirect('/dashboard/admin/reports/food/create');
@@ -127,20 +136,45 @@ class ReportController extends Controller
         ]);
 
         if($validator->fails()) {
-            return redirect('/dashboard/admin/reports/createMedicine')
+            return redirect('/dashboard/admin/inventory/createMedicine')
                 ->withErrors($validator)
                 ->withInput();
         } else {
             $params['pet_type_id'] = 1;
             $params['stock_out'] = 0;
-            $params['inventory_type_id'] = 3;
+            $params['inventory_type_id'] = 2;
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
             $inventory = Inventory::create($params);
             if($inventory) {
-                session()->flash('message', 'Invetory medicine created...');
+                session()->flash('message', 'Inventory medicine created...');
                 return redirect('/dashboard/admin/inventory/medicineList');
             } else {
-                return redirect('/dashboard/admin/reports/createFood');
+                return redirect('/dashboard/admin/reports/medicine/create');
+            }
+        }   
+    }
+
+     public function storeDonor(Request $request)
+    {
+        $params = $request->all();
+        
+        $validator = Validator::make($params, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'contact_no' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/dashboard/admin/inventory/createDonor')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $inventory = Inventory::create($params);
+            if($inventory) {
+                session()->flash('message', 'Invetory donor created...');
+                return redirect('/dashboard/admin/inventory/donorList');
+            } else {
+                return redirect('/dashboard/admin/reports/donor/create');
             }
         }   
     }

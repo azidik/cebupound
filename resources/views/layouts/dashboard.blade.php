@@ -183,8 +183,21 @@
                 <li class="active"><a href="{{ url('/dashboard/admin/inventory/createMedicine')}}"><i class="fa fa-circle-o"></i>Create</a></li>
               </ul>
             </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-history"></i> <span>Donors</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
+                <li class="active"><a href="{{ url('/dashboard/admin/inventory/donorList')}}"><i class="fa fa-circle-o"></i> List</a></li>
+                <li class="active"><a href="{{ url('/dashboard/admin/inventory/createDonor')}}"><i class="fa fa-circle-o"></i>Create</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
+
         
         @else
           <li class="treeview">

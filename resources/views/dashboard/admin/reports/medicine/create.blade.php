@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" required="">
+                                <input type="text" name="name"class="form-control" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="stock_in">Quantity</label>
-                                <input type="number" name="stock_in"class="form-control" required="">
+                                <input type="number" name="stock_in" class="form-control" required="">
                             </div>
                             <div class="form-group">
                                 <label for="expiry">Expiry Date</label>

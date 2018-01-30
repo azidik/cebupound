@@ -28,7 +28,6 @@
 				<table id="example" class="display" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Type</th>
 							<th>Category</th>
 							<th>Name</th>
 							<th>Description</th>
@@ -39,8 +38,7 @@
 					<tbody>
 						@foreach($inventories as $inventory)
 						<tr>
-							<td>{{ $inventory->inventorytype->name }}</td>
-							<td>{{ $inventory->categorytype->name }}</td>
+							<td>{{ $inventory->fcategorytype->name }}</td>
 							<td>{{ $inventory->name }}</td>
 							<td>{{ $inventory->description }}</td>
 							<td>{{ $inventory->stock_in }}</td>	
