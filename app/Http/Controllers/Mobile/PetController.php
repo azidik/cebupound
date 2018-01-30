@@ -186,7 +186,8 @@ class PetController extends Controller
         $data = [];
         foreach ($notifications as $key => $notification) {
             $data['created_at'] = date('Y-m-d', strtotime($notification->created_at)) . '9AM - 4PM';
-            $data[] = $notification;
+            $data['message'] = $notifications->message;
+            $data[] = $data;
         }
 
         return $notifications;
