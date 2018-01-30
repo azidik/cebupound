@@ -139,6 +139,11 @@ class PetController extends Controller
             else
                 $pet['is_impound'] = 0;
             
+            if(isset($pet->impound->adopt))
+                $pet['is_adopted'] = 1;
+            else
+                $pet['is_adopted'] = 0;
+            
             $data[] = $pet;
         }
         return $data;
