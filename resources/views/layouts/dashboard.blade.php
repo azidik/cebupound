@@ -108,11 +108,6 @@
             <li><a href="{{ url('/dashboard/admin/impoundRequest') }}"><i class="fa fa-circle-o"></i> Request <small class="label pull-right bg-green">{{ \App\Impound::where('is_accepted', 0)->count() }}</small></a></li>
           </ul>
         </li>
-        <!-- <li class="\\">
-          <a href="{{ url('/dashboard/admin/impoundRequest') }}">
-            <i class="fa fa-dashboard"></i> <span>Impound Request</span>
-          </a>
-        </li> -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-history"></i> <span>Adoptions</span>

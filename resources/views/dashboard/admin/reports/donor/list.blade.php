@@ -36,7 +36,7 @@
 					<tbody>
 						@foreach($donors as $donor)
 						<tr>
-							<td>{{ $donor['last_name'] }} {{ $donor['first_name'] }}</td>
+							<td>{{ $donor->last_name . $donor->first_name }}</td>
 							<td>{{ $donor->contact_no }}</td>
 							<td>{{ $donor->company_name }}</td>
 						@endforeach

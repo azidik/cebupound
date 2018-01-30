@@ -212,4 +212,17 @@ class ReportController extends Controller
         return $count;
 
     }
+
+      public function petReport($barangayId)
+    {   
+        $reports = User::where('pet_id', $pet_id)->get();
+        $count = 0;
+        foreach ($reports as $report) {
+            if($report->pet->user->barangay->id == $barangayId) {
+                $count++;
+            }
+        }
+        return $count;
+
+    }
 }
