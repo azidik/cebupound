@@ -141,7 +141,6 @@ class PetController extends Controller
         $data = [];
         foreach ($pets as $key => $pet) {
             if(!isset($pet->impound)) {
-                $data['created_at'] = date('Y-m-d', strtotime($pet->created_at)) . '9AM - 4PM';
                 $data[] = $pet;
             }
         }
@@ -184,6 +183,11 @@ class PetController extends Controller
     public function notifications($id)
     {
         $notifications = Notification::where('user_id', $id)->get();
+        $data = [];
+        foreach ($notifications as $key => $notification) {
+            $data['created_at'] = date('Y-m-d', strtotime($notification->created_at)) . '9AM - 4PM';
+            $data[] = $notification;
+        }
 
         return $notifications;
     }
