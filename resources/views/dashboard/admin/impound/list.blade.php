@@ -20,6 +20,23 @@
     <!-- <a href="{{ url('dashboard/admin/pets/pdf/impoundAll/dogs') }}" target="_blank" class="btn btn-primary btn-sm pull-right">Print All Dogs</a>
     <a href="{{ url('dashboard/admin/pets/pdf/impoundAll/cats') }}" target="_blank" class="btn btn-primary btn-sm pull-right" style="margin-right: 10px;">Print All Cats</a>
     <br> -->
+    <form action="{{ url('/dashboard/admin/impoundList') }}" method="GET">
+        Select barangay:
+        <select class="form-control" name="barangay_id" id="report_select_barangay_spay">
+            @foreach($barangays as $barangay)
+            <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+            @endforeach
+        </select>
+        Select Category:
+        <!-- <input type="hidden" name="service_id" value="3"> -->
+        <select class="form-control" name="category">
+            <option value="1">Sheltered</option>
+            <option value="2">Stray</option>
+            <option value="all">All</option>
+        </select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
     <br>
 		<div class="box box-primary">
             <div class="box-header">
