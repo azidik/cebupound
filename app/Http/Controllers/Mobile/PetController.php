@@ -33,22 +33,18 @@ class PetController extends Controller
         if($validator->fails()) {
             return $validator->errors();
         } else {
-            // Log::info($params);
-            // if ($request->hasFile('image')) {
-            //     $file = $request->file('image');
-            //     $destinationPath = public_path('images');
-            //     if (!File::exists($destinationPath)) {
-            //         $fileDir = File::makeDirectory('images');
-            //     }
-            //     $image = $file->getClientOriginalName();
-            //     $file->move($destinationPath, $image);
-            //     $params['image'] = $image;
-            // }
+            $file_data = $request->input('image');
+            $file_name = 'image_'.time().'.png'; 
+            @list($type, $file_data) = explode(';', $file_data);
+            @list(, $file_data) = explode(',', $file_data); 
+            if($file_data!="")
+                \Storage::disk('public')->put($file_name,base64_decode($file_data));
+
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
             $params['is_accepted'] = 0;
             $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
-            $params['image_mobile'] = $params['image_mobile'];
+            $params['image'] = $file_name;
             $pet = Pet::create($params);
             if($pet) {
                 History::create([
