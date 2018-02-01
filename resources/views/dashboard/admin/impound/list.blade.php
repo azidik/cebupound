@@ -52,6 +52,7 @@
 							<th>Type</th>
                             <th>Category</th>
                             <th>Impounded By</th>
+                            <th>Reason for Impounding</th>
 							<th>Status</th>
                             <!-- <th>Action</th> -->
 						</tr>
@@ -74,6 +75,7 @@
                                 <td>{{ $impound['pet']['type']['name'] }}</td>
                                 <td>{{ $impound['pet']['category']['name'] }}</td>
                                 <td>{{ $impound['pet']['user']['first_name'] }}</td>
+                                <td>{{ $impound['reason'] }}</td>
                                 @if($impound['is_accepted'] == 0) 
                                     <td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
                                 @elseif($impound['is_accepted'] == 1)

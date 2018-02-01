@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
 	<h1>
-		Medicine
+		Donor
 		<small>List</small>
 	</h1>
 	@if(session()->has('message'))
@@ -15,7 +15,7 @@
     @endif
     <ol class="breadcrumb">
         <li>Dashboard</li>
-        <li class="active">Medicine List</li>
+        <li class="active">Donor List</li>
     </ol>
 	</section>	
     <!-- Main content -->
@@ -28,21 +28,17 @@
 				<table id="example" class="display" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Category</th>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Quantity</th>
-							<th>Expiry Date</th>
+							<th>Full name</th>
+							<th>Contact no</th>
+							<th>Company Name</th>
 						</tr>
 					</thead>
-					<tbody> 
-						@foreach($inventories as $inventory)
+					<tbody>
+						@foreach($donors as $donor)
 						<tr>
-							<td>{{ $inventory['mcategorytype']['name'] }}</td>
-							<td>{{ $inventory->name }}</td>
-							<td>{{ $inventory->description }}</td>
-							<td><a href="{{ url('/dashboard/admin/inventory/medicineList/'. $inventory->id) }}">{{ $inventory->stock_in }}</a></td>
-							<td>{{ $inventory->expiry_date}}</td>
+							<td>{{ $donor->lastname }} , {{ $donor->firstname }}</td>
+							<td>{{ $donor->contact_no }}</td>
+							<td>{{ $donor->company_name }}</td>
 						@endforeach
 					</tbody>
 				</table>
