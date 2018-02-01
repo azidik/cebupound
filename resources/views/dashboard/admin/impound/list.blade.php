@@ -24,7 +24,7 @@
         Select barangay:
         <select class="form-control" name="barangay_id" id="report_select_barangay_spay">
             @foreach($barangays as $barangay)
-            <option value="{{$barangay->id}}">{{$barangay->description}}</option>
+            <option value="{{$barangay->id}}" {{ ($barangay->id == 72217029) ? 'selected': ''}}>{{$barangay->description}}</option>
             @endforeach
         </select>
         Select Category:

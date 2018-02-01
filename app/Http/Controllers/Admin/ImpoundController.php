@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Impound;
-use  App\Barangay;
+use App\Barangay;
+use App\User;
 
 class ImpoundController extends Controller
 {
@@ -52,11 +53,28 @@ class ImpoundController extends Controller
         return $response;
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $impounds = Impound::all();
-
         $barangays = Barangay::where('city_id', 72217)->get();
+
+        $users = User::where('barangay_id', $request->input('barangay_id'))->get();
+        $impounds = [];
+        foreach ($users as $key => $user) {
+            foreach ($user->pet as $key => $pet) {
+                if($pet->pet_category_id == $request->input('category')){
+                    if(isset($pet->impound)){
+                        $impounds[] = $pet->impound;
+                    }
+                } else{
+                    if(isset($pet->impound)){
+                        $impounds[] = $pet->impound;
+                    }
+                   
+                }
+            }
+        }
+        
+        $impounds = (object) $impounds;
 
         return view('dashboard.admin.impound.list', compact('impounds', 'barangays'));
     }
