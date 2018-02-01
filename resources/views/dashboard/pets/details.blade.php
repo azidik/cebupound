@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Birth Date</label>
-                            <input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $pet->birth_date }}">
+                            <input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $pet->birth_date }}" readonly>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
-                            <select class="form-control" name="gender">
+                            <select class="form-control" name="gender" disabled>
                                 <option value="Male" {{$pet->gender == 'Male'}} ?? 'selected' : ''>Male</option>
                                 <option value="Female" {{$pet->gender == 'Female'}} ?? 'selected' : ''>Female</option>
                             </select>
@@ -69,15 +69,17 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}">
+                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}" readonly>
                             </div>
                             <div class="form-group">
                             <label >Color</label>
-                            <input type="text" name="color" class="form-control" value="{{ $pet->color }}">
+                            <input type="text" name="color" class="form-control" value="{{ $pet->color }}" readonly>
                             </div>
                             <div class="form-group">
                             <label>Type</label>
-                            <select class="form-control" name="pet_type_id">
+                            <input type="hidden" name="gender" value="{{ $pet->gender }}">
+                            <input type="hidden" name="pet_type_id" value="{{ $pet->pet_type_id }}">
+                            <select class="form-control" name="pet_type_id" disabled>
                                 @foreach($types as $type)
                                 <option value="{{$type->id}}" {{$pet->pet_type_id == $type->id}} ?? 'selected' : ''>{{$type->name}}</option>
                                 @endforeach
