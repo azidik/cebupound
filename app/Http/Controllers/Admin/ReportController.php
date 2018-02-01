@@ -260,13 +260,13 @@ class ReportController extends Controller
         }
 
         $reports = PetService::where('service_id', $service_id)->get();
-        $count = 0;
+
         foreach ($reports as $report) {
             if($report->pet->user->barangay->id == $barangayId) {
-                $count++;
+                return $report->pet->count(); 
             }
         }
-        return $count;
+        return 0;
 
     }
 
