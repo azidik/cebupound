@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- <div>Passing Rate Percentage: <input type="text" class="form-control" name="passing_rate" placeholder="Passing percentage" value="{{ $passing_rate }}" style="width: 10%"></div> -->
-                            <div>Minutes: <input type="text" class="form-control" name="minutes" placeholder="Minutes" value="{{ $minutes }}" style="width: 10%"></div>
+                            <div>Minutes: <input type="text" class="form-control" name="minutes" placeholder="Minutes" value="{{ $minutes }}" style="width: 10%" disabled></div>
                             <!-- <div>Allow question to create: <input type="text" class="form-control" name="allow" placeholder="Allow questions to create" value="{{ $allow }}" style="width: 10%"></div> -->
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
@@ -67,9 +67,9 @@
                                                         @foreach($question->answers as $answer)
                                                             <div class="input-group">
                                                                     <span class="input-group-addon">
-                                                                    <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}" {{ $answer->is_correct ? 'checked' : '' }}>
+                                                                    <input type="radio" name="{{ $question->id }}" disabled value="{{ $answer->id }}" {{ $answer->is_correct ? 'checked' : '' }} >
                                                                     </span>
-                                                                <input type="text" class="form-control" name="answer[{{$answer->id}}]" value="{{ $answer->name }}">
+                                                                <input type="text" class="form-control" disabled name="answer[{{$answer->id}}]" value="{{ $answer->name }}">
                                                             </div>
                                                         @endforeach
                                                         <!-- <div class="box-footer"> -->
@@ -87,9 +87,9 @@
                 </div>
                 <!-- /.box-body -->
 
-                <div class="box-footer">
+                <!-- <div class="box-footer">
                     <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
+                </div> -->
             </form>
         </div>
     </section>
