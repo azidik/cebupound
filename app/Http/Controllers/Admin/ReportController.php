@@ -282,4 +282,17 @@ class ReportController extends Controller
         return $count;
 
     }
+
+    public function getPetPerBarangay($id)
+    {
+        $users = User::where('barangay_id', $id)->get();
+
+        // return $users;
+        if(count($users) > 0) {
+            foreach ($users as $user) {
+                return (count($user->pet->count())) > 0 ? $user->pet->count() : 0;
+            }
+        }
+        return 0;
+    }
 }

@@ -84,17 +84,16 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <!-- <h3>{{ $medicines->count() }}</h3> -->
-
+              <h3 id="pet_barangay_result"></h3>
               <p>Pet's Count</p>
-                  {{ csrf_field() }}
                  Select barangay:
-                  <select class="form-control" name="barangay_id" id="">
+                  <select class="form-control" name="barangay_id" id="barangay_id">
                   @foreach($barangays as $barangay)
                     <option value="{{$barangay->id}}">{{$barangay->description}}</option>
                   @endforeach
                   </select>
                   <br>
-                  <button class="btn btn-primary">Count</button>
+                  <button class="btn btn-primary" id="pet_per_barangay_count">Count</button>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -461,6 +460,18 @@
 				type: "GET",
 				url: '/dashboard/admin/pets/pdf/registered/'+pet_category_id+'/'+pet_type_id,
 				success: function(response) {
+          console.log(response);
+				}
+			});
+    });
+
+    $('#pet_per_barangay_count').click(function () {
+      var barangay_id = $('#barangay_id').val();
+      $.ajax({
+				type: "GET",
+				url: '/dashboard/admin/pets/barangay/' + barangay_id,
+				success: function(response) {
+          $('#pet_barangay_result').text(response);
           console.log(response);
 				}
 			});

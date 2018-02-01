@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::post('inventory/update/{id}', 'Admin\ReportController@updateMedicine');
         Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::get('inventory/report/{barangay_id}/{reportName}', 'Admin\ReportController@checkReport');
+        Route::get('pets/barangay/{id}', 'Admin\ReportController@getPetPerBarangay');
     });
 });
 

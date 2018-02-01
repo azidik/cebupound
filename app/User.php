@@ -32,8 +32,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Barangay', 'barangay_id');
     }
 
-    public function user()
+    public function pet()
     {
-        return $this->hasMany('App\Pet', 'user_id');
+        return $this->hasMany('App\Pet');
     }
 }
