@@ -43,6 +43,7 @@ class PetController extends Controller
     public function impound()
     {
         $pets = Pet::where('user_id', Auth::user()->id)->get();
+
         return view('dashboard.pets.impound', compact('pets'));
     }
 
@@ -279,7 +280,10 @@ class PetController extends Controller
         $pets = Pet::with('service')->where('user_id', Auth::user()->id)->get();
         // return $pets;
         $services = Service::all();
-        return view('dashboard.pets.schedule', compact('pets', 'services'));
+
+        $adopts = Adopt::where('adopted_by', Auth::user()->id)->get();
+
+        return view('dashboard.pets.schedule', compact('pets', 'services', 'adopts'));
     }
 
     public function createPetService(Request $request)

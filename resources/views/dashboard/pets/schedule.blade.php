@@ -63,6 +63,34 @@
                             </tr>
                             @endif
 						@endforeach
+
+                        @foreach($adopts as $adopt)
+                            <tr>
+                                <td>
+                                    @if(isset($adopt->impound->pet->image_mobile) != NULL)
+                                        <img src="{{ $adopt->impound->pet->image_mobile }}" width="50" height="auto">
+                                    @else
+                                        <img src="{{ asset('/images/' . $adopt->impound->pet->image) }}" width="50" height="auto">
+                                    @endif
+                                </td>
+                                <td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
+                                <td>{{ $adopt->impound->pet->breed->name }}</td>
+                                <td>{{ $adopt->impound->pet->type->name }}</td>
+                                <td>
+                                    @foreach($adopt->impound->pet->service as $service)
+                                        {{ $service->name }}
+                                        <br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($adopt->impound->pet->service as $service)
+                                        {{ $service->pivot->schedule }}
+                                        <br>
+                                    @endforeach
+                                </td>
+                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $adopt->impound->pet->id }}" data-target="#modal-default">Request Schedule</button>
+                            </tr>
+                        @endforeach
 					</tbody>
 				</table>
                 <div class="modal fade" id="modal-default">
