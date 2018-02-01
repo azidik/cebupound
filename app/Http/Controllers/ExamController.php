@@ -22,9 +22,8 @@ class ExamController extends Controller
     public function submit(Request $request)
     {
         $params = $request->all();  
-        // return $params;
+
         $questions = Question::all();
-        $passing = PassingRate::find(1);
         $count = 0;
         foreach($params as $key => $data) {
             $answer = Answer::find($data);
@@ -32,8 +31,8 @@ class ExamController extends Controller
                 $count ++;
         }
     
-        $score = round($count * 100 / $questions->count());
-        if($score >= $passing->percent)
+        $score = $questions->count();
+        if((int) $count == (int) $score)
             $result = 'Passed';
         else
             $result = 'Failed';

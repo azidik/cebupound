@@ -147,7 +147,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li class="active"><a href="{{ url('/dashboard/admin/questionsAndAnswers') }}"><i class="fa fa-circle-o"></i> List</a></li>
-            <li><a href="{{ url('/dashboard/admin/questionsAndAnswers/create') }}"><i class="fa fa-circle-o"></i> Create </a></li>
+            <!-- <li><a href="{{ url('/dashboard/admin/questionsAndAnswers/create') }}"><i class="fa fa-circle-o"></i> Create </a></li> -->
           </ul>
         </li>
         <li class="treeview">
