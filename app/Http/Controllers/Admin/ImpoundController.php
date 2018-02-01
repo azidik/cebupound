@@ -55,6 +55,8 @@ class ImpoundController extends Controller
     {
         $impounds = Impound::all();
 
-        return view('dashboard.admin.impound.list', compact('impounds'));
+        $barangays = Barangay::where('city_id', 72217)->get();
+
+        return view('dashboard.admin.impound.list', compact('impounds', 'barangays'));
     }
 }
