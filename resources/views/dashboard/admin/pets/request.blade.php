@@ -35,31 +35,31 @@
 					</thead>
 					<tbody>
 						@foreach($pets as $pet)
-							@if($pet->is_accepted == 0)
+							@if($pet['is_accepted'] == 0)
 								<tr>
 									<td>
-									@if(isset($pet->image_mobile) != NULL)
+									@if(isset($pet['image_mobile']) != NULL)
 										<img src="{{ $pet->image_mobile }}" width="50" height="auto">
 									@else
-										<img src="{{ asset('/images/' . $pet->image)}}" width="50" height="auto">
+										<img src="{{ asset('/images/' . $pet['image'])}}" width="50" height="auto">
 									@endif
 									</td>
-									<td><a href="{{ url('/dashboard/admin/pets/'. $pet->id)}}">{{ $pet->name }}</td>
-									<td>{{ $pet->age }}</td>
-									<td>{{ $pet->gender }}</td>
-									<td>{{ $pet->breed->name }}</td>
-									<td>{{ $pet->color }}</td>
-									<td>{{ $pet->type->name }}</td>	
-									<td>{{ $pet->category->name}}</td>
+									<td><a href="{{ url('/dashboard/admin/pets/'. $pet['id'])}}">{{ $pet['name'] }}</td>
+									<td>{{ $pet['age'] }}</td>
+									<td>{{ $pet['gender'] }}</td>
+									<td>{{ $pet['breed']['name'] }}</td>
+									<td>{{ $pet['color'] }}</td>
+									<td>{{ $pet['type']['name'] }}</td>	
+									<td>{{ $pet['category']['name'] }}</td>
 									<td>{{ $pet->user['last_name'] . ', ' . $pet->user['first_name'] }}</td>
-									@if($pet->is_accepted == 1)
+									@if($pet['is_accepted'] == 1)
 										<td><button class="btn btn-info btn-xs" disabled="true">Registered</button></td>
-									@elseif($pet->is_accepted == 2)
+									@elseif($pet['is_accepted'] == 2)
 										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
 									@else
 										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $pet->id }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $pet->id }}')">Decline</button>
+											<button class="btn btn-info btn-xs" onclick="accept('{{ $pet['id'] }}')">Accept</button>
+											<button class="btn btn-danger btn-xs" onclick="decline('{{ $pet['id'] }}')">Decline</button>
 										</td>  
 									@endif		
 								</tr>
