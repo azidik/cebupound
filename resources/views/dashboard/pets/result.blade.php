@@ -34,8 +34,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <!-- <h3 class="box-title">Exam Result</h3> -->
-                <h4>Score: {{ $score }} %</h4>
-                <h4>Passing Rate: {{ $passing->percent }} %</h4>
+                <h4>Score: {{ $score }}</h4>
                 @if($result == 'Passed')
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
