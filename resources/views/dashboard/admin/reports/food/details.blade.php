@@ -37,36 +37,37 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/admin/inventory/foodList/update/'.  $inventory->id) }}" method="post">
+            <form role="form" action="{{ url('dashboard/admin/inventory/food/update') }}" method="post">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <input type="hidden" name="id" value="{{ $inventory->id }}"> 
                                 <label for="type">Type</label>
-                                <select class="form-control" name="pet_type_id" value="{{ $inventory->pet_type_id}}" disabled="true">
-                                @foreach($types as $type)
-                                <option value="{{$type->id}}" required="">{{$type->name}}</option>
-                                @endforeach
-                            </select>
+                                <select class="form-control" name="pet_type_id" value="{{ $inventory->pet_type_id}}" readonly>
+                                    @foreach($types as $type)
+                                        <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="Category">Category</label>
-                                <select class="form-control" name="food_category_id" value="{{ $inventory->food_category_id}}" disabled="true">
+                                <select class="form-control" name="food_category_id" value="{{ $inventory->food_category_id}}" readonly>
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}" required="">{{$category->name}}</option>
+                                <option value="{{$category->id}}" {{ ($category->id == $inventory->food_category_id) ? 'selected' : ''}} required="">{{$category->name}}</option>
                                 @endforeach
                             </select>
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name"class="form-control" value="{{ $inventory->name}}" disabled="true">
+                                <input type="text" name="name" class="form-control" value="{{ $inventory->name}}" readonly>
                             </div>
                         </div>
                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="description"> Description</label>
-                                <textarea type="text" class="form-control" name="description" value="{{ $inventory->description}}" disabled="true"></textarea>
+                                <textarea type="text" class="form-control" name="description" value="{{ $inventory->description }}" readonly>{{ $inventory->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="stock_in">Quantity</label>
@@ -74,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="expiry">Expiry Date</label>
-                                <input id="expiry" type="date" name="expiry_date" value="" class="form-control" value="{{ $inventory->expiry_date}}" disabled="true">
+                                <input id="expiry" type="date" name="expiry_date" class="form-control" value="{{ $inventory->expiry_date}}" readonly>
                             </div>
                         </div>
                     </div>

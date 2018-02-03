@@ -7,13 +7,13 @@
     <h1>
         Medicine
         <small>Details</small>
-	</h1>
+    </h1>
     <ol class="breadcrumb">
         <li>Dashboard</li>
         <li class="active">Medicine Details</li>
     </ol>
 
-    </section>	
+    </section>  
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -37,36 +37,37 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/admin/inventory/medicineList/update/'.  $inventory->id) }}" method="post">
+            <form role="form" action="{{ url('dashboard/admin/inventory/medicine/update') }}" method="post">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <input type="hidden" name="id" value="{{ $inventory->id }}"> 
                                 <label for="type">Type</label>
-                                <select class="form-control" name="pet_type_id" value="{{ $inventory->pet_type_id}}" disabled="true">
-                                @foreach($types as $type)
-                                <option value="{{$type->id}}" required="">{{$type->name}}</option>
-                                @endforeach
-                            </select>
+                                <select class="form-control" name="pet_type_id" value="{{ $inventory->pet_type_id}}" readonly>
+                                    @foreach($types as $type)
+                                        <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="Category">Category</label>
-                                <select class="form-control" name="medicine_category_id" value="{{ $inventory->medicine_category_id}}" disabled="true">
+                                <select class="form-control" name="medicine_category_id" readonly>
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}" required="">{{$category->name}}</option>
+                                <option value="{{$category->id}}" {{ ($category->id == $inventory->medicine_category_id) ? 'selected' : ''}} required="">{{$category->name}}</option>
                                 @endforeach
                             </select>
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name"class="form-control" value="{{ $inventory->name}}" disabled="true">
+                                <input type="text" name="name"class="form-control" value="{{ $inventory->name}}" readonly>
                             </div>
                         </div>
                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="description"> Description</label>
-                                <textarea type="text" class="form-control" name="description" value="{{ $inventory->description}}" disabled="true"></textarea>
+                                <textarea type="text" class="form-control" name="description" value="{{ $inventory->description }}" readonly>{{ $inventory->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="stock_in">Quantity</label>
@@ -74,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="expiry">Expiry Date</label>
-                                <input id="expiry" type="date" name="expiry_date" value="" class="form-control" value="{{ $inventory->expiry_date}}" disabled="true">
+                                <input id="expiry" type="date" name="expiry_date" class="form-control" value="{{ $inventory->expiry_date}}" readonly>
                             </div>
                         </div>
                     </div>
@@ -91,5 +92,5 @@
 @endsection
 
 @section('javascript')
-	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 @stop
