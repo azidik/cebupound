@@ -27,6 +27,8 @@ class ReportController extends Controller
         $clients = User::all();
         $pets = Pet::all();
         $impound_pets = Impound::all();
+
+        // count impound sheltered
         $impound_pets_count_sheltered = Impound::whereHas('pet', function($pet) {
             $pet->whereHas('category', function ($query) {
                 $query->where('id', 1);
@@ -39,6 +41,7 @@ class ReportController extends Controller
                 $query->where('id', 2);
             });
         })->get();
+
         $adopted_pets = Adopt::all();
         $questions = Question::all();
         $foods = Inventory::where('inventory_type_id', 1)->get();
@@ -46,15 +49,10 @@ class ReportController extends Controller
         $deworming = PetService::where('service_id', 1)->get();
         $treatement = PetService::where('service_id', 2)->get();
         $spray = PetService::where('service_id', 3)->get();
-        $rabies = PetService::where('service_id', 4)->get();
 
-        // foreach ($rabies as $key => $rab) {
-        //     echo $rab->pet->user->barangay->description;
-        // }
-        // return;
         $barangays = Barangay::where('city_id', 72217)->get();
         $medical = PetService::where('service_id', 5)->get();
-        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical', 'barangays', 'impound_pets_count_sheltered', 'impound_pets_count_stray'));
+        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'medical', 'barangays', 'impound_pets_count_sheltered', 'impound_pets_count_stray'));
     }
 
     public function foodList()
@@ -285,20 +283,7 @@ class ReportController extends Controller
         return 0;
 
     }
-
-      public function petReport($barangayId)
-    {   
-        $reports = User::where('pet_id', $pet_id)->get();
-        $count = 0;
-        foreach ($reports as $report) {
-            if($report->pet->user->barangay->id == $barangayId) {
-                $count++;
-            }
-        }
-        return $count;
-
-    }
-
+    // GET PET PER BARANGAY
     public function getPetPerBarangay($id)
     {
         $users = User::where('barangay_id', $id)->get();
@@ -309,6 +294,7 @@ class ReportController extends Controller
                 return (count($user->pet->count())) > 0 ? $user->pet->count() : 0;
             }
         }
+        
         return 0;
     }
 }

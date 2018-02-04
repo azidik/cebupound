@@ -41,7 +41,7 @@ class PetController extends Controller
         return view('dashboard.admin.pets.details', compact('pet', 'types'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
         $types = PetType::all();
 
@@ -54,7 +54,7 @@ class PetController extends Controller
         
         $validator = Validator::make($params, [
             'name' => 'required',
-            'age' => 'required|numeric',
+            'age' => 'required',
             'gender' => 'required',
             'breed_id' => 'required',
             'color' => 'required',

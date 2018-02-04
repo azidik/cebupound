@@ -57,25 +57,24 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('pets/accept/{id}', 'Admin\PetController@accept');
         Route::get('pets/decline/{id}', 'Admin\PetController@decline');
         Route::get('pets/request', 'Admin\PetController@request');
-        // Route::get('pets/search/{data}', 'Admin\PetController@search');
         Route::get('pets/{id}', 'Admin\PetController@show');
         Route::post('pets/update/{id}', 'Admin\PetController@update');
         Route::get('pets/pdf/impound/{id}', 'Admin\PrintController@printImpound');
         Route::get('pets/pdf/adopt/{id}', 'Admin\PrintController@printAdopt');
         Route::get('pets/pdf/registered/{id}', 'Admin\PrintController@printRegistered');
-
-        // revised 
+        // NEW ROUTE FOR PDF
         Route::post('pets/pdf/registered', 'Admin\PrintController@printRegisteredPet');
         Route::post('pets/pdf/impound', 'Admin\PrintController@printImpoundPet');
         Route::post('pets/pdf/adopt', 'Admin\PrintController@printAdoptPet');
         Route::post('pets/pdf/service', 'Admin\PrintController@printService');
-
+        // OLD ROUTE FOR PDF
         Route::get('pets/pdf/registeredAll/dogs', 'Admin\PrintController@printRegisteredAllDogs');
         Route::get('pets/pdf/registeredAll/cats', 'Admin\PrintController@printRegisteredAllCats');
         Route::get('pets/pdf/impoundAll/dogs', 'Admin\PrintController@printImpoundAllDogs');
         Route::get('pets/pdf/impoundAll/cats', 'Admin\PrintController@printImpoundAllCats');
         Route::get('pets/pdf/adoptAll/dogs', 'Admin\PrintController@printAdoptAllDogs');
         Route::get('pets/pdf/adoptAll/cats', 'Admin\PrintController@printAdoptAllCats');
+
         Route::get('impoundList', 'Admin\ImpoundController@list');
         Route::get('adoptList', 'Admin\AdoptController@list');
         Route::get('adoptRequest', 'Admin\AdoptController@adoptRequest');
@@ -83,6 +82,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('adoptDecline/{id}', 'Admin\AdoptController@adoptDecline');
         Route::get('serviceSchedules', 'Admin\ServiceController@index');
         Route::get('serviceSchedules/request', 'Admin\ServiceController@request');
+        Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::resource('questionsAndAnswers', 'Admin\QuestionAndAnswerController');
         Route::post('questionsAndAnswers/update', 'Admin\QuestionAndAnswerController@update');
         Route::get('inventory/reports', 'Admin\ReportController@index');
@@ -99,7 +99,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::post('inventory/food/update', 'Admin\ReportController@updateFood');
         Route::get('inventory/medicine/update/{id}', 'Admin\ReportController@getUpdateMedicine');
         Route::post('inventory/medicine/update', 'Admin\ReportController@updateMedicine');
-        Route::post('serviceSchedule/setDate', 'Admin\ServiceController@setDateSchedule');
         Route::get('inventory/report/{barangay_id}/{reportName}', 'Admin\ReportController@checkReport');
         Route::get('pets/barangay/{id}', 'Admin\ReportController@getPetPerBarangay');
     });

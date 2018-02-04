@@ -102,17 +102,11 @@
 	<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 	<script>
 		$(document).ready(function() {
-			$('#example').DataTable();
-            // $('#birth_date').change(function () {
-            //     var birt_date = $('#birth_date').val();
-            //     var d = new Date( birt_date );
-            //     year = d.getFullYear();
-            //     month = d.getMonth();
-            //     day = d.getDate();
+			
+            // DATATABLES
+            $('#example').DataTable();
 
-            //     var age = calculate_age(month, day, year);
-            //     $('#age').val(age);
-            // });
+            // CAPTURE WHEN BIRTHDATE CHANGE
             $('#birth_date').change(function () {
                 var birt_date = $('#birth_date').val();
                 var d = new Date( birt_date );
@@ -131,6 +125,7 @@
                 
             });
 
+            // DISBALED FUTURE DATE
             var dtToday = new Date();
         
             var month = dtToday.getMonth() + 1;
@@ -145,6 +140,7 @@
             var maxDate = year + '-' + month + '-' + day;    
             $('#birth_date').attr('max', maxDate);
 
+            // RENDER FUNCTION IF PET TYPE ID ACTION
             $('#pet_type_id').change(function(){
                 var pet_type_id = $('#pet_type_id').val();
                 $.ajax({
@@ -165,6 +161,7 @@
                 });
             });
             
+            // GET BREED BASED ON PET TYPE ID
             var pet_type_id = $('#pet_type_id').val();
             $.ajax({
                 method: "GET",

@@ -58,7 +58,9 @@ class ImpoundController extends Controller
         $barangays = Barangay::where('city_id', 72217)->get();
 
         $users = User::where('barangay_id', $request->input('barangay_id'))->get();
+        
         $impounds = [];
+
         foreach ($users as $key => $user) {
             foreach ($user->pet as $key => $pet) {
                 if($pet->pet_category_id == $request->input('category')){
@@ -69,11 +71,10 @@ class ImpoundController extends Controller
                     if(isset($pet->impound)){
                         $impounds[] = $pet->impound;
                     }
-                   
                 }
             }
         }
-        
+        // Convert array to object data
         $impounds = (object) $impounds;
 
         return view('dashboard.admin.impound.list', compact('impounds', 'barangays'));
