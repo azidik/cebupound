@@ -35,31 +35,31 @@
                     
 					<tbody>
 						@foreach($pets as $pet)
-                            @if(!isset($pet->impound) && $pet->is_accepted == 1)
+                            @if(!isset($pet['impound']) && $pet['is_accepted'] == 1)
                             <tr>
                                 <td>
-                                    @if(isset($pet->image_mobile) != NULL)
-                                        <img src="{{ $pet->image_mobile }}" width="50" height="auto">
+                                    @if(isset($pet['image_mobile']) != NULL)
+                                        <img src="{{ $pet['image_mobile'] }}" width="50" height="auto">
                                     @else
-                                        <img src="{{ asset('/images/' . $pet->image) }}" width="50" height="auto">
+                                        <img src="{{ asset('/images/' . $pet['image']) }}" width="50" height="auto">
                                     @endif
                                 </td>
-                                <td><a href="{{ url('/dashboard/pets/'. $pet->id) }}">{{ $pet->name }}</a></td>
-                                <td>{{ $pet->breed->name }}</td>
-                                <td>{{ $pet->type->name }}</td>
+                                <td><a href="{{ url('/dashboard/pets/'. $pet['id']) }}">{{ $pet['name'] }}</a></td>
+                                <td>{{ $pet['breed'['name'] }}</td>
+                                <td>{{ $pet['type']['name'] }}</td>
                                 <td>
-                                    @foreach($pet->service as $service)
-                                        {{ $service->name }}
+                                    @foreach($pet['service'] as $service)
+                                        {{ $service['name'] }}
                                         <br>
                                     @endforeach
                                 </td>
                                 <td>
-                                    @foreach($pet->service as $service)
-                                        {{ $service->pivot->schedule }}
+                                    @foreach($pet['service'] as $service)
+                                        {{ $service['pivot']['schedule'] }}
                                         <br>
                                     @endforeach
                                 </td>
-                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet->id }}" data-target="#modal-default">Request Schedule</button>
+                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pe['id']}}" data-target="#modal-default">Request Schedule</button>
                             </tr>
                             @endif
 						@endforeach
@@ -67,28 +67,28 @@
                         @foreach($adopts as $adopt)
                             <tr>
                                 <td>
-                                    @if(isset($adopt->impound->pet->image_mobile) != NULL)
-                                        <img src="{{ $adopt->impound->pet->image_mobile }}" width="50" height="auto">
+                                    @if(isset($adopt['impound']['pet']['image_mobile']) != NULL)
+                                        <img src="{{ $adopt['impound']['pet']['image_mobile'] }}" width="50" height="auto">
                                     @else
-                                        <img src="{{ asset('/images/' . $adopt->impound->pet->image) }}" width="50" height="auto">
+                                        <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
                                     @endif
                                 </td>
-                                <td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
-                                <td>{{ $adopt->impound->pet->breed->name }}</td>
-                                <td>{{ $adopt->impound->pet->type->name }}</td>
+                                <td><a href="{{ url('/dashboard/pets/'. $adopt['impound']['pet']['id']) }}">{{ $adopt['impound']['pet']['name'] }}</a></td>
+                                <td>{{ $adopt['impound']['pet']['breed']['name'] }}</td>
+                                <td>{{ $adopt['impound']['pet']['type']['name'] }}</td>
                                 <td>
-                                    @foreach($adopt->impound->pet->service as $service)
-                                        {{ $service->name }}
+                                    @foreach($adopt['impound']['pet']['service'] as $service)
+                                        {{ $service['name'] }}
                                         <br>
                                     @endforeach
                                 </td>
                                 <td>
-                                    @foreach($adopt->impound->pet->service as $service)
-                                        {{ $service->pivot->schedule }}
+                                    @foreach($adopt['impound']['pet']['service'] as $service)
+                                        {{ $service['pivot']['schedule'] }}
                                         <br>
                                     @endforeach
                                 </td>
-                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $adopt->impound->pet->id }}" data-target="#modal-default">Request Schedule</button>
+                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $adopt['impound']['pet']['id'] }}" data-target="#modal-default">Request Schedule</button>
                             </tr>
                         @endforeach
 					</tbody>
@@ -106,7 +106,7 @@
                             <p>Select service</p>
                             <select class="form-control" id="service_id">
                                 @foreach($services as $service)
-                                    <option value="{{$service->id}}">{{ $service->name }}</option>
+                                    <option value="{{$service['id']}}">{{ $service['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
