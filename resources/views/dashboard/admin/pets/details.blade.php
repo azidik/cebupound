@@ -37,51 +37,51 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/admin/pets/update/'.  $pet->id) }}" method="post">
+            <form role="form" action="{{ url('dashboard/admin/pets/update/'.  $pet['id']) }}" method="post">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ $pet->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ $pet['name'] }}">
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Age</label>
-                            <input type="number" name="age"class="form-control" value="{{ $pet->age }}" disabled="true">
+                            <input type="number" name="age"class="form-control" value="{{ $pet['age'] }}" disabled="true">
                             </div>
                             <div class="form-group">
                             <label>Gender</label>
                             <select class="form-control" name="gender" disabled="true">
-                                <option value="Male" {{$pet->gender == 'Male'}} ?? 'selected' : ''>Male</option>
-                                <option value="Female" {{$pet->gender == 'Female'}} ?? 'selected' : ''>Female</option>
+                                <option value="Male" {{$pet['gender'] == 'Male'}} ?? 'selected' : ''>Male</option>
+                                <option value="Female" {{$pet['gender'] == 'Female'}} ?? 'selected' : ''>Female</option>
                             </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">
-                                    <img src="{{ asset('/images/'. $pet->image)}}" width="200">
+                                    <img src="{{ asset('/images/'. $pet['image'])}}" width="200">
                                 </label> 
-                                @if(isset($pet->image_mobile) != NULL)
-                                    <input type="file" name="image" value="{{$pet->image_mobile}}">
+                                @if(isset($pet['image_mobile']) != NULL)
+                                    <input type="file" name="image" value="{{$pet['image_mobile']}}">
 								@else
-                                    <input type="file" name="image" value="{{$pet->image}}">
+                                    <input type="file" name="image" value="{{$pet['image']}}">
 								@endif
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <label >Breed</label>
-                            <input type="text" name="breed" class="form-control" value="{{ $pet->breed->name }}" disabled="true">
+                            <input type="text" name="breed" class="form-control" value="{{ $pet['breed']['name'] }}" disabled="true">
                             </div>
                             <div class="form-group">
                             <label >Color</label>
-                            <input type="text" name="color" class="form-control" value="{{ $pet->color }}" disabled="true">
+                            <input type="text" name="color" class="form-control" value="{{ $pet['color'] }}" disabled="true">
                             </div>
                             <div class="form-group">
                             <label>Type</label>
                             <select class="form-control" name="pet_type_id" disabled="true">
                                 @foreach($types as $type)
-                                <option value="{{$type->id}}" {{$pet->pet_type_id == $type->id}} ?? 'selected' : ''>{{$type->name}}</option>
+                                <option value="{{$type->id}}" {{$pet['pet_type_id'] == $type['id']}} ?? 'selected' : ''>{{$type['name']}}</option>
                                 @endforeach
                             </select>
                             </div>
