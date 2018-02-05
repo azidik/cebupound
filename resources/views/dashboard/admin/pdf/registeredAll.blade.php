@@ -34,20 +34,20 @@ tr:nth-child(even) {
     @foreach($pets as $pet)
         <tr>
             <td>
-                @if(isset($pet->image_mobile) != NULL)
-                    <img src="{{ $pet->image_mobile }}" width="50" height="50">
+                @if(isset($pet['image_mobile']) != NULL)
+                    <img src="{{ $pet['image_mobile'] }}" width="50" height="50">
                 @else
-                    <img src="{{ asset('/images/'. $pet->image) }}" width="50" height="50"/>
+                    <img src="{{ asset('/images/'. $pet['image']) }}" width="50" height="50"/>
                 @endif
             </td>
-            <td>{{ $pet->name }}</td>
-            <td>{{ $pet->age }}</td>
-            <td>{{ $pet->gender }}</td>
-            <td>{{ $pet->breed->name }}</td>
-            <td>{{ $pet->color }}</td>
-            <td>{{ $pet->birth_date }}</td>
-            <td>{{ $pet->type->name }}</td>
-            <td>{{ $pet->user['first_name'] }} {{ $pet->user['first_name'] }}</td>
+            <td>{{ $pet['name'] }}</td>
+            <td>{{ $pet['age'] }}</td>
+            <td>{{ $pet['gender'] }}</td>
+            <td>{{ $pet['breed']['name'] }}</td>
+            <td>{{ $pet['color'] }}</td>
+            <td>{{ $pet['birth_date'] }}</td>
+            <td>{{ $pet['type']['name'] }}</td>
+            <td>{{ $pet['user']['first_name'] }} {{ $pet['user']['first_name'] }}</td>
         </tr>
     @endforeach
 </table>

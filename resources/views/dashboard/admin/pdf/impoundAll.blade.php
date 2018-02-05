@@ -34,20 +34,20 @@ tr:nth-child(even) {
     @foreach($impounds as $impound)
         <tr>
             <td>
-                @if(isset($impound->pet->image_mobile) != NULL)
-                    <img src="{{ $impound->pet->image_mobile }}" width="50" height="50">
+                @if(isset($impound['pet']['image_mobile']) != NULL)
+                    <img src="{{ $impound['pet']['image_mobile'] }}" width="50" height="50">
                 @else
-                    <img src="{{ asset('/images/'. $impound->pet->image) }}" width="50" height="50"/>
+                    <img src="{{ asset('/images/'. $impound['pet']['image']) }}" width="50" height="50"/>
                 @endif
             </td>
-            <td>{{ $impound->pet->name }}</td>
-            <td>{{ $impound->pet->age }}</td>
-            <td>{{ $impound->pet->gender }}</td>
-            <td>{{ $impound->pet->breed->name }}</td>
-            <td>{{ $impound->pet->color }}</td>
-            <td>{{ $impound->pet->birth_date }}</td>
-            <td>{{ $impound->pet->type->name }}</td>
-            <td>{{ $impound->pet->user->first_name }} {{ $impound->pet->user->last_name }}</td>
+            <td>{{ $impound['pet']['name'] }}</td>
+            <td>{{ $impound['pet']['age'] }}</td>
+            <td>{{ $impound['pet']['gender'] }}</td>
+            <td>{{ $impound['pet']['breed']['name'] }}</td>
+            <td>{{ $impound['pet']['color'] }}</td>
+            <td>{{ $impound['pet']['birth_date'] }}</td>
+            <td>{{ $impound['pet']['type']['name'] }}</td>
+            <td>{{ $impound['pet']['user']['first_name'] }} {{ $impound['pet']['user']['last_name'] }}</td>
         </tr>
     @endforeach
 </table>

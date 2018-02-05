@@ -31,18 +31,18 @@ tr:nth-child(even) {
  
     <tr>
         <td>
-            @if(isset($registered->image_mobile) != NULL)
-                <img src="{{ $registered->image_mobile }}" width="50" height="50">
+            @if(isset($registered['image_mobile']) != NULL)
+                <img src="{{ $registered['image_mobile'] }}" width="50" height="50">
             @else
-                <img src="{{ asset('/images/'. $registered->image) }}" width="50" height="50"/>
+                <img src="{{ asset('/images/'. $registered['image']) }}" width="50" height="50"/>
             @endif
         </td>
-        <td>{{ $registered->name }}</td>
-        <td>{{ $registered->age }}</td>
-        <td>{{ $registered->birth_date }}</td>
-        <td>{{ $registered->breed->name }}</td>
-        <td>{{ $registered->color }}</td>
-        <td>{{ $registered->user->first_name }} {{ $registered->user->last_name }}</td>
+        <td>{{ $registered['name'] }}</td>
+        <td>{{ $registered['age'] }}</td>
+        <td>{{ $registered['birth_date'] }}</td>
+        <td>{{ $registered['breed']['name'] }}</td>
+        <td>{{ $registered['color'] }}</td>
+        <td>{{ $registered['user']['first_name'] }} {{ $registered['user']['last_name'] }}</td>
     </tr>
 </table>
 @endsection
