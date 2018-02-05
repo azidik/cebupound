@@ -56,7 +56,7 @@
                                     {{ date('Y-m-d', strtotime($serviceRequest['schedule'])) }}
                                     <input id="schedule" type="date" value="{{$serviceRequest['schedule']}}">
 								</td>
-                                <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest['id'] }}">Save</button></td>
+                                <td><button class="btn btn-xs btn-info pull-right" onclick="serviceRequest({{ $serviceRequest['id']}})">Save</button></td>
 							</tr>
 						@endforeach
 					</tbody>
@@ -86,11 +86,15 @@
 				day = '0' + day.toString();
 			
 			var maxDate = year + '-' + month + '-' + day;
-			$('#schedule').attr('min', maxDate);
+			$('#schedule').attr('min', maxDate);	
 
-			$('#submit').click(function(e) {
-                e.preventDefault();
-                var id = $(this).data("id");
+			// $('#submit').click(function(e) {
+            //     e.preventDefault();
+            //     var id = $(this).data("id");
+            // });
+		});
+		function serviceRequest(id)
+			{
 				$.ajax({
                     type: "POST",
                     url: '/dashboard/admin/serviceSchedule/setDate',
@@ -116,7 +120,6 @@
                         console.log(error)
                     }
                 });  
-            });
-		});
+			}
 	</script>
 @stop
