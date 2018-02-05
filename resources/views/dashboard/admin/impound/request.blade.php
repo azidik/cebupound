@@ -47,30 +47,30 @@
 					</tfoot>
 					<tbody>
 						@foreach($impounds as $impound)
-							@if($impound->is_accepted == 0)
+							@if($impound['is_accepted'] == 0)
 								<tr>
 									<td>
-										@if(isset($impound->pet->image_mobile) != NULL)
-											<img src="{{ $impound->pet->image_mobile }}" width="50" height="auto">
+										@if(isset($impound['pet']['image_mobile']) != NULL)
+											<img src="{{ $impound['pet']['image_mobile'] }}" width="50" height="auto">
 										@else
-											<img src="{{ asset('/images/' . $impound->pet->image) }}" width="50" height="auto">
+											<img src="{{ asset('/images/' . $impound['pet']['image']) }}" width="50" height="auto">
 										@endif
 									</td>
-									<td><a href="{{ url('/dashboard/pets/'. $impound->pet->id) }}">{{ $impound->pet->name }}</a></td>
-									<td>{{ $impound->pet->age }}</td>
-									<td>{{ $impound->pet->gender }}</td>
-									<td>{{ $impound->pet->breed->name }}</td>
-									<td>{{ $impound->pet->color }}</td>
-									<td>{{ $impound->pet->type->name }}</td>
-									<td>{{ $impound->pet->user->first_name }}</td>
-									@if($impound->is_accepted == 1)
+									<td><a href="{{ url('/dashboard/pets/'. $impound['pet']['id']) }}">{{ $impound['pet']['name'] }}</a></td>
+									<td>{{ $impound['pet']['age'] }}</td>
+									<td>{{ $impound['pet']['gender'] }}</td>
+									<td>{{ $impound['pet']['breed']['name'] }}</td>
+									<td>{{ $impound['pet']['color'] }}</td>
+									<td>{{ $impound['pet']['type']['name'] }}</td>
+									<td>{{ $impound['pet']['user']['first_name'] }}</td>
+									@if($impound['is_accepted'] == 1)
 										<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
-									@elseif($impound->is_accepted == 2)
+									@elseif($impound['is_accepted'] == 2)
 										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
 									@else
 										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $impound->id }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $impound->id }}')">Decline</button>
+											<button class="btn btn-info btn-xs" onclick="accept('{{ $impound['id'] }}')">Accept</button>
+											<button class="btn btn-danger btn-xs" onclick="decline('{{ $impound['id'] }}')">Decline</button>
 										</td>  
 									@endif		
 								</tr>
