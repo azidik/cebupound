@@ -45,7 +45,7 @@
                                     @endif
                                 </td>
                                 <td><a href="{{ url('/dashboard/pets/'. $pet['id']) }}">{{ $pet['name'] }}</a></td>
-                                <td>{{ $pet['breed'['name'] }}</td>
+                                <td>{{ $pet['breed']['name'] }}</td>
                                 <td>{{ $pet['type']['name'] }}</td>
                                 <td>
                                     @foreach($pet['service'] as $service)
