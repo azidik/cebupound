@@ -35,7 +35,7 @@ tr:nth-child(even) {
         <tr>
             <td>
                 @if(isset($adopt->impound->pet->image_mobile) != NULL)
-                    <img src="{{ $adopt[impound']['pet']['image_mobile'] }}" width="50" height="50"/>
+                    <img src="{{ $adopt['impound']['pet']['image_mobile'] }}" width="50" height="50"/>
                 @else
                     <img src="{{ asset('/images/'. $adopt['impound']['pet']['image']) }}" width="50" height="50"/>
                 @endif
