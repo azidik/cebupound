@@ -114,6 +114,7 @@ class ReportController extends Controller
             $params['stock_out'] = 0;
             $params['inventory_type_id'] = 1;
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
+            $params['medicine_category_id'] = '';
             $inventory = Inventory::create($params);
             if($inventory) {
                 session()->flash('message', 'Inventory food created...');
@@ -143,6 +144,7 @@ class ReportController extends Controller
             $params['inventory_type_id'] = 2;
             /*$params['medicine_category_id'] = NULL;*/
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
+            $params['food_category_id'] = '';
             $inventory = Inventory::create($params);
             if($inventory) {
                 session()->flash('message', 'Inventory medicine created...');
