@@ -61,8 +61,7 @@
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @else
                                     <td><small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small></td>
-                                @endif		
-                                <!-- <td><a href="{{ url('dashboard/admin/pets/pdf/adopt/'. $adopt->id) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td> -->
+                                @endif
                             </tr>
 						@endforeach
 					</tbody>

@@ -34,30 +34,30 @@
 					</thead>
 					<tbody>
 						@foreach($adopts as $adopt)
-							@if($adopt->is_accepted == 0)
+							@if($adopt['is_accepted'] == 0)
 								<tr>
 									<td>
-										@if(isset($adopt->impound->pet->image_mobile) != NULL)
-											<img src="{{ $adopt->impound->pet->image_mobile }}" width="50" height="auto">
+										@if(isset($adopt['impound']['pet']['image_mobile']) != NULL)
+											<img src="{{ $adopt['impound']['pet']['image_mobile'] }}" width="50" height="auto">
 										@else
-											<img src="{{ asset('/images/' . $adopt->impound->pet->image) }}" width="50" height="auto">
+											<img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
 										@endif
 									</td>
-									<td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
-									<td>{{ $adopt->impound->pet->age }}</td>
-									<td>{{ $adopt->impound->pet->gender }}</td>
-									<td>{{ $adopt->impound->pet->breed->name }}</td>
-									<td>{{ $adopt->impound->pet->color }}</td>
-									<td>{{ $adopt->impound->pet->type->name }}</td>
-									<td>{{ $adopt->user->first_name }}</td>
-									@if($adopt->is_accepted == 1)
+									<td><a href="{{ url('/dashboard/pets/'. $adopt['impound']['pet']['id']) }}">{{ $adopt['impound']['pet']['name'] }}</a></td>
+									<td>{{ $adopt['impound']['pet']['age'] }}</td>
+									<td>{{ $adopt['impound']['pet']['gender'] }}</td>
+									<td>{{ $adopt['impound']['pet']['breed']['name'] }}</td>
+									<td>{{ $adopt['impound']['pet']['color'] }}</td>
+									<td>{{ $adopt['impound']['pet']['type']['name'] }}</td>
+									<td>{{ $adopt['user']['first_name'] }}</td>
+									@if($adopt['is_accepted'] == 1)
 										<td><button class="btn btn-info btn-xs" disabled="true">Adopted</button></td>
-									@elseif($adopt->is_accepted == 2)
+									@elseif($adopt['is_accepted'] == 2)
 										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
 									@else
 										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $adopt->id }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $adopt->id }}')">Decline</button>
+											<button class="btn btn-info btn-xs" onclick="accept('{{ $adopt['id'] }}')">Accept</button>
+											<button class="btn btn-danger btn-xs" onclick="decline('{{ $adopt['id'] }}')">Decline</button>
 										</td>  
 									@endif		
 								</tr>
