@@ -53,7 +53,7 @@
 								    <small class="label label-success"><i class="fa fa-thumbs-o-up"></i> Confirmed</small>
 								</td>
 								<td>
-                                    {{ $serviceRequest['schedule'] }}
+                                    {{ date('Y-m-d', strtotime($serviceRequest['schedule'])) }}
                                     <input id="schedule" type="date" value="{{$serviceRequest['schedule']}}">
 								</td>
                                 <td><button type="submit" class="btn btn-xs btn-info pull-right" id="submit" data-id="{{ $serviceRequest['id'] }}">Save</button></td>
@@ -64,19 +64,6 @@
 			</div>
 		</div>
     </section>
-    <!-- /.content -->
-    <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
-    <style>
-        .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
-        .ui-timepicker-div dl { text-align: left; }
-        .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
-        .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
-        .ui-timepicker-div td { font-size: 90%; }
-        .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
-        .ui-timepicker-rtl{ direction: rtl; }
-        .ui-timepicker-rtl dl { text-align: right; }
-        .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
-    </style> -->
 @endsection
 
 @section('javascript')

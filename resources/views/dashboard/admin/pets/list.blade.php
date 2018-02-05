@@ -69,21 +69,9 @@
 								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Registered</small></td>
 								@endif
 							@elseif($pet['is_accepted'] == 2)
-								@if(isset($pet['impound']) && $pet['impound']['is_accepted'] == 1)
-								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small><td>
-								@elseif(isset($pet['adopt']) && $pet['adopt']['is_accepted'] == 1)
-								<td><small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small></td>
-								@else
 								<td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
-								@endif
 							@elseif($pet['is_accepted'] == 0)
-								@if(isset($pet['impound']) && $pet['impound']['is_accepted'] == 1)
-								<td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Impounded</small><td>
-								@elseif(isset($pet['adopt']) && $pet['adopt']['is_accepted'] == 1)
-								<td><small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Adopted</small></td>
-								@else
 								<td><button class="btn btn-warning btn-xs" disabled="true">Pending</button><td>
-								@endif
 							@endif
 							<!-- <td><a href="{{ url('dashboard/admin/pets/pdf/registered/'. $pet['id']) }}" target="_blank" class="btn btn-primary btn-xs">Print</a></td> -->
 						</tr>
@@ -102,73 +90,5 @@
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
-
-		function impound (id) {
-			$.ajax({
-				type: "GET",
-				url: '/dashboard/pets/impound/' + id,
-				success: function(response) {
-					if(response.status){
-						toastr.success('Pet was successfully impounded. Thank you!');
-						location.reload();
-					} else {	
-						toastr.error('Something went wrong!');
-						location.reload();
-					}
-				},
-				error: function(error) {
-					console.log(error)
-				}
-			});
-		}
-		function acceptPet (id) {
-            if(confirm('Are you sure you want to accept this pet?')){
-                $.ajax({
-                    type: "GET",
-                    url: '/dashboard/admin/pets/accept/' + id,
-                    success: function(response) {
-                        if(response.status){
-                            toastr.success('Pet successfully accepted. Thank you!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        } else {
-                            toastr.error('Something went wrong!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error)
-                    }
-                });
-            }
-        }
-
-        function declinePet (id) {
-            if(confirm('Are you sure you want to decline this pet?')){
-                $.ajax({
-                    type: "GET",
-                    url: '/dashboard/admin/pets/decline/' + id,
-                    success: function(response) {
-                        if(response.status){
-                            toastr.success('Pet successfully declined. Thank you!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        } else {
-                            toastr.error('Something went wrong!');
-                            setTimeout(function() {
-                                location.reload();    
-                            }, 3000);
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error)
-                    }
-                });
-            }
-        }
 	</script>
 @stop

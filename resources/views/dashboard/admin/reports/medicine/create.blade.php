@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Category">Category</label>
-                                <select class="form-control" name="food_category_id">
+                                <select class="form-control" name="medicine_category_id">
                                 @foreach($categories as $category)
                                 <option value="{{$category->id}}" required="">{{$category->name}}</option>
                                 @endforeach
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name"class="form-control" required="">
+                                <input type="text" name="name" class="form-control" required="">
                             </div>
                         </div>
                         <div class="col-md-6">

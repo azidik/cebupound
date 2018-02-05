@@ -27,6 +27,8 @@ class ReportController extends Controller
         $clients = User::all();
         $pets = Pet::all();
         $impound_pets = Impound::all();
+
+        // count impound sheltered
         $impound_pets_count_sheltered = Impound::whereHas('pet', function($pet) {
             $pet->whereHas('category', function ($query) {
                 $query->where('id', 1);
@@ -39,6 +41,7 @@ class ReportController extends Controller
                 $query->where('id', 2);
             });
         })->get();
+
         $adopted_pets = Adopt::all();
         $questions = Question::all();
         $foods = Inventory::where('inventory_type_id', 1)->get();
@@ -46,15 +49,10 @@ class ReportController extends Controller
         $deworming = PetService::where('service_id', 1)->get();
         $treatement = PetService::where('service_id', 2)->get();
         $spray = PetService::where('service_id', 3)->get();
-        $rabies = PetService::where('service_id', 4)->get();
 
-        // foreach ($rabies as $key => $rab) {
-        //     echo $rab->pet->user->barangay->description;
-        // }
-        // return;
         $barangays = Barangay::where('city_id', 72217)->get();
         $medical = PetService::where('service_id', 5)->get();
-        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'rabies', 'medical', 'barangays', 'impound_pets_count_sheltered', 'impound_pets_count_stray'));
+        return view('dashboard.admin.reports.inventoryReports.list', compact('clients', 'pets', 'impound_pets', 'adopted_pets', 'questions', 'foods', 'medicines', 'deworming', 'treatement', 'spray', 'medical', 'barangays', 'impound_pets_count_sheltered', 'impound_pets_count_stray'));
     }
 
     public function foodList()
@@ -112,7 +110,7 @@ class ReportController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $params['pet_type_id'] = 1;
+            /*$params['pet_type_id'] = 1;*/
             $params['stock_out'] = 0;
             $params['inventory_type_id'] = 1;
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
@@ -140,9 +138,10 @@ class ReportController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $params['pet_type_id'] = 1;
+            /*$params['pet_type_id'] = 1;*/
             $params['stock_out'] = 0;
             $params['inventory_type_id'] = 2;
+            /*$params['medicine_category_id'] = NULL;*/
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
             $inventory = Inventory::create($params);
             if($inventory) {
@@ -169,9 +168,9 @@ class ReportController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $inventory = Inventory::create($params);
-            if($inventory) {
-                session()->flash('message', 'Invetory donor created...');
+            $donor = Donor::create($params);
+            if($donor) {
+                session()->flash('message', 'Inventory donor created...');
                 return redirect('/dashboard/admin/inventory/donorList');
             } else {
                 return redirect('/dashboard/admin/reports/donor/create');
@@ -179,18 +178,25 @@ class ReportController extends Controller
         }   
     }
 
-    public function updateFood(Request $request, $id)
+    public function getUpdateFood($id)
+    {
+        $inventory = Inventory::find($id);
+        $types = PetType::all();
+        $categories = FoodCategory::all();
+
+        return view('dashboard.admin.reports.food.details', compact('inventory', 'types', 'categories'));
+    }
+
+    public function updateFood(Request $request)
     {
         $params = $request->all();
         
         $validator = Validator::make($params, [
-            'name' => 'required',
-            'stock_in' => 'required|numeric',
-            'expiry_date' => 'required'
+            'stock_in' => 'required'
         ]);
 
         if($validator->fails()) {
-            return redirect('/dashboard/admin/inventory/foodList/'.$id)
+            return redirect('/dashboard/admin/inventory/food/update/'.$params['id'])
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -198,40 +204,48 @@ class ReportController extends Controller
             $params['stock_out'] = 0;
             $params['inventory_type_id'] = 1;
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
-            $inventory = Inventory::find($id)->update($params);
+            $inventory = Inventory::find($params['id'])->update($params);
             if($inventory) {
                 session()->flash('message', 'Food updated...');
                 return redirect('/dashboard/admin/inventory/foodList');
             } else {
-                return redirect('/dashboard/admin/inventory/foodList/' .$id);
+                return redirect('/dashboard/admin/inventory/foodList');
             }
         }
 
-     public function updateMedicine(Request $request, $id)
+        public function getUpdateMedicine($id)
+    {
+        $inventory = Inventory::find($id);
+        $types = PetType::all();
+        $categories = MedicineCategory::all();
+
+        return view('dashboard.admin.reports.medicine.details', compact('inventory', 'types', 'categories'));
+    }
+
+     public function updateMedicine(Request $request)
     {
         $params = $request->all();
         
         $validator = Validator::make($params, [
-            'name' => 'required',
-            'stock_in' => 'required|numeric',
-            'expiry_date' => 'required'
+            'stock_in' => 'required'
         ]);
 
         if($validator->fails()) {
-            return redirect('/dashboard/admin/inventory/medicineList/'.$id)
+            return redirect('/dashboard/admin/inventory/medicine/update/'.$params['id'])
                 ->withErrors($validator)
                 ->withInput();
         }
             $params['pet_type_id'] = 1;
             $params['stock_out'] = 0;
-            $params['inventory_type_id'] = 1;
+            $params['inventory_type_id'] = 2;
+            // $params['medicine_category_id'] = NULL;
             $params['expiry_date'] = date('Y-m-d H:i:s', strtotime($params['expiry_date']));
-            $inventory = Inventory::find($id)->update($params);
+            $inventory = Inventory::find($params['id'])->update($params);
             if($inventory) {
                 session()->flash('message', 'Medicine updated...');
                 return redirect('/dashboard/admin/inventory/medicineList');
             } else {
-                return redirect('/dashboard/admin/inventory/medicineList/' .$id);
+                return redirect('/dashboard/admin/inventory/medicineList');
             }
         }
 
@@ -269,20 +283,7 @@ class ReportController extends Controller
         return 0;
 
     }
-
-      public function petReport($barangayId)
-    {   
-        $reports = User::where('pet_id', $pet_id)->get();
-        $count = 0;
-        foreach ($reports as $report) {
-            if($report->pet->user->barangay->id == $barangayId) {
-                $count++;
-            }
-        }
-        return $count;
-
-    }
-
+    // GET PET PER BARANGAY
     public function getPetPerBarangay($id)
     {
         $users = User::where('barangay_id', $id)->get();
@@ -293,6 +294,7 @@ class ReportController extends Controller
                 return (count($user->pet->count())) > 0 ? $user->pet->count() : 0;
             }
         }
+        
         return 0;
     }
 }

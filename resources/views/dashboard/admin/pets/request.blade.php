@@ -52,16 +52,10 @@
 									<td>{{ $pet['type']['name'] }}</td>	
 									<td>{{ $pet['category']['name'] }}</td>
 									<td>{{ $pet->user['last_name'] . ', ' . $pet->user['first_name'] }}</td>
-									@if($pet['is_accepted'] == 1)
-										<td><button class="btn btn-info btn-xs" disabled="true">Registered</button></td>
-									@elseif($pet['is_accepted'] == 2)
-										<td><button class="btn btn-danger btn-xs" disabled="true">Declined</button></td>
-									@else
-										<td>
-											<button class="btn btn-info btn-xs" onclick="accept('{{ $pet['id'] }}')">Accept</button>
-											<button class="btn btn-danger btn-xs" onclick="decline('{{ $pet['id'] }}')">Decline</button>
-										</td>  
-									@endif		
+									<td>
+										<button class="btn btn-info btn-xs" onclick="accept('{{ $pet['id'] }}')">Accept</button>
+										<button class="btn btn-danger btn-xs" onclick="decline('{{ $pet['id'] }}')">Decline</button>
+									</td>  		
 								</tr>
 							@endif
 						@endforeach
@@ -91,7 +85,7 @@
                             setTimeout(function() {
                                 location.reload();    
                             }, 3000);
-                        } else {
+                        } else {	
                             toastr.error('Something went wrong!');
                             setTimeout(function() {
                                 location.reload();    

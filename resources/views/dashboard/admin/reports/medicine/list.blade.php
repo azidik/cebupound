@@ -41,7 +41,7 @@
 							<td>{{ $inventory['mcategorytype']['name'] }}</td>
 							<td>{{ $inventory->name }}</td>
 							<td>{{ $inventory->description }}</td>
-							<td><a href="{{ url('/dashboard/admin/inventory/medicineList/'. $inventory->id) }}">{{ $inventory->stock_in }}</a></td>
+							<td><a href="{{ url('/dashboard/admin/inventory/medicine/update/'. $inventory->id) }}">{{ $inventory->stock_in }}</a></td>
 							<td>{{ $inventory->expiry_date}}</td>
 						@endforeach
 					</tbody>
