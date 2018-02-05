@@ -10,14 +10,6 @@ use PDF;
 use App\Adopt;
 use App\PetService;
 
-categegoy
-    dog
-    cat
-    all
-type
-    sheltered
-    stray
-    all
 class PrintController extends Controller
 {
     // PRINT REGISTERED PET
