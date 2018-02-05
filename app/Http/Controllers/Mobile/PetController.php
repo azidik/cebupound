@@ -93,17 +93,14 @@ class PetController extends Controller
             $pet->gender   = $params['gender'];
             $pet->breed_id = $params['breed_id'];
             $pet->color    = $params['color'];
-            if($request->has('image')) {
-                $file_data = $request->input('image');
-                $file_name = 'image_'.time().'.png'; 
-                @list($type, $file_data) = explode(';', $file_data);
-                @list(, $file_data) = explode(',', $file_data); 
-                if($file_data!="")
-                    \Storage::disk('public')->put($file_name,base64_decode($file_data));
-                
-                $pet->image    = $file_name;
-            }
-        
+            $file_data = $request->input('image');
+            $file_name = 'image_'.time().'.png'; 
+            @list($type, $file_data) = explode(';', $file_data);
+            @list(, $file_data) = explode(',', $file_data); 
+            if($file_data!="")
+                \Storage::disk('public')->put($file_name,base64_decode($file_data));
+            
+            $pet->image    = $file_name;
             $pet->save();
             
             if($pet) {
