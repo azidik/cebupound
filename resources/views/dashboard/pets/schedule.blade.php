@@ -59,7 +59,7 @@
                                         <br>
                                     @endforeach
                                 </td>
-                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pe['id']}}" data-target="#modal-default">Request Schedule</button>
+                                <td><button class="btn btn-info btn-xs click-modal" data-toggle="modal" data-id="{{ $pet['id']}}" data-target="#modal-default">Request Schedule</button>
                             </tr>
                             @endif
 						@endforeach
