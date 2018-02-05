@@ -42,22 +42,22 @@
 						@foreach($adopts as $adopt)
                             <tr>
                                 <td>
-                                    @if(isset($adopt->impound->pet->image_mobile) != NULL)
-                                        <img src="{{ $adopt->impound->pet->image_mobile }}" width="50" height="auto">
+                                    @if(isset($adopt['impound']['pet']['image_mobile']) != NULL)
+                                        <img src="{{ $adopt['impound']['pet']['image_mobile'] }}" width="50" height="auto">
                                     @else
-                                        <img src="{{ asset('/images/' . $adopt->impound->pet->image) }}" width="50" height="auto">
+                                        <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
                                     @endif
                                 </td>
-                                <td><a href="{{ url('/dashboard/pets/'. $adopt->impound->pet->id) }}">{{ $adopt->impound->pet->name }}</a></td>
-                                <td>{{ $adopt->impound->pet->age }}</td>
-                                <td>{{ $adopt->impound->pet->gender }}</td>
-                                <td>{{ $adopt->impound->pet->breed->name }}</td>
-                                <td>{{ $adopt->impound->pet->color }}</td>
-                                <td>{{ $adopt->impound->pet->type->name }}</td>
-                                <td>{{ $adopt->user->first_name }}</td>
-                                @if($adopt->is_accepted == 1)
+                                <td><a href="{{ url('/dashboard/pets/'. $adopt['impound']['pet']['id']) }}">{{ $adopt['impound']['pet']['name'] }}</a></td>
+                                <td>{{ $adopt['impound']['pet']['age'] }}</td>
+                                <td>{{ $adopt['impound']['pet']['gender'] }}</td>
+                                <td>{{ $adopt['impound']['pet']['breed']['name'] }}</td>
+                                <td>{{ $adopt['impound']['pet']['color'] }}</td>
+                                <td>{{ $adopt['impound']['pet']['type']['name'] }}</td>
+                                <td>{{ $adopt['user']['first_name'] }}</td>
+                                @if($adopt['is_accepted'] == 1)
                                     <td><small class="label label-primary"><i class="fa fa-thumbs-o-up"></i> Accepted</small>  </td>
-                                @elseif($adopt->is_accepted == 2)
+                                @elseif($adopt['is_accepted'] == 2)
                                     <td><small class="label label-danger"><i class="fa fa-thumbs-o-down"></i> Declined</small></td>
                                 @else
                                     <td><small class="label label-warning"><i class="fa fa-thumbs-o-down"></i> Pending</small></td>
