@@ -291,12 +291,16 @@ class ReportController extends Controller
         $users = User::where('barangay_id', $id)->get();
 
         // return $users;
+        $count = 0;
         if(count($users) > 0) {
             foreach ($users as $user) {
-                return (count($user->pet->count())) > 0 ? $user->pet->count() : 0;
+                foreach ($user->pet as $pet) {
+                    if($pet->is_accepted == 1)
+                        $count++;
+                }
             }
         }
         
-        return 0;
+        return $count;
     }
 }
