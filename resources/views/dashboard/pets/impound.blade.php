@@ -52,7 +52,7 @@
 										<img src="{{ asset('/images/' . $pet['image'] ) }}" width="50" height="auto">
 									@endif
 								</td>
-								<td><a href="{{ url('/dashboard/pets/'. $pet['id']) }}">{{ $pet['name'] }}</a></td>
+								<td>{{ $pet['name'] }}</td>
 								<td>{{ $pet['age'] }}</td>
 								<td>{{ $pet['gender'] }}</td>
 								<td>{{ $pet['breed']['name'] }}</td>

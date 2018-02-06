@@ -44,7 +44,7 @@
                                         <img src="{{ asset('/images/' . $pet['image']) }}" width="50" height="auto">
                                     @endif
                                 </td>
-                                <td><a href="{{ url('/dashboard/pets/'. $pet['id']) }}">{{ $pet['name'] }}</a></td>
+                                <td>{{ $pet['name'] }}</td>
                                 <td>{{ $pet['breed']['name'] }}</td>
                                 <td>{{ $pet['type']['name'] }}</td>
                                 <td>
@@ -73,7 +73,7 @@
                                         <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
                                     @endif
                                 </td>
-                                <td><a href="{{ url('/dashboard/pets/'. $adopt['impound']['pet']['id']) }}">{{ $adopt['impound']['pet']['name'] }}</a></td>
+                                <td>{{ $adopt['impound']['pet']['name'] }}</td>
                                 <td>{{ $adopt['impound']['pet']['breed']['name'] }}</td>
                                 <td>{{ $adopt['impound']['pet']['type']['name'] }}</td>
                                 <td>
