@@ -37,10 +37,16 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/admin/pets/update/'.  $pet['id']) }}" method="post">
+            <form role="form" action="{{ url('dashboard/admin/pets/update/'.  $pet['id']) }}" enctype="multipart/form-data" method="post">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
+                        <input type="hidden" name="age" value="{{ $pet['age'] }}">
+                        <input type="hidden" name="gender" value="{{ $pet['gender'] }}">
+                        <input type="hidden" name="breed_id" value="{{ $pet['breed']['id'] }}">
+                        <input type="hidden" name="color" value="{{ $pet['color'] }}">
+                        <input type="hidden" name="pet_type_id" value="{{ $pet['pet_type_id'] }}">
+                        <input type="hidden" name="age" value="{{ $pet['age'] }}">
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
@@ -61,11 +67,7 @@
                                 <label for="exampleInputFile">
                                     <img src="{{ asset('/images/'. $pet['image'])}}" width="200">
                                 </label> 
-                                @if(isset($pet['image_mobile']) != NULL)
-                                    <input type="file" name="image" value="{{$pet['image_mobile']}}">
-								@else
-                                    <input type="file" name="image" value="{{$pet['image']}}">
-								@endif
+                                <input type="file" name="image" />
                             </div>
                         </div>
                         <div class="col-md-6">

@@ -38,11 +38,7 @@
                             @if(!isset($pet['impound']) && $pet['is_accepted'] == 1)
                             <tr>
                                 <td>
-                                    @if(isset($pet['image_mobile']) != NULL)
-                                        <img src="{{ $pet['image_mobile'] }}" width="50" height="auto">
-                                    @else
-                                        <img src="{{ asset('/images/' . $pet['image']) }}" width="50" height="auto">
-                                    @endif
+                                    <img src="{{ asset('/images/' . $pet['image']) }}" width="50" height="auto">
                                 </td>
                                 <td>{{ $pet['name'] }}</td>
                                 <td>{{ $pet['breed']['name'] }}</td>
@@ -67,11 +63,7 @@
                         @foreach($adopts as $adopt)
                             <tr>
                                 <td>
-                                    @if(isset($adopt['impound']['pet']['image_mobile']) != NULL)
-                                        <img src="{{ $adopt['impound']['pet']['image_mobile'] }}" width="50" height="auto">
-                                    @else
-                                        <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
-                                    @endif
+                                    <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
                                 </td>
                                 <td>{{ $adopt['impound']['pet']['name'] }}</td>
                                 <td>{{ $adopt['impound']['pet']['breed']['name'] }}</td>

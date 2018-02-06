@@ -101,7 +101,7 @@ class PetController extends Controller
             'name' => 'required',
             'age' => 'required',
             'gender' => 'required',
-            'breed' => 'required',
+            'breed_id' => 'required',
             'color' => 'required',
             // 'image' => 'required'
         ]);

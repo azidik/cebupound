@@ -34,11 +34,7 @@ tr:nth-child(even) {
     @foreach($service_pets as $service)
         <tr>
             <td>
-                @if(isset($service['pet']['image_mobile']) != NULL)
-                    <img src="{{ $service['pet']['image_mobile'] }}" width="50" height="50">
-                @else
-                    <img src="{{ asset('/images/'. $service['pet']['image_mobile']) }}" width="50" height="50"/>
-                @endif
+                <img src="{{ asset('/images/'. $service['pet']['image_mobile']) }}" width="50" height="50"/>
             </td>
             <td>{{ $service['pet']['name'] }}</td>
             <td>{{ $service['pet']['age'] }}</td>

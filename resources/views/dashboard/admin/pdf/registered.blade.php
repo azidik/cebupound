@@ -31,11 +31,7 @@ tr:nth-child(even) {
  
     <tr>
         <td>
-            @if(isset($registered['image_mobile']) != NULL)
-                <img src="{{ $registered['image_mobile'] }}" width="50" height="50">
-            @else
-                <img src="{{ asset('/images/'. $registered['image']) }}" width="50" height="50"/>
-            @endif
+            <img src="{{ asset('/images/'. $registered['image']) }}" width="50" height="50"/>
         </td>
         <td>{{ $registered['name'] }}</td>
         <td>{{ $registered['age'] }}</td>

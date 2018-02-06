@@ -42,11 +42,7 @@
 						@foreach($adopts as $adopt)
                             <tr>
                                 <td>
-                                    @if(isset($adopt['impound']['pet']['image_mobile']) != NULL)
-                                        <img src="{{ $adopt['impound']['pet']['image_mobile'] }}" width="50" height="auto">
-                                    @else
-                                        <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
-                                    @endif
+                                    <img src="{{ asset('/images/' . $adopt['impound']['pet']['image']) }}" width="50" height="auto">
                                 </td>
                                 <td><a href="{{ url('/dashboard/pets/'. $adopt['impound']['pet']['id']) }}">{{ $adopt['impound']['pet']['name'] }}</a></td>
                                 <td>{{ $adopt['impound']['pet']['age'] }}</td>

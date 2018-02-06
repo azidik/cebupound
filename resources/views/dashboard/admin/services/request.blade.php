@@ -37,11 +37,7 @@
 						@foreach($serviceRequests as $serviceRequest)
 							<tr>
 								<td>
-									@if(isset($serviceRequest['pet']['image_mobile']) != NULL)
-										<img src="{{ $serviceRequest['pet']['image_mobile'] }}" width="50" height="auto">
-									@else
-										<img src="{{ asset('/images/' . $serviceRequest['pet']['image'])}}" width="50" height="auto">
-									@endif
+									<img src="{{ asset('/images/' . $serviceRequest['pet']['image'])}}" width="50" height="auto">
 								</td>
 								<td><a href="{{ url('/dashboard/pets/'. $serviceRequest['pet']['id']) }}">{{ $serviceRequest['pet']['name'] }}</a></td>
 								<td>{{ $serviceRequest['pet']['breed']['name'] }}</td>
