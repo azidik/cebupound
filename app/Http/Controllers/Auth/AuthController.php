@@ -34,7 +34,7 @@ class AuthController extends Controller
             'address' => 'required',
             'contact_no' => 'required|min:11|max:13',
             'username' => 'required|min:5|unique:users',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'barangay_id' => 'required',
             'password' => 'required|min:5|confirmed',
             'password_confirmation' => 'required|min:5'
