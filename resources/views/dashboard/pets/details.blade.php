@@ -35,7 +35,7 @@
             
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('dashboard/pets/update/'. $pet['id']) }}" method="post">
+            <form role="form" action="{{ url('dashboard/pets/update/'. $pet['id']) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body ">
                     <div class="row">
