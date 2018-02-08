@@ -61,7 +61,7 @@
 										N/A
 									@endif
 								</td>
-								@if(isset($pet['impound']) && $pet[']impound']['is_accepted'] == 0) 
+								@if(isset($pet['impound']) && $pet['impound']['is_accepted'] == 0) 
 									<td>
 										<small class="label label-warning"><i class="fa fa-thumbs-o-up"></i> Pending for impound</small>
 									<td>
