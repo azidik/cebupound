@@ -43,7 +43,7 @@
         {{ session()->get('success_reset') }}
       </div>
     @endif
-      <p class="login-box-msg"><center  ><h4>Sign in to start your session</h4></center></p><br>
+      <p class="login-box-msg"><center  ><h4>Sign in to start your session now. . . . </h4></center></p><br>
 
       <form action="{{ url('/login') }}" method="post">
         {{ csrf_field() }}
