@@ -52,7 +52,7 @@
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="contact_no" placeholder="Contact No.">
+        <input type="number" class="form-control" name="contact_no" placeholder="Contact No.">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
