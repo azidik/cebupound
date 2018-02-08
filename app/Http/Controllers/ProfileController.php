@@ -78,7 +78,7 @@ class ProfileController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'address' => 'required',
-            'contact_no' => 'required|min:11|max:13',
+            'contact_no' => 'required|min:11|max:11',
             'username' => 'required|min:5',
             'email' => 'required|email'
         ]);
