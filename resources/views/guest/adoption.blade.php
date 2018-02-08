@@ -15,7 +15,7 @@
                   				<center><h3>{{ $impounding->pet->name }}</h3></center>
                   				<p class="subtitle">
                   					Age: {{ $impounding->pet->age }}<br>
-                  					Breed: {{ $impounding->pet->breed }}<br>
+                  					Breed: {{ $impounding->pet->breed->name }}<br>
                   					Species: {{ $impounding->pet->type->name }}<br>
                   					Color: {{ $impounding->pet->color }}<br>
                   				</p>
