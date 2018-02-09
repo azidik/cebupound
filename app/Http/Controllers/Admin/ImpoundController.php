@@ -53,8 +53,8 @@ class ImpoundController extends Controller
         return $response;
     }
 
-    // public function list(Request $request)
-    // {
+    public function list(Request $request)
+    {
     //     $barangays = Barangay::where('city_id', 72217)->get();
 
     //     $users = User::where('barangay_id', $request->input('barangay_id'))->get();
@@ -82,4 +82,5 @@ class ImpoundController extends Controller
 
     $impounds = Impound::all();
     return view('dashboard.admin.impound.list',compact('impounds'));
+}
 }
