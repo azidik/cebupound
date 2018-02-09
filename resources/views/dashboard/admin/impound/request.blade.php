@@ -29,6 +29,7 @@
 							<th>Color</th>
 							<th>Type</th>
                             <th>Impounded By</th>
+                            <th>Reason for Impounding</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -42,6 +43,7 @@
 							<th>Color</th>
 							<th>Type</th>
                             <th>Impounded By</th>
+                            <th>Reason for Impounding</th>
 							<th>Action</th>
 						</tr>
 					</tfoot>
@@ -59,6 +61,7 @@
 									<td>{{ $impound['pet']['color'] }}</td>
 									<td>{{ $impound['pet']['type']['name'] }}</td>
 									<td>{{ $impound['pet']['user']['first_name'] }}</td>
+									<td>{{ $impound['reason'] }}</td>
 									@if($impound['is_accepted'] == 1)
 										<td><button class="btn btn-info btn-xs" disabled="true">Impounded</button></td>
 									@elseif($impound['is_accepted'] == 2)
