@@ -80,6 +80,6 @@ class ImpoundController extends Controller
     //     return view('dashboard.admin.impound.list', compact('impounds', 'barangays'));
     // }
 
-    $impound = Impound::all();
+    $impounds = Impound::all();
     return view('dashboard.admin.impound.list',compact('impounds'));
 }
