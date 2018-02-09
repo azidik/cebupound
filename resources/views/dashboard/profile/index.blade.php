@@ -75,10 +75,7 @@
                             <label for="exampleInputPassword1">Email</label>
                             <input type="email" name="email"class="form-control" value="{{ $user->email }}">
                             </div>
-                            <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" class="form-control" value="{{ $user->password }}">
-                            </div>
+
                         </div>
                     </div>
                 </div>
