@@ -8,6 +8,7 @@
         	<div class="container">
         		<div class="row">
             @foreach($impoundings as $impounding)
+            @if($impounding['is_accepted'] == 1 && !$impounding['adopt']['is_accepted'] == 1)
           			<div class="col-md-4 col-sm-6 padleft-right">
             			<figure class="imghvr-fold-up">
               				<img src="{{ asset('images/'. $impounding->pet->image )}}" class="img-responsive" width="100%" height="70%">
@@ -23,6 +24,7 @@
             			</figure>
             			<center><a href="{{ url('/login')}}" id="submit" class="form contact-form-button light-form-button oswald light">ADOPT</a></center>
           			</div>
+                @endif
                 @endforeach
           		</div>
           	</div>
