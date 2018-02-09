@@ -53,30 +53,33 @@ class ImpoundController extends Controller
         return $response;
     }
 
-    public function list(Request $request)
-    {
-        $barangays = Barangay::where('city_id', 72217)->get();
+    // public function list(Request $request)
+    // {
+    //     $barangays = Barangay::where('city_id', 72217)->get();
 
-        $users = User::where('barangay_id', $request->input('barangay_id'))->get();
+    //     $users = User::where('barangay_id', $request->input('barangay_id'))->get();
         
-        $impounds = [];
+    //     $impounds = [];
 
-        foreach ($users as $key => $user) {
-            foreach ($user->pet as $key => $pet) {
-                if($pet->pet_category_id == $request->input('category')){
-                    if(isset($pet->impound)){
-                        $impounds[] = $pet->impound;
-                    }
-                } else{
-                    if(isset($pet->impound)){
-                        $impounds[] = $pet->impound;
-                    }
-                }
-            }
-        }
-        // Convert array to object data
-        $impounds = (object) $impounds;
+    //     foreach ($users as $key => $user) {
+    //         foreach ($user->pet as $key => $pet) {
+    //             if($pet->pet_category_id == $request->input('category')){
+    //                 if(isset($pet->impound)){
+    //                     $impounds[] = $pet->impound;
+    //                 }
+    //             } else{
+    //                 if(isset($pet->impound)){
+    //                     $impounds[] = $pet->impound;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // Convert array to object data
+    //     $impounds = (object) $impounds;
 
-        return view('dashboard.admin.impound.list', compact('impounds', 'barangays'));
-    }
+    //     return view('dashboard.admin.impound.list', compact('impounds', 'barangays'));
+    // }
+
+    $impound = Impound::all();
+    return view('dashboard.admin.impound.list',compact('impounds'));
 }

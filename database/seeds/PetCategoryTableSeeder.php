@@ -12,7 +12,7 @@ class PetCategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Shelter', 'Stray'];
+        $types = ['Sheltered', 'Stray'];
 
         foreach ($types as $key => $type) {
             PetCategory::create([
