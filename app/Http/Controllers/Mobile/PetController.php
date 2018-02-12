@@ -156,11 +156,11 @@ class PetController extends Controller
             else
                 $pet['is_adopted'] = 0;
 
-            if(isset($pet))
-                 // if(isset($pet))
-                $pet['is_accepted'] = 1;
-            else
-                $pet['is_accepted'] = 0;
+            // if(isset($pet))
+            //      // if(isset($pet))
+            //     $pet['is_accepted'] = 1;
+            // else
+            //     $pet['is_accepted'] = 0;
 
             
             $data[] = $pet;
