@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Mobile;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pet;
@@ -13,6 +12,7 @@ use App\Notification;
 use App\History;
 use App\Breed;
 use Log;
+
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
@@ -33,7 +33,6 @@ class PetController extends Controller
             'birth_date' => 'required',
             // 'image' => 'required'
         ]);
-
         if($validator->fails()) {
             return $validator->errors();
         } else {
@@ -43,40 +42,17 @@ class PetController extends Controller
             @list(, $file_data) = explode(',', $file_data); 
             if($file_data!="")
                 \Storage::disk('public')->put($file_name,base64_decode($file_data));
-
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
             $params['is_accepted'] = 0;
             $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
             $params['image'] = $file_name;
             $pet = Pet::create($params);
-
             if($pet) {
                 History::create([
-                    'user_id' => $params['user_id'],
+                    'user_id' => $pet->user_id,
                     'description' => 'You have been created pet @'. $pet->name . '' .$pet->gender
                 ]);
-                $user = User::find($params['user_id']);
-                if($user) {
-                    $optionBuilder = new OptionsBuilder();
-                    $optionBuilder->setTimeToLive(60*20);
-                    
-                    $notificationBuilder = new PayloadNotificationBuilder('Pet Registered');
-                    $notificationBuilder->setBody('You have been successfully created pet')
-                                        ->setSound('default');
-                                        
-                    $dataBuilder = new PayloadDataBuilder();
-                    $dataBuilder->addData(['a_data' => 'my_data']);
-                    
-                    $option = $optionBuilder->build();
-                    $notification = $notificationBuilder->build();
-                    $data = $dataBuilder->build();
-                    
-                    $token = $user->device_token;
-                    
-                    $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-                }
-                
                 $response = [
                     'status' => 1
                 ];
@@ -91,13 +67,9 @@ class PetController extends Controller
     public function show($id) 
     {
         $pet = Pet::find($id);
-
-
-
    
       
         // $data = [];
-
         // foreach ($pets as $key => $pet) {
         //     if(isset($pet))
         //         $pet['is_accepted'] = 1;
@@ -109,8 +81,6 @@ class PetController extends Controller
         // }
         // return $data;
  
-
-
         return $pet;
     }
     public function update(Request $request, $id)
@@ -125,11 +95,9 @@ class PetController extends Controller
             'color' => 'required',
             'image' => 'required'
         ]);
-
         if($validator->fails()) {
             return $validator->errors();
         } else {
-
             $params['pet_category_id'] = 1;
             $params['user_id'] = $params['user_id'];
             $pet = Pet::find($id);
@@ -150,31 +118,9 @@ class PetController extends Controller
             
             if($pet) {
                 History::create([
-                    'user_id' => $params['user_id'],
+                    'user_id' => $pet->user_id,
                     'description' => 'You have been updated pet @'. $pet->name . '' .$pet->gender
                 ]);
-
-                $user = User::find($params['user_id']);
-                if($user) {
-                    $optionBuilder = new OptionsBuilder();
-                    $optionBuilder->setTimeToLive(60*20);
-                    
-                    $notificationBuilder = new PayloadNotificationBuilder('Pet Updated');
-                    $notificationBuilder->setBody('You have been successfully updated pet')
-                                        ->setSound('default');
-                                        
-                    $dataBuilder = new PayloadDataBuilder();
-                    $dataBuilder->addData(['a_data' => 'my_data']);
-                    
-                    $option = $optionBuilder->build();
-                    $notification = $notificationBuilder->build();
-                    $data = $dataBuilder->build();
-                    
-                    $token = $user->device_token;
-                    
-                    $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-                }
-                
                 $response = [
                     'status' => 1
                 ];
@@ -183,16 +129,13 @@ class PetController extends Controller
                     'status' => 0
                 ];
             }
-
             return $response;
         }
     }
     public function mypets($userId)
     {
         $pets = Pet::with('type')->where('user_id', $userId)->get();
-
         $data = [];
-
         foreach ($pets as $key => $pet) {
             if(isset($pet->impound))
                 $pet['is_impound'] = 1;
@@ -203,19 +146,16 @@ class PetController extends Controller
                 $pet['is_adopted'] = 1;
             else
                 $pet['is_adopted'] = 0;
-
             if(isset($pet))
                  // if(isset($pet))
                 $pet['is_accepted'] = 1;
             else
                 $pet['is_accepted'] = 0;
-
             
             $data[] = $pet;
         }
         return $data;
     }
-
     public function schedules($id)
     {
         $pets = Pet::with('service', 'impound')->where('user_id', $id)->get();
@@ -223,7 +163,7 @@ class PetController extends Controller
         $services = Service::all();
         $data = [];
         foreach ($pets as $key => $pet) {
-            if (!isset($pet->impound) && !isset($pet->impound->adopt) && $pet['is_accepted'] == 1) {
+            if(!isset($pet->impound) && !isset($pet->impound->adopt) && $pet['is_accepted'] == 1 ){ 
                 $data[] = $pet;
             }
         }
@@ -232,20 +172,16 @@ class PetController extends Controller
             'services' => $services,
             'pets' => $data
         ];
-
         return $response;
     }
-
     public function createPetService(Request $request)
     {
         $params = $request->all();
-
         $pet_service  = PetService::create([
             'pet_id' => $params['pet_id'],
             'service_id' => $params['service_id'],
             'status' => 'Request'
         ]);
-
         if($pet_service) {
             History::create([
                 'user_id' => $pet_service->pet->user->id,
@@ -262,7 +198,6 @@ class PetController extends Controller
         }
         return $response;
     }
-
     public function notifications($id)
     {
         $notifications = Notification::where('user_id', $id)->get();
@@ -273,20 +208,16 @@ class PetController extends Controller
             $data[] = $arr;
         }
         
-
         return $data;
     }
     public function histories($id)
     {
         $histories = History::where('user_id', $id)->get();
-
         return $histories;
     }
-
     public function breed($id)
     {
         $breeds = Breed::where('pet_type_id', $id)->get();
-
         return $breeds;
     }
 }
