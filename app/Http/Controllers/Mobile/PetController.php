@@ -46,11 +46,33 @@ class PetController extends Controller
             $params['birth_date'] = date('Y-m-d H:i:s', strtotime($params['birth_date']));
             $params['image'] = $file_name;
             $pet = Pet::create($params);
+
             if($pet) {
                 History::create([
-                    'user_id' => $pet->user_id,
+                    'user_id' => $params['user_id'],
                     'description' => 'You have been created pet @'. $pet->name . '' .$pet->gender
                 ]);
+                $user = User::find($params['user_id']);
+                if($user) {
+                    $optionBuilder = new OptionsBuilder();
+                    $optionBuilder->setTimeToLive(60*20);
+                    
+                    $notificationBuilder = new PayloadNotificationBuilder('Pet Registered');
+                    $notificationBuilder->setBody('You have been successfully created pet')
+                                        ->setSound('default');
+                                        
+                    $dataBuilder = new PayloadDataBuilder();
+                    $dataBuilder->addData(['a_data' => 'my_data']);
+                    
+                    $option = $optionBuilder->build();
+                    $notification = $notificationBuilder->build();
+                    $data = $dataBuilder->build();
+                    
+                    $token = $user->device_token;
+                    
+                    $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+                }
+                
                 $response = [
                     'status' => 1
                 ];
@@ -124,9 +146,31 @@ class PetController extends Controller
             
             if($pet) {
                 History::create([
-                    'user_id' => $pet->user_id,
+                    'user_id' => $params['user_id'],
                     'description' => 'You have been updated pet @'. $pet->name . '' .$pet->gender
                 ]);
+
+                $user = User::find($params['user_id']);
+                if($user) {
+                    $optionBuilder = new OptionsBuilder();
+                    $optionBuilder->setTimeToLive(60*20);
+                    
+                    $notificationBuilder = new PayloadNotificationBuilder('Pet Updated');
+                    $notificationBuilder->setBody('You have been successfully updated pet')
+                                        ->setSound('default');
+                                        
+                    $dataBuilder = new PayloadDataBuilder();
+                    $dataBuilder->addData(['a_data' => 'my_data']);
+                    
+                    $option = $optionBuilder->build();
+                    $notification = $notificationBuilder->build();
+                    $data = $dataBuilder->build();
+                    
+                    $token = $user->device_token;
+                    
+                    $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+                }
+                
                 $response = [
                     'status' => 1
                 ];
@@ -175,9 +219,7 @@ class PetController extends Controller
         $services = Service::all();
         $data = [];
         foreach ($pets as $key => $pet) {
-            if((!isset($pet->impound)) && (!isset($pet->impound->adopt)) && (isset($pet['is_accepted'] = 0)) ){ 
-
-
+            if (!isset($pet->impound) && !isset($pet->impound->adopt) && $pet['is_accepted'] == 1) {
                 $data[] = $pet;
             }
         }
