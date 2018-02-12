@@ -66,6 +66,25 @@ class PetController extends Controller
     {
         $pet = Pet::find($id);
 
+
+
+   
+      
+        // $data = [];
+
+        // foreach ($pets as $key => $pet) {
+        //     if(isset($pet))
+        //         $pet['is_accepted'] = 1;
+        //     else
+        //         $pet['is_accepted'] = 0;
+      
+            
+        //     $data[] = $pet;
+        // }
+        // return $data;
+ 
+
+
         return $pet;
     }
     public function update(Request $request, $id)
@@ -136,6 +155,13 @@ class PetController extends Controller
                 $pet['is_adopted'] = 1;
             else
                 $pet['is_adopted'] = 0;
+
+            if(isset($pet))
+                 // if(isset($pet))
+                $pet['is_accepted'] = 1;
+            else
+                $pet['is_accepted'] = 0;
+
             
             $data[] = $pet;
         }
@@ -149,7 +175,9 @@ class PetController extends Controller
         $services = Service::all();
         $data = [];
         foreach ($pets as $key => $pet) {
-            if(!isset($pet->impound)) {
+            if((!isset($pet->impound)) && (!isset($pet->impound->adopt)) && (isset($pet['is_accepted'] = 0)) ){ 
+
+
                 $data[] = $pet;
             }
         }
@@ -198,6 +226,7 @@ class PetController extends Controller
             $arr['message'] = $notification->message;
             $data[] = $arr;
         }
+        
 
         return $data;
     }
