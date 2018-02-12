@@ -13,6 +13,10 @@ use App\Notification;
 use App\History;
 use App\Breed;
 use Log;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
 
 class PetController extends Controller
 {
